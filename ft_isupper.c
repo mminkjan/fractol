@@ -3,14 +3,17 @@
 /*                                                        ::::::::            */
 /*   ft_isupper.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
+/*   By: jesmith <marvin@codam.nl>                    +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/04 13:40:19 by jesmith        #+#    #+#                */
-/*   Updated: 2019/02/15 16:06:10 by jesmith       ########   odam.nl         */
+/*   Created: 2019/02/04 13:40:19 by jesmith       #+#    #+#                 */
+/*   Updated: 2019/02/08 18:49:55 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isupper(int c)
 {
-	return (c >= 'A' && c <= 'Z');
+	if (c >= 'A' && c <= 'Z')
+		return (1);
+	else
+		return (0);
 }

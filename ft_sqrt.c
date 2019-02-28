@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_del.c                                           :+:    :+:            */
+/*   ft_sqrt.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/06 21:39:07 by jesmith        #+#    #+#                */
-/*   Updated: 2019/02/25 11:12:40 by jesmith       ########   odam.nl         */
+/*   Created: 2019/02/21 12:19:04 by jesmith        #+#    #+#                */
+/*   Updated: 2019/02/21 13:46:55 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_del(void *data, size_t size)
+int	ft_sqrt(int nb)
 {
-	if (data == NULL)
-		return ;
-	ft_bzero(data, size);
-	free(data);
-	data = NULL;
-	size = 0;
+	int x;
+
+	x = 1;
+	if (nb < 0)
+		return (0);
+	if (nb == 0)
+		return (0);
+	while (x * x != nb)
+	{
+		x++;
+		if (x * x == nb)
+			return (x);
+		else if (x * x > nb)
+			return (0);
+	}
+	return (0);
 }

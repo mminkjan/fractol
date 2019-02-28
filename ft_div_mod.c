@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_del.c                                           :+:    :+:            */
+/*   ft_div_mod.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/06 21:39:07 by jesmith        #+#    #+#                */
-/*   Updated: 2019/02/25 11:12:40 by jesmith       ########   odam.nl         */
+/*   Created: 2019/02/21 12:22:11 by jesmith        #+#    #+#                */
+/*   Updated: 2019/02/21 12:39:36 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_del(void *data, size_t size)
+void	ft_div_mod(int a, int b, int *div, int *mod)
 {
-	if (data == NULL)
-		return ;
-	ft_bzero(data, size);
-	free(data);
-	data = NULL;
-	size = 0;
+	int x;
+	int y;
+
+	x = a / b;
+	*div = x;
+	y = a % b;
+	*mod = y;
 }

@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_del.c                                           :+:    :+:            */
+/*   ft_recursive_factorial.c                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/06 21:39:07 by jesmith        #+#    #+#                */
-/*   Updated: 2019/02/25 11:12:40 by jesmith       ########   odam.nl         */
+/*   Created: 2019/02/21 12:20:33 by jesmith        #+#    #+#                */
+/*   Updated: 2019/02/21 12:21:03 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_del(void *data, size_t size)
+int	ft_recursive_factorial(int nb)
 {
-	if (data == NULL)
-		return ;
-	ft_bzero(data, size);
-	free(data);
-	data = NULL;
-	size = 0;
+	int x;
+
+	if (nb == 0)
+	{
+		return (1);
+	}
+	if ((nb < 0) || (nb >= 32))
+	{
+		return (0);
+	}
+	if (nb > 0)
+	{
+		x = nb;
+		return (x * ft_recursive_factorial(nb - 1));
+	}
+	return (0);
 }

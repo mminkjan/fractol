@@ -6,11 +6,14 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/19 15:57:08 by jesmith        #+#    #+#                */
-/*   Updated: 2019/02/19 17:06:45 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/02/11 13:18:59 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isascii(int c)
 {
-	return (c >= 0 && c < 128);
+	if (c >= 0 && c < 128)
+		return (1);
+	else
+		return (0);
 }

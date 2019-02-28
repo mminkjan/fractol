@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_lstdel.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jesmith <marvin@codam.nl>                    +#+                     */
+/*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/03 10:52:30 by jesmith       #+#    #+#                 */
-/*   Updated: 2019/02/08 14:28:36 by jesmith       ########   odam.nl         */
+/*   Created: 2019/02/03 10:52:30 by jesmith        #+#    #+#                */
+/*   Updated: 2019/02/25 12:10:57 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

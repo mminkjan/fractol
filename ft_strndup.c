@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/26 11:52:01 by jesmith        #+#    #+#                */
-/*   Updated: 2019/02/10 18:55:06 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/02/27 19:00:42 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ char	*ft_strndup(const char *s1, size_t n)
 		k++;
 		j++;
 	}
-	temp[k] = 0;
+	temp[k] = '\0';
 	return (temp);
 }

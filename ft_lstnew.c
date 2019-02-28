@@ -3,20 +3,20 @@
 /*                                                        ::::::::            */
 /*   ft_lstnew.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jesmith <marvin@codam.nl>                    +#+                     */
+/*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/03 10:20:22 by jesmith       #+#    #+#                 */
-/*   Updated: 2019/02/19 17:17:48 by jesmith       ########   odam.nl         */
+/*   Created: 2019/02/03 10:20:22 by jesmith        #+#    #+#                */
+/*   Updated: 2019/02/27 20:58:47 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+#include <stdio.h>
 t_list	*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list *new;
 
-	new = (t_list *)malloc(sizeof(t_list));
+	new = (t_list *)ft_memalloc(sizeof(t_list));
 	if (!new)
 		return (NULL);
 	if (content == NULL)
@@ -26,8 +26,13 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 	}
 	else
 	{
-		new->content = malloc(sizeof(content_size));
-		new->content = ft_memcpy(new->content, content, content_size);
+		new->content = ft_memalloc(content_size);
+		if (!new->content)
+		{
+			free(new);
+			return (NULL);
+		}
+		new->content = ft_memcpy((new->content), content, content_size);
 		new->content_size = content_size;
 	}
 	new->next = NULL;

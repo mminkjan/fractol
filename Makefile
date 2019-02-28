@@ -6,7 +6,7 @@
 #    By: jesmith <jesmith@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/01/13 12:32:27 by jesmith        #+#    #+#                 #
-#    Updated: 2019/02/19 17:05:32 by jesmith       ########   odam.nl          #
+#    Updated: 2019/02/28 13:59:24 by jesmith       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,10 @@ SRCS := ft_lstmap.c ft_lstdelone.c ft_lstiter.c \
 		ft_putendl.c ft_putnbr.c ft_isupper.c \
 		ft_islower.c ft_stralloc.c ft_strrev.c \
 		ft_lstaddback.c ft_del.c ft_strarradel.c \
+		ft_strsubsize.c ft_count_if.c \
+		ft_foreach.c ft_range.c ft_sqrt.c ft_recursive_factorial.c \
+		ft_div_mod.c ft_swap.c ft_is_negative.c ft_print_alphabet.c \
+		ft_print_numbers.c ft_strclen.c
 
 FILES := $(SRCS:%.c=ft_%.o) 
 SRCO := $(SRCS:.c=.o)

@@ -6,11 +6,14 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/31 12:23:39 by jesmith        #+#    #+#                */
-/*   Updated: 2019/02/15 16:05:52 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/02/11 13:18:53 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(int c)
 {
-	return (c >= 32 && c < 127);
+	if (c >= 32 && c < 127)
+		return (1);
+	else
+		return (0);
 }

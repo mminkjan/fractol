@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_del.c                                           :+:    :+:            */
+/*   ft_strsubsize.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/06 21:39:07 by jesmith        #+#    #+#                */
-/*   Updated: 2019/02/25 11:12:40 by jesmith       ########   odam.nl         */
+/*   Created: 2019/02/18 10:28:10 by jesmith        #+#    #+#                */
+/*   Updated: 2019/02/21 13:47:19 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_del(void *data, size_t size)
+int	ft_strsubsize(char *str)
 {
-	if (data == NULL)
-		return ;
-	ft_bzero(data, size);
-	free(data);
-	data = NULL;
-	size = 0;
+	int		i;
+
+	i = 0;
+	if (str == NULL)
+		return (0);
+	while (str[i] != '\n' && str[i] != '\0')
+		i++;
+	return (i);
 }

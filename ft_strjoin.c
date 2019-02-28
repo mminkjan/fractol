@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_strjoin.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jesmith <marvin@codam.nl>                    +#+                     */
+/*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/21 13:02:24 by jesmith       #+#    #+#                 */
-/*   Updated: 2019/02/08 16:32:35 by jesmith       ########   odam.nl         */
+/*   Created: 2019/01/21 13:02:24 by jesmith        #+#    #+#                */
+/*   Updated: 2019/02/18 11:20:02 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 		s2++;
 	}
-	new[i] = 0;
+	new[i] = '\0';
 	return (new);
 }

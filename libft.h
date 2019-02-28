@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/13 12:48:31 by jesmith        #+#    #+#                */
-/*   Updated: 2019/02/15 00:11:15 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/02/28 13:22:26 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,18 @@ int					ft_islower(int c);
 int					ft_isupper(int c);
 char				*ft_stralloc(const char *s);
 char				*ft_strrev(char *s);
+int					ft_strsubsize(char *str);
+int					ft_count_if(char **tab, int (*f)(char *));
+void				ft_foreach(int *tab, int length, void (*f)(int));
+int					*ft_range(int min, int max);
+int					ft_sqrt(int nb);
+int					ft_recursive_factorial(int nb);
+void				ft_div_mod(int a, int b, int *div, int *mod);
+void				ft_swap(int *a, int *b);
+void				ft_is_negative(int n);
+void				ft_print_numbers(void);
+void				ft_print_alphabet(void);
+int					ft_strclen(char *s, int c);
 
 typedef struct		s_list
 {

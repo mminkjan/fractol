@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_del.c                                           :+:    :+:            */
+/*   ft_foreach.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/06 21:39:07 by jesmith        #+#    #+#                */
-/*   Updated: 2019/02/25 11:12:40 by jesmith       ########   odam.nl         */
+/*   Created: 2019/02/21 12:15:03 by jesmith        #+#    #+#                */
+/*   Updated: 2019/02/21 13:46:09 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_del(void *data, size_t size)
+void	ft_foreach(int *tab, int length, void (*f)(int))
 {
-	if (data == NULL)
-		return ;
-	ft_bzero(data, size);
-	free(data);
-	data = NULL;
-	size = 0;
+	int i;
+
+	i = 0;
+	while (i < length)
+	{
+		f(tab[i]);
+		i++;
+	}
 }

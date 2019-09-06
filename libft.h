@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/13 12:48:31 by jesmith        #+#    #+#                */
-/*   Updated: 2019/04/19 10:54:32 by jesmith       ########   odam.nl         */
+/*   Updated: 2019/09/06 12:44:37 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ char				*ft_strnstr(const char *haystack, const char \
 char				*ft_strndup(const char *s1, size_t n);
 char				**ft_strplit(char const *s, char c);
 int					ft_intlen(int n);
+unsigned int		ft_ull_length(unsigned long long num, unsigned int base);
 void				ft_strarradel(const char *s);
 size_t				ft_wrdcount(char const *s, char c);
 int					ft_islower(int c);

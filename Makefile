@@ -25,15 +25,15 @@ SRCS := lstmap lstdelone lstiter lstadd lstnew islower \
 		isalnum isascii isprint toupper tolower isspace \
 		atoi putchar putstr putendl putnbr isupper \
 		islower stralloc strrev lstaddback del strarradel \
-		strsubsize count_if  ft_ischar_to_number_base\
+		strsubsize count_if  ischar_to_number_base\
 		foreach range sqrt recursive_factorial \
 		div_mod swap is_negative print_alphabet \
-		print_numbers strclen ull_length
+		print_numbers strclen ull_length str_free
 
-FILES := $(SRCS:%.c=ft_%.o) 
-SRCO := $(SRCS:.c=.o)
+CFILES := $(SRCS:%=ft_%.c)
+SRCO := $(SRCS:%.c=%.o)
 
-NORM := norminette $(HEAD) $(SRCS) | grep -e "Warning" -e "Error" -B 1
+NORM := norminette $(HEAD) $(CFILES) | grep -e "Warning" -e "Error" -B 1
 
 all: $(NAME)
 
@@ -41,7 +41,7 @@ norm:
 	@$(NORM)
 
 add:
-	@git add $(SRCS) $(HEAD)
+	@git add $(CFILES) $(HEAD) Makefile README.md
 	@git status
 
 push:
@@ -57,7 +57,7 @@ print:
 	@echo "$(SRCO)"
 
 $(NAME):
-	@gcc $(CFLAGS) -c $(SRCS)   
+	@gcc $(CFLAGS) -c $(CFILES)   
 	@ar rc	$(NAME) $(SRCO) $(HEAD)
 	@ranlib	$(NAME)
 

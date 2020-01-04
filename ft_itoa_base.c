@@ -1,23 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strclen.c                                       :+:    :+:            */
+/*   ft_itoa_base.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/17 10:22:37 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/04 13:47:15 by jesmith       ########   odam.nl         */
+/*   Created: 2020/01/04 13:24:13 by jesmith        #+#    #+#                */
+/*   Updated: 2020/01/04 13:26:51 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strclen(const char *str, char c)
+char	*ft_itoa_base(int n, int base)
 {
-	size_t i;
+	char	*result;
+	int		neg;
+	size_t	i;
 
 	i = 0;
-	while (str[i] != '\0' && str[i] != c)
+	neg = n;
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	result = (char *)malloc(ft_intlen(n) + 1);
+	if (result == NULL)
+		return (NULL);
+	if (n < 0)
+		n = -n;
+	if (n == 0)
+		result[i] = '0';
+	while (n > 0)
+	{
+		result[i] = (n % base) + '0';
+		n = n / base;
 		i++;
-	return (i);
+	}
+	if (neg < 0)
+		result[i] = '-';
+	result[ft_intlen(neg)] = '\0';
+	return (ft_strrev(result));
 }

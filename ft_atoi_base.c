@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_atoi.c                                          :+:    :+:            */
+/*   ft_atoi_base.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jesmith <marvin@codam.nl>                    +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/31 15:20:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/04 13:18:50 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/04 13:23:11 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi_base(const char *str, int base)
 {
 	int neg;
 	int result;
@@ -32,7 +32,7 @@ int	ft_atoi(const char *str)
 		str++;
 	while (*str != 0 && *str >= '0' && *str <= '9')
 	{
-		result = result * 10 + (*str - '0');
+		result = result * base + (*str - '0');
 		str++;
 	}
 	return (result * neg);

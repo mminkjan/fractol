@@ -25,13 +25,14 @@ SRCS := lstmap lstdelone lstiter lstadd lstnew islower \
 		isalnum isascii isprint toupper tolower isspace \
 		atoi putchar putstr putendl putnbr isupper \
 		islower stralloc strrev lstaddback del strarradel \
-		strsubsize count_if  ischar_to_number_base\
+		strsubsize count_if free_strarray \
 		foreach range sqrt recursive_factorial \
 		div_mod swap is_negative print_alphabet \
-		print_numbers strclen ull_length str_free
+		print_numbers strclen ull_length atoi_base \
+		itoa_base exit isnumber_base
 
-CFILES := $(SRCS:%=ft_%.c)
-SRCO := $(SRCS:%.c=%.o)
+CFILES := $(SRCS:%=./ft_%.c)
+SRCO := $(CFILES:%.c=%.o)
 
 NORM := norminette $(HEAD) $(CFILES) | grep -e "Warning" -e "Error" -B 1
 

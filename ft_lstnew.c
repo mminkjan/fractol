@@ -6,12 +6,13 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/02/03 10:20:22 by jesmith        #+#    #+#                */
-/*   Updated: 2019/02/27 20:58:47 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/04 13:46:28 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
+
 t_list	*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list *new;

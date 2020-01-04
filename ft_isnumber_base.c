@@ -6,32 +6,31 @@
 /*   By: jessicasmith <jessicasmith@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/13 21:02:41 by jessicasmit    #+#    #+#                */
-/*   Updated: 2019/10/13 21:13:13 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/01/04 13:35:15 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdbool.h>
 
-int		ft_ischar_to_number_base(char *str, int base)
+int		ft_isnumber_base(char *nb, int base)
 {
-	int		neg;
-	int 	ret_val;
-	int		nb;
+	int	neg;
+	int	new;
 
 	neg = 1;
-	nb = 0;
-	if (*str == '-')
+	new = 0;
+	if (*nb == '-')
 	{
-		str++;
 		neg = -1;
+		nb++;
 	}
-	if (*str == '+')
-		str++;
-	while (*str != 0 && *str >= '0' && *str <= '9')
+	if (*nb == '+')
+		nb++;
+	while (*nb != 0 && *nb >= '0' && *nb <= '9')
 	{
-		nb = nb * base + (*str + '0');
-		str++;
+		new = new * base + (*nb - '0');
+		nb++;
 	}
-	return (!(ft_isdigit(nb * neg) ? true : false));
+	return ((ft_isdigit(new * neg) ? true : false));
 }

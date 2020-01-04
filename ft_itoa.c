@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/24 09:53:18 by jesmith        #+#    #+#                */
-/*   Updated: 2019/02/10 17:47:12 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/04 13:26:17 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_itoa(int n)
 {
-	char	*res;
+	char	*result;
 	int		neg;
 	size_t	i;
 
@@ -22,21 +22,21 @@ char	*ft_itoa(int n)
 	neg = n;
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	res = (char *)malloc(ft_intlen(n) + 1);
-	if (!res)
+	result = (char *)malloc(ft_intlen(n) + 1);
+	if (result == NULL)
 		return (NULL);
 	if (n < 0)
 		n = -n;
 	if (n == 0)
-		res[i] = '0';
+		result[i] = '0';
 	while (n > 0)
 	{
-		res[i] = (n % 10) + '0';
+		result[i] = (n % 10) + '0';
 		n = n / 10;
 		i++;
 	}
 	if (neg < 0)
-		res[i] = '-';
-	res[ft_intlen(neg)] = '\0';
-	return (ft_strrev(res));
+		result[i] = '-';
+	result[ft_intlen(neg)] = '\0';
+	return (ft_strrev(result));
 }

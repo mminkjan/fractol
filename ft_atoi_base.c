@@ -6,34 +6,33 @@
 /*   By: jesmith <marvin@codam.nl>                    +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/31 15:20:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/04 13:23:11 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/08 10:34:54 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdbool.h>
 
-int	ft_atoi_base(const char *str, int base)
+int		ft_atoi_base(const char *str, int base)
 {
-	int neg;
-	int result;
+	unsigned long	result;
+	size_t			i;
+	int				sign;
 
-	neg = 1;
 	result = 0;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == '-')
-	{
-		neg = -1;
-		str++;
-		if (*str == '+')
-			return (0);
-	}
-	if (*str == '+')
-		str++;
-	while (*str != 0 && *str >= '0' && *str <= '9')
-	{
-		result = result * base + (*str - '0');
-		str++;
-	}
-	return (result * neg);
+	i = 0;
+	sign = 1;
+	while (ft_iswhitespace(str[i]))
+		i++;
+	if (base != 10 && ft_has_prefix(&str[i], base) == 0)
+		return (false);
+	if (base == 2 || base == 16)
+		i += 2;
+	else if (base == 8)
+		i++;
+	else if (base == 10 && (str[i] == '-' || str[i] == '+'))
+		sign = (str[i++] == '-') ? -1 : 1;
+	while (ft_isdigit_base(str[i], base) >= 0)
+		result = result * base + ft_isdigit_base(str[i++], base);
+	return ((int)(result * sign));
 }

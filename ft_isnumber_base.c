@@ -6,31 +6,35 @@
 /*   By: jessicasmith <jessicasmith@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/13 21:02:41 by jessicasmit    #+#    #+#                */
-/*   Updated: 2020/01/04 13:35:15 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/08 10:19:47 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdbool.h>
 
-int		ft_isnumber_base(char *nb, int base)
+int					ft_isnumber(char *str, int base)
 {
-	int	neg;
-	int	new;
+	size_t		index;
+	size_t		digits;
 
-	neg = 1;
-	new = 0;
-	if (*nb == '-')
+	index = 0;
+	digits = 0;
+	while (ft_iswhitespace(str[index]))
+		index++;
+	if (base != 10 && ft_has_prefix(&str[index], base) == 0)
+		return (0);
+	if (base == 2 || base == 16)
+		index += 2;
+	else if (base == 8)
+		index++;
+	else if (base == 10 && (str[index] == '-' || str[index] == '+'))
+		index++;
+	while (ft_isdigit_base(str[index], base) >= 0)
 	{
-		neg = -1;
-		nb++;
+		index++;
+		digits++;
 	}
-	if (*nb == '+')
-		nb++;
-	while (*nb != 0 && *nb >= '0' && *nb <= '9')
-	{
-		new = new * base + (*nb - '0');
-		nb++;
-	}
-	return ((ft_isdigit(new * neg) ? true : false));
+	if (str[index] == '\0' && digits)
+		return (1);
+	return (0);
 }

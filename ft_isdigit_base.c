@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstaddback.c                                    :+:    :+:            */
+/*   ft_isdigit_base.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/06 21:19:20 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/08 10:19:39 by jesmith       ########   odam.nl         */
+/*   Created: 2020/01/08 10:12:40 by jesmith        #+#    #+#                */
+/*   Updated: 2020/01/08 10:15:35 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstaddback(t_list **alst, t_list *blst)
+int		ft_isdigit_base(char c, int base)
 {
-	t_list	*temp;
+	const char	*digits;
+	int			index;
 
-	temp = *alst;
-	if (temp == NULL)
+	digits = "0123456789ABCDEF";
+	index = 0;
+	while (index < base)
 	{
-		*alst = blst;
-		return ;
+		if (digits[index] == ft_toupper(c))
+			return (index);
+		index++;
 	}
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = blst;
+	return (-1);
 }

@@ -6,57 +6,56 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/28 13:28:40 by jesmith        #+#    #+#                */
-/*   Updated: 2019/02/14 19:00:00 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/08 10:35:06 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*ft_arrayalloc(const char *s, char c, int *index)
+static char		*ft_arrayalloc(const char *str, char c,
+					int *index, char **array_strs)
 {
-	char	*array;
-	size_t	i;
-	int		j;
+	char	*char_string;
+	size_t	index_2;
+	int		diff_index;
 
-	i = 0;
-	j = *index;
-	while (j != c && s[j])
-		j++;
-	array = (char *)ft_memalloc(sizeof(array) * (j - *index));
-	if (!array)
+	index_2 = 0;
+	diff_index = *index;
+	while (diff_index != c && str[diff_index])
+		diff_index++;
+	char_string = (char *)malloc(sizeof(char_string) * (diff_index - *index));
+	if (char_string == NULL)
 	{
-		ft_strarradel(array);
+		ft_strdel(char_string);
+		ft_free_strarray(array_strs);
 		return (NULL);
 	}
-	i = 0;
-	while (s[*index] != c && s[*index])
+	while (str[*index] != c && str[*index])
 	{
-		array[i] = s[*index];
-		i++;
+		char_string[index_2] = str[*index];
+		index_2++;
 		*index = *index + 1;
 	}
-	array[i] = '\0';
-	while (s[*index] == c && s[*index])
-		*index = *index + 1;
-	return (array);
+	char_string[index_2] = '\0';
+	return (char_string);
 }
 
 static size_t	ft_wrdscount(char const *s, char c)
 {
-	size_t i;
+	size_t index;
 	size_t word;
 
-	i = 0;
+	index = 0;
 	word = 0;
 	if (!s)
 		return (0);
-	while (s[i] == c)
-		i++;
-	while (s[i])
+	while (s[index] == c)
+		index++;
+	while (s[index])
 	{
-		if (s[i] == c && s[i + 1] != c && s[i] != '\0')
+		if (s[index] == c && s[index + 1] != c && s[index] != '\0')
 			word++;
-		i++;
+		index++;
 	}
 	if (s[0] != '\0')
 		word++;
@@ -66,25 +65,27 @@ static size_t	ft_wrdscount(char const *s, char c)
 char			**ft_strsplit(char const *s, char c)
 {
 	char	**array;
-	size_t	j;
-	int		i;
+	size_t	array_dex;
+	int		index;
 	size_t	numofparts;
 
-	i = 0;
-	j = 0;
-	if (!s)
+	index = 0;
+	array_dex = 0;
+	if (s == NULL)
 		return (NULL);
 	numofparts = ft_wrdscount(s, c);
-	array = (char**)ft_memalloc(sizeof(char *) * numofparts + 1);
-	if (!array)
+	array = (char**)malloc(sizeof(char *) * numofparts + 1);
+	if (array == NULL)
 		return (NULL);
-	while (s[i] == c && s[i])
-		i++;
-	while (j < numofparts && s[i])
+	while (s[index] == c && s[index])
+		index++;
+	while (array_dex < numofparts && s[index])
 	{
-		array[j] = ft_arrayalloc(s, c, &i);
-		j++;
+		array[array_dex] = ft_arrayalloc(s, c, &index, array);
+		array_dex++;
+		while (s[index] == c && s[index])
+			index++;
 	}
-	array[j] = 0;
+	array[array_dex] = 0;
 	return (array);
 }

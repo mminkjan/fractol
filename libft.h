@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/13 12:48:31 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/04 13:42:40 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/08 10:31:15 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ size_t				ft_strlcat(char *dst, const char *src, size_t size);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strnew(size_t size);
-void				ft_strdel(char **as);
+void				ft_strarray_del(char **as);
 void				ft_strclr(char *s);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
@@ -56,7 +56,7 @@ char				*ft_strnstr(const char *haystack, const char \
 					*needle, size_t len);
 char				*ft_strndup(const char *s1, size_t n);
 char				**ft_strplit(char const *s, char c);
-void				ft_strarradel(const char *s);
+void				ft_strdel(const char *s);
 size_t				ft_strclen(const char *s, char c);
 char				*ft_stralloc(const char *s);
 char				*ft_strrev(char *s);
@@ -75,6 +75,9 @@ char				*ft_itoa_base(int n, int base);
 
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
+int					ft_isdigit_base(char c, int base);
+int					ft_iswhitespace(int c);
+void				ft_is_negative(int n);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
@@ -84,6 +87,7 @@ int					ft_isspace(int c);
 int					ft_islower(int c);
 int					ft_isupper(int c);
 int					ft_isnumber_base(char *nb, int base);
+int					ft_has_prefix(const char *str, int base);
 
 void				ft_putchar(char c);
 void				ft_putendl(char const *s);
@@ -103,7 +107,6 @@ int					ft_sqrt(int nb);
 int					ft_recursive_factorial(int nb);
 void				ft_div_mod(int a, int b, int *div, int *mod);
 void				ft_swap(int *a, int *b);
-void				ft_is_negative(int n);
 void				ft_print_numbers(void);
 void				ft_print_alphabet(void);
 
@@ -120,6 +123,6 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
-t_list				*ft_lstaddback(t_list **alst, t_list *blst);
+void				ft_lstaddback(t_list **alst, t_list *blst);
 
 #endif

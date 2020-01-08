@@ -14,7 +14,7 @@ NAME := libft.a
 CFLAGS := -Wall -Werror -Wextra
 HEAD := libft.h
 SRCS := lstmap lstdelone lstiter lstadd lstnew islower \
-		lstdel strarradel strsplit wrdcount strndup strnstr \
+		lstdel strsplit wrdcount strndup strnstr \
 		strstr itoa putnbr_fd putendl_fd isupper putstr_fd \
 		putchar_fd strtrim strjoin strsub intlen strncmp \
 		strnequ strequ strmapi strmap striteri striter \
@@ -24,12 +24,12 @@ SRCS := lstmap lstdelone lstiter lstadd lstnew islower \
 		strncat strlcat strchr strrchr isalpha isdigit \
 		isalnum isascii isprint toupper tolower isspace \
 		atoi putchar putstr putendl putnbr isupper \
-		islower stralloc strrev lstaddback del strarradel \
+		islower stralloc strrev lstaddback del strdel \
 		strsubsize count_if free_strarray \
 		foreach range sqrt recursive_factorial \
 		div_mod swap is_negative print_alphabet \
 		print_numbers strclen ull_length atoi_base \
-		itoa_base exit isnumber_base
+		itoa_base exit isnumber_base has_prefix isdigit_base
 
 CFILES := $(SRCS:%=./ft_%.c)
 SRCO := $(CFILES:%.c=%.o)

@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstaddback.c                                    :+:    :+:            */
+/*   ft_iswhitespace.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/06 21:19:20 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/08 10:19:39 by jesmith       ########   odam.nl         */
+/*   Created: 2020/01/08 10:16:37 by jesmith        #+#    #+#                */
+/*   Updated: 2020/01/08 10:16:40 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_lstaddback(t_list **alst, t_list *blst)
+int		ft_iswhitespace(int c)
 {
-	t_list	*temp;
-
-	temp = *alst;
-	if (temp == NULL)
-	{
-		*alst = blst;
-		return ;
-	}
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = blst;
+	if (c == ' ' || c == '\t' || c == '\r' || c == '\n' || c == '\v'
+	|| c == '\f')
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: jesmith <jesmith@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/08 11:03:39 by jesmith        #+#    #+#                 #
-#    Updated: 2020/01/08 17:19:22 by jesmith       ########   odam.nl          #
+#    Updated: 2020/01/11 13:23:12 by jesmith       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,9 @@ LIBFT = libft/
 
 SRCS = ./srcs/
 
-SRCS_FILES = main utilities events fractol_manager 
+SRCS_FILES = main utilities mlx_setup fractol_manager 
 
-CFILES = $(SRCS_FILES:=%$(SRCS)%.c)
+CFILES = $(SRCS_FILES:%=$(SRCS)%.c)
 
 OFILES = $(CFILES:%.c=%.o)
 

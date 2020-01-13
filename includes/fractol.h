@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/11 14:50:19 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/13 15:11:28 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@
 # define INCREASE_REAL 14
 # define DECREASE_REAL 15
 
-# define MAX_ITERATIONS 256
+# define MAX_ITERATIONS 10
 
-# define WIDTH 1900
+# define WIDTH 1500
 # define HEIGHT 1200
 
 # include <stdio.h> //remove later!
@@ -84,11 +84,14 @@ typedef struct	s_fractol
 	t_points	points;
 }				t_fractol;
 
-int			main(int argc, char **argv);
-void		mlx_setup(t_fractol *fractol);
-int			fractol_manager(t_fractol *fractol);
+int				main(int argc, char **argv);
+void			mlx_setup(t_fractol *fractol);
+int				fractol_manager(t_fractol *fractol);
 
-void		fractol_exit(char *str, t_fractol *fractol);
-t_fractol	*fractol_init(void);
+void			check_input(t_fractol *fractol, char **argv);
+t_fractol		*fractol_init(void);
+t_numbers		*numbers_init(t_fractol *fractol);
+void			fractol_exit(char *str, t_fractol *fractol);
 
+int				key_press(int key, t_fractol *fractol);
 #endif

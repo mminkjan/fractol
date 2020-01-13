@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:59:40 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/11 13:33:53 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/13 12:05:02 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ void	mlx_setup(t_fractol *fractol)
 							WIDTH + 400, HEIGHT + 400, fractol->title);
 	fractol->image_ptr = mlx_new_image(fractol->mlx_ptr, WIDTH, HEIGHT);
 	fractol->addr_str = mlx_get_data_addr(fractol->image_ptr,\
-							&fractol->bits_ppixel, &fractol->size_line, &endian);
+					&fractol->bits_ppixel, &fractol->size_line, &endian);
 }

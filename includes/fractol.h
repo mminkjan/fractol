@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/13 15:11:28 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/13 17:20:49 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define INCREASE_REAL 14
 # define DECREASE_REAL 15
 
-# define MAX_ITERATIONS 10
+# define MAX_ITERATIONS 2
 
 # define WIDTH 1500
 # define HEIGHT 1200
@@ -78,6 +78,7 @@ typedef struct	s_fractol
 	int			bits_ppixel;
 	int			size_line;
 	char		*argv;
+	int			type;
 	int			color;
 	t_events	event;
 	t_numbers	*numbers;

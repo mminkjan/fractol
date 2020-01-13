@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/13 14:45:20 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/13 17:20:41 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		check_input(t_fractol *fractol, char **argv)
 	if (ft_strcmp("Julia", argv[1]) == 0)
 	{
 		fractol->argv = ft_strdup("Julia");
-		fractol->title = ft_strdup("Julia");
+		fractol->type = 1;
 		fractol->numbers = numbers_init(fractol);
 		fractol->numbers->c_i = -0.7;
 		fractol->numbers->c_real = 0.27015;
@@ -25,14 +25,16 @@ void		check_input(t_fractol *fractol, char **argv)
 	else if (ft_strcmp("Mandelbrot", argv[1]) == 0)
 	{
 		fractol->argv = ft_strdup("Mandelbrot");
-		fractol->title = ft_strdup("Mandelbort");
+		fractol->type = 2;
 		fractol->numbers = numbers_init(fractol);
 	}
 	else if (ft_strcmp("Jessie", argv[1]) == 0)
 	{
 		fractol->argv = ft_strdup("Jessie");
-		fractol->title = ft_strdup("Jessie");
+		fractol->type = 3;
 		fractol->numbers = numbers_init(fractol);
+		fractol->numbers->c_i = 0.3;
+		fractol->numbers->c_real = -0.01;
 	}
 	else
 		fractol_exit(USAGE_ERR, fractol);

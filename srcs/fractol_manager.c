@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/13 15:16:03 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/13 17:20:40 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,23 @@ void	put_pixel(t_fractol *fractol)
 	}
 }
 
-void	draw_fractol(t_fractol *fractol)
+static void		constant_calculation(t_fractol *fractol, t_numbers *number, t_points points)
+{
+	if (fractol->type == 1)
+	{
+		number->c_real = (points.x - WIDTH / 2.0) * 4.0 / WIDTH;
+		number->c_i = (points.y - HEIGHT / 2.0) * 4.0 / WIDTH;
+		number->old_real = 0;
+		number->old_i = 0;
+	}
+	else if (fractol->type == 2)
+	{
+		number->old_real = 1.5 * (points.x - WIDTH / 2) / (0.5 * WIDTH);
+		number->old_i = (points.y - HEIGHT / 2) / (0.5 * HEIGHT);
+	}
+}
+
+void			draw_fractol(t_fractol *fractol)
 {
 	t_points	points;
 	t_events	events;
@@ -44,28 +60,52 @@ void	draw_fractol(t_fractol *fractol)
 		points.x = 0;
 		while (points.x < WIDTH)
 		{
-			number->new_real = 1.5 * (points.x - WIDTH / 2) / (0.5 * events.zoom * WIDTH) + events.mouse_x; // for Mandelbrot this is equal to number->real_pixel
-			number->new_i = (points.y - HEIGHT / 2) / (0.5 * events.zoom * HEIGHT) + events.mouse_y; // for Mandelbrot this is equal to number->i_pixel
-			// for Mandelbrot new_real, new_i, old_i, old_real are set to 0.0;
-			// printf("%f, %f\n", number->new_real, number->new_i);
-			iteration = 0;
-			while (iteration < MAX_ITERATIONS)
+			constant_calculation(fractol, number, points);
+			// number->c_real = (points.x - WIDTH / 2.0) * 4.0 / WIDTH;
+			// number->c_i = (points.y - HEIGHT / 2.0) * 4.0 / WIDTH;
+			// printf("%f, %f\n", number->c_real, number->c_i);
+			// number->old_real = 0;
+			// number->old_i = 0;
+       		// iteration = 0;
+			while (number->old_real * number->old_real + number->old_i * number->old_i <= 4 && iteration < MAX_ITERATIONS) 
 			{
+				number->new_real = number->old_real * number->old_real -  number->old_i * number->new_i + number->c_real;
+				number->new_i = 2 * number->old_real * number->old_i + number->c_i;
 				number->old_real = number->new_real;
 				number->old_i = number->new_i;
-				number->new_real = number->old_real * number->old_real - number->old_i * number->old_i + number->c_real; // + number->pixel_real
-				number->new_i = 2 * number->old_real * number->old_i + number->c_i; // + number->pixel_i
-				if ((number->new_real * number->new_real + number->new_i * number->new_i) > 4)
-					break ;
 				iteration++;
 			}
-			fractol->color = 0xffffff; //get_color(fractol);
-			put_pixel(fractol);
-			// printf("%f, %f\n", points.x, points.y);
+			if (iteration < MAX_ITERATIONS)
+			{
+				fractol->color = 0xffffff;
+				put_pixel(fractol);
+			}
 			points.x++;
 		}
 		points.y++;
 	}
+	// 	{
+	// 		number->new_real = 1.5 * (points.x - WIDTH / 2) / (0.5 * WIDTH); // for Mandelbrot this is equal to number->real_pixel
+	// 		number->new_i = (points.y - HEIGHT / 2) / (0.5 * HEIGHT); // for Mandelbrot this is equal to number->i_pixel
+	// 		// for Mandelbrot new_real, new_i, old_i, old_real are set to 0.0;
+	// 		iteration = 0;
+	// 		while (iteration < MAX_ITERATIONS)
+	// 		{
+	// 			number->old_real = number->new_real;
+	// 			number->old_i = number->new_i;
+	// 			number->new_real = number->old_real * number->old_real - number->old_i * number->old_i + number->c_real; // + number->pixel_real
+	// 			number->new_i = 2 * number->old_real * number->old_i + number->c_i; // + number->pixel_i
+	// 			if ((number->new_real * number->new_real + number->new_i * number->new_i) > 4) // check if it is outside of radius 2, if it is, breaks and put color
+	// 				break ;
+	// 			iteration++;
+	// 		}
+	// 		fractol->color = 0xffffff; //get_color(fractol);
+	// 		put_pixel(fractol);
+	// 		// printf("%f, %f\n", points.x, points.y);
+	// 		points.y++;
+	// 	}
+	// 	points.x++;
+	// }
 }
 
 void		draw_line(t_fractol *fractol)
@@ -79,9 +119,6 @@ void		draw_line(t_fractol *fractol)
 	}
 }
 
-// int		fractol_selection(fractol)
-// {
-// }
 
 int		fractol_manager(t_fractol *fractol)
 {

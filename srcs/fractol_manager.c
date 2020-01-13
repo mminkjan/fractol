@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/13 18:48:40 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/13 18:52:37 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void		constant_calculation(t_fractol *fractol, t_numbers *number, t_point
 {
 	if (fractol->type == 1 || fractol->type == 3)
 	{
-		number->old_real = 1.5 * (points->x - WIDTH / 2) / (0.5 * WIDTH);//(points->x - WIDTH / 2.0) * 4.0 / WIDTH;
-		number->old_i = (points->y - HEIGHT / 2) / (0.5 * HEIGHT);//(points->y - HEIGHT / 2.0) * 4.0 / WIDTH;
+		number->old_real = (points->x - WIDTH / 2.0) * 4.0 / WIDTH;
+		number->old_i = (points->y - HEIGHT / 2.0) * 4.0 / WIDTH;
 	}
 	else if (fractol->type == 2)
 	{

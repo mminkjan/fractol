@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/13 17:55:08 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/13 18:18:12 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 
 # define MAX_ITERATIONS 256
 
-# define WIDTH 1000
+# define WIDTH 1200
 # define HEIGHT 1000
 
 # include <stdio.h> //remove later!
@@ -82,7 +82,7 @@ typedef struct	s_fractol
 	int			color;
 	t_events	event;
 	t_numbers	*numbers;
-	t_points	points;
+	t_points	*points;
 }				t_fractol;
 
 int				main(int argc, char **argv);
@@ -92,6 +92,7 @@ int				fractol_manager(t_fractol *fractol);
 void			check_input(t_fractol *fractol, char **argv);
 t_fractol		*fractol_init(void);
 t_numbers		*numbers_init(t_fractol *fractol);
+t_points		*points_init(t_fractol *fractol);
 void			fractol_exit(char *str, t_fractol *fractol);
 
 int				key_press(int key, t_fractol *fractol);

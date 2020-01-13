@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/13 17:20:49 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/13 17:55:08 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@
 # define INCREASE_REAL 14
 # define DECREASE_REAL 15
 
-# define MAX_ITERATIONS 2
+# define MAX_ITERATIONS 256
 
-# define WIDTH 1500
-# define HEIGHT 1200
+# define WIDTH 1000
+# define HEIGHT 1000
 
 # include <stdio.h> //remove later!
 

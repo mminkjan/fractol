@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/14 19:23:11 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/14 19:27:43 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ t_fractol		*fractol_init(void);
 t_numbers		*numbers_init(t_fractol *fractol);
 t_points		*points_init(t_fractol *fractol);
 
-void			calculate_color(t_fractol *fractol, double smooth);
+int				get_color(t_fractol *fractol, int iteration);
 
 int				key_press(int key, t_fractol *fractol);
 #endif

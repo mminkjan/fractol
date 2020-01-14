@@ -6,60 +6,39 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/13 18:35:13 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/14 16:20:15 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/14 19:27:04 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static void		RGB_to_HEX(t_fractol *fractol, double r, double g, double b)
+static int			get_bit_value(int start, int end, double percentage)
 {
-	fractol->color = (((int)r & 0xff) << 16) + (((int)g & 0xff) << 8) + ((int)b & 0xff);
+	return ((int)((1 - percentage) * start + percentage * end));
 }
 
-static void		HSV_to_RGB(t_fractol *fractol)
+int		get_color(t_fractol *fractol, int iteration)
 {
-	int	hue_integer;
-	double f;
-	double p;
-	double q;
-	double t;
-	
-	if (fractol->saturation == 0.0)
-		RGB_to_HEX(fractol, fractol->value, fractol->value, fractol->value);
+	double percentage;
+	int	red;
+	int green;
+	int blue;
+
+	if (iteration < 40)
+	{
+		fractol->color1 = 0xffa500;
+		fractol->color2 = 0xee3a6a;
+		percentage = iteration / (float)40;
+	}
 	else
 	{
-		hue_integer = (int)fractol->hue * 6.0;
-		f = (fractol->hue * 6.0) - hue_integer;
-		p = fractol->value * (1.0 - fractol->saturation);
-		q = fractol->value * (1.0 - fractol->saturation * f);
-		t = fractol->value * (1.0 - fractol->saturation * (1.0 - f));
-		hue_integer %= 6;
-		if (hue_integer == 0)
-			RGB_to_HEX(fractol, fractol->value, t, q);
-		else if (hue_integer == 1)
-			RGB_to_HEX(fractol, q, fractol->value, p);
-		else if (hue_integer == 2)
-			RGB_to_HEX(fractol, p, fractol->value, t);
-		else if (hue_integer == 3)
-			RGB_to_HEX(fractol, p, q, fractol->value);
-		else if (hue_integer == 4)
-			RGB_to_HEX(fractol, t, p, fractol->value);
-		else if (hue_integer == 5)
-			RGB_to_HEX(fractol, fractol->value, p, q);
+		fractol->color1 = 0x72b2f3;
+		fractol->color2 = 0xee3a6a;
+		percentage = (iteration - 40) / (MAX_ITERATIONS - 40); 
 	}
-}
-
-
-void			calculate_color(t_fractol *fractol, double smooth)
-{
-	fractol->hue = (int)(255 * smooth / MAX_ITERATIONS);
-	printf("hue: %f\n", fractol->hue);
-	if (fractol->hue < 0)
-		printf("smooth  = %f\n", smooth);
-	fractol->saturation = 255;
-	fractol->value = 255;
-	if (smooth < MAX_ITERATIONS)
-		fractol->value = 0;
-	HSV_to_RGB(fractol);
+	// percentage = get_percentage(iteration);
+	red = get_bit_value((fractol->color1 >> 16) & 0xFF, (fractol->color2 >> 16) & 0xFF, percentage);
+	green = get_bit_value((fractol->color1 >> 8) & 0xFF, (fractol->color2 >> 8) & 0xFF, percentage); 
+	blue = get_bit_value(fractol->color1 & 0xFF, fractol->color2 & 0xFF, percentage);
+	return (red << 16 | green << 8 | blue);
 }

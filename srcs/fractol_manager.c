@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/14 19:19:10 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/14 19:27:13 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,37 +31,6 @@ static void		put_pixel(t_fractol *fractol)
 	}
 }
 
-static int			get_bit_value(int start, int end, double percentage)
-{
-	return ((int)((1 - percentage) * start + percentage * end));
-}
-
-static int		get_color(t_fractol *fractol, int iteration)
-{
-	double percentage;
-	int	red;
-	int green;
-	int blue;
-
-	if (iteration < 40)
-	{
-		fractol->color1 = 0xffa500;
-		fractol->color2 = 0xee3a6a;
-		percentage = iteration / (float)40;
-	}
-	else
-	{
-		fractol->color1 = 0x72b2f3;
-		fractol->color2 = 0xee3a6a;
-		percentage = (iteration - 40) / (MAX_ITERATIONS - 40); 
-	}
-	// percentage = get_percentage(iteration);
-	red = get_bit_value((fractol->color1 >> 16) & 0xFF, (fractol->color2 >> 16) & 0xFF, percentage);
-	green = get_bit_value((fractol->color1 >> 8) & 0xFF, (fractol->color2 >> 8) & 0xFF, percentage); 
-	blue = get_bit_value(fractol->color1 & 0xFF, fractol->color2 & 0xFF, percentage);
-	return (red << 16 | green << 8 | blue);
-}
-
 static void		constant_calculation(t_fractol *fractol, t_numbers *number, t_points *points)
 {
 	if (fractol->type == 1 || fractol->type == 3)
@@ -71,8 +40,6 @@ static void		constant_calculation(t_fractol *fractol, t_numbers *number, t_point
 	}
 	else if (fractol->type == 2)
 	{
-		// number->c_real = -1 + (points->x / WIDTH) * (1 - -1);
-		// number->c_i = -1 + (points->y / HEIGHT) * (1 - -1);
 		number->c_real = (points->x - WIDTH / 2.0) * 4.0 / WIDTH;
 		number->c_i = (points->y - HEIGHT / 2.0) * 4.0 / WIDTH;
 		number->old_real = 0;
@@ -85,7 +52,7 @@ static void		draw_fractol(t_fractol *fractol)
 	t_points	*points;
 	t_events	events;
 	t_numbers	*number;
-	int		iteration;
+	int			iteration;
 
 	points = fractol->points;
 	events = fractol->event;
@@ -93,18 +60,8 @@ static void		draw_fractol(t_fractol *fractol)
 	while (points->y < HEIGHT)
 	{
 		points->x = 0;
-		// iteration = 0;
 		while (points->x < WIDTH)
 		{
-			// int z = 0;
-			// int complex;
-			// constant_calculation(fractol, number, points);
-			// complex = number->c_real * number->c_real + number->c_i * number->c_i;
-    		// while (abs(z) <= 2 && iteration < MAX_ITERATIONS)
-			// {
-       		// 	z = z * z + complex;
-       		// 	iteration++;
-			// }
 			constant_calculation(fractol, number, points);
        		iteration = 0;
 			while (number->old_real * number->old_real + number->old_i * number->old_i <= 4 && iteration < MAX_ITERATIONS) 

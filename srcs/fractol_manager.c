@@ -6,13 +6,13 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/13 18:52:37 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/14 14:26:45 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	put_pixel(t_fractol *fractol)
+static void		put_pixel(t_fractol *fractol)
 {
 	size_t		index;
 	t_points	*points;
@@ -40,6 +40,8 @@ static void		constant_calculation(t_fractol *fractol, t_numbers *number, t_point
 	}
 	else if (fractol->type == 2)
 	{
+		// number->c_real = -1 + (points->x / WIDTH) * (1 - -1);
+		// number->c_i = -1 + (points->y / HEIGHT) * (1 - -1);
 		number->c_real = (points->x - WIDTH / 2.0) * 4.0 / WIDTH;
 		number->c_i = (points->y - HEIGHT / 2.0) * 4.0 / WIDTH;
 		number->old_real = 0;
@@ -47,12 +49,13 @@ static void		constant_calculation(t_fractol *fractol, t_numbers *number, t_point
 	}
 }
 
-void			draw_fractol(t_fractol *fractol)
+static void		draw_fractol(t_fractol *fractol)
 {
 	t_points	*points;
 	t_events	events;
 	t_numbers	*number;
 	size_t		iteration;
+	// double		smooth;
 
 	points = fractol->points;
 	events = fractol->event;
@@ -60,21 +63,36 @@ void			draw_fractol(t_fractol *fractol)
 	while (points->y < HEIGHT)
 	{
 		points->x = 0;
+		iteration = 0;
 		while (points->x < WIDTH)
 		{
+			int z = 0;
+			int complex;
 			constant_calculation(fractol, number, points);
-       		iteration = 0;
-			while (number->old_real * number->old_real + number->old_i * number->old_i <= 4 && iteration < MAX_ITERATIONS) 
+			complex = number->c_real * number->c_real + number->c_i * number->c_i;
+    		while (abs(z) <= 2 && iteration < MAX_ITERATIONS)
 			{
-				number->new_real = number->old_real * number->old_real -  number->old_i * number->new_i + number->c_real;
-				number->new_i = 2 * number->old_real * number->old_i + number->c_i;
-				number->old_real = number->new_real;
-				number->old_i = number->new_i;
-				iteration++;
+       			z = z * z + complex;
+       			iteration++;
 			}
+			// constant_calculation(fractol, number, points);
+       		// iteration = 0;
+			// while (number->old_real * number->old_real + number->old_i * number->old_i <= 4 && iteration < MAX_ITERATIONS) 
+			// {
+			// 	number->new_real = number->old_real * number->old_real -  number->old_i * number->new_i + number->c_real;
+			// 	number->new_i = 2 * number->old_real * number->old_i + number->c_i;
+			// 	number->old_real = number->new_real;
+			// 	number->old_i = number->new_i;
+			// 	iteration++;
+			// }
+			// if (iteration != MAX_ITERATIONS)
+			// 	smooth = iteration + 1 - log(log2(abs(z)));
+			// else
+			// 	smooth = MAX_ITERATIONS;
 			if (iteration < MAX_ITERATIONS)
 			{
-				fractol->color = 0xffffff; // calculate_color(fractol, iteration);
+			// calculate_color(fractol, smooth); 
+				fractol->color = 0xffffff; 
 				put_pixel(fractol);
 			}
 			points->x++;
@@ -83,7 +101,7 @@ void			draw_fractol(t_fractol *fractol)
 	}
 }
 
-int		fractol_manager(t_fractol *fractol)
+int				fractol_manager(t_fractol *fractol)
 {
 	mlx_key_hook(fractol->window_ptr, key_press, fractol);
 	// mlx_key_hook(fractol->window_ptr, mouse_scroll, fractol);

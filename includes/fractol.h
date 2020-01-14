@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/14 13:19:57 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/14 18:24:45 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define INCREASE_REAL 14
 # define DECREASE_REAL 15
 
-# define MAX_ITERATIONS 80
+# define MAX_ITERATIONS 300
 
 
 # define WIDTH 1200
@@ -82,6 +82,9 @@ typedef struct	s_fractol
 	char		*argv;
 	int			type;
 	int			color;
+	int			color1;
+	int			color2;
+	int			color3;
 	double		hue;
 	double		saturation;
 	double		value;

@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/14 18:24:45 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/14 19:23:11 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define INCREASE_REAL 14
 # define DECREASE_REAL 15
 
-# define MAX_ITERATIONS 300
+# define MAX_ITERATIONS 1500
 
 
 # define WIDTH 1200

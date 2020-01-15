@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/15 12:56:06 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/15 16:21:22 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,18 @@ static void		constant_calculation(t_fractol *fractol, t_numbers *number, t_point
 	event = fractol->event;
 	if (fractol->type == 1 || fractol->type == 3)
 	{
-		number->old_real = ((points->x - WIDTH / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_x;
-		number->old_i = ((points->y - HEIGHT / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_y;
+		number->old_real = (((points->x - event.mouse_x) - WIDTH / 2.0) * 4.0) / (WIDTH * event.zoom);
+		number->old_i = (((points->y  - event.mouse_y) - HEIGHT / 2.0) * 4.0) / (WIDTH * event.zoom);
 	}
 	else if (fractol->type == 2)
 	{
-		number->c_real = ((points->x - WIDTH / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_x;;
-		number->c_i = ((points->y - HEIGHT / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_y;
+		number->c_real = (((points->x - event.mouse_x) - WIDTH / 2.0) * 4.0)  / (WIDTH * event.zoom);
+		number->c_i = (((points->y  - event.mouse_y) - HEIGHT / 2.0) * 4.0) / (WIDTH * event.zoom);
 		number->old_real = 0;
 		number->old_i = 0;
 	}
+	event.mouse_x = 0;
+	event.mouse_y = 0;
 }
 
 static void		draw_fractol(t_fractol *fractol)
@@ -84,14 +86,15 @@ static void		draw_fractol(t_fractol *fractol)
 		}
 		points->y++;
 	}
+	points->y = 0;
 }
 
 int				fractol_manager(t_fractol *fractol)
 {
 	mlx_key_hook(fractol->window_ptr, key_press, fractol);
-	// mlx_key_hook(fractol->window_ptr, mouse_scroll, fractol);
-	// mlx_key_hook(fractol->window_ptr, mouse_press, fractol);
-	// mlx_key_hook(fractol->window_ptr, mouse_release, fractol);
+	// mlx_hook(fractol->window_ptr, 6, 0, mouse_move, fractol);
+	mlx_hook(fractol->window_ptr, 4, 0, mouse_press, fractol);
+	// mlx_hook(fractol->window_ptr, 5, 0, mouse_release, fractol);
 	draw_fractol(fractol);
 	mlx_put_image_to_window(fractol->mlx_ptr, fractol->window_ptr,\
 		fractol->image_ptr, 0, 0);

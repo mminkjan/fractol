@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/14 19:27:13 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/15 12:56:06 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,28 @@ static void		put_pixel(t_fractol *fractol)
 	{
 		index = ((int)points->y * fractol->size_line) + \
 			((int)points->x * fractol->bits_ppixel / 8);
-		fractol->addr_str[index] = fractol->color;
+		fractol->addr_str[index] = fractol->rgb_color;
 		index++;
-		fractol->addr_str[index] = fractol->color >> 8;
+		fractol->addr_str[index] = fractol->rgb_color >> 8;
 		index++;
-		fractol->addr_str[index] = fractol->color >> 16;
+		fractol->addr_str[index] = fractol->rgb_color >> 16;
 	}
 }
 
 static void		constant_calculation(t_fractol *fractol, t_numbers *number, t_points *points)
 {
+	t_events event;
+
+	event = fractol->event;
 	if (fractol->type == 1 || fractol->type == 3)
 	{
-		number->old_real = (points->x - WIDTH / 2.0) * 4.0 / WIDTH;
-		number->old_i = (points->y - HEIGHT / 2.0) * 4.0 / WIDTH;
+		number->old_real = ((points->x - WIDTH / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_x;
+		number->old_i = ((points->y - HEIGHT / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_y;
 	}
 	else if (fractol->type == 2)
 	{
-		number->c_real = (points->x - WIDTH / 2.0) * 4.0 / WIDTH;
-		number->c_i = (points->y - HEIGHT / 2.0) * 4.0 / WIDTH;
+		number->c_real = ((points->x - WIDTH / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_x;;
+		number->c_i = ((points->y - HEIGHT / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_y;
 		number->old_real = 0;
 		number->old_i = 0;
 	}
@@ -74,7 +77,7 @@ static void		draw_fractol(t_fractol *fractol)
 			}
 			if (iteration != MAX_ITERATIONS)
 			{
-				fractol->color = get_color(fractol, iteration);
+				fractol->rgb_color = get_color(fractol, iteration);
 				put_pixel(fractol);
 			}
 			points->x++;
@@ -92,6 +95,6 @@ int				fractol_manager(t_fractol *fractol)
 	draw_fractol(fractol);
 	mlx_put_image_to_window(fractol->mlx_ptr, fractol->window_ptr,\
 		fractol->image_ptr, 0, 0);
-	// ft_bzero(fractol->addr_str, (fractol->bits_ppixel / 8) * WIDTH * HEIGHT);
+	ft_bzero(fractol->addr_str, (fractol->bits_ppixel / 8) * WIDTH * HEIGHT);
 	return (0);
 }

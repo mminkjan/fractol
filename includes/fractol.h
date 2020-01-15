@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/14 19:27:43 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/15 12:11:05 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,24 @@
 # define ONE 18
 # define TWO 19
 # define THREE 20
+
+
+# define ONE_START 0xffffff
+# define TWO_START 0xFF238A
+# define THREE_START 0x23FFF8
+
+# define ONE_MIDDLE 0xC70039
+# define TWO_MIDDLE 0x29A965
+# define THREE_MIDDLE 0x2972A9
+
+# define ONE_END 0x581845
+# define TWO_END 0x46037D
+# define THREE_END 0xFF0000
+
+# define DEFAULT_START 0xffa500
+# define DEFAULT_MIDDLE 0xee3a6a
+# define DEFAULT_END 0x72b2f3
+
 # define ESC 53
 # define MOVE_UP 126
 # define MOVE_DOWN 125
@@ -35,7 +53,7 @@
 # define INCREASE_REAL 14
 # define DECREASE_REAL 15
 
-# define MAX_ITERATIONS 1500
+# define MAX_ITERATIONS 150
 
 
 # define WIDTH 1200
@@ -60,6 +78,9 @@ typedef struct	s_events
 {
 	double		zoom;
 	double		key;
+	int			color_start;
+	int			color_middle;
+	int			color_end;
 	double		mouse_x;
 	double		mouse_y;
 }				t_events;
@@ -69,6 +90,13 @@ typedef struct	s_points
 	double		x;
 	double		y;
 }				t_points;
+
+typedef struct s_color
+{
+	int			start;
+	int			end;
+	int			color_3;
+}				t_color;
 
 typedef struct	s_fractol
 {
@@ -81,13 +109,11 @@ typedef struct	s_fractol
 	int			size_line;
 	char		*argv;
 	int			type;
-	int			color;
-	int			color1;
-	int			color2;
-	int			color3;
+	int			rgb_color;
 	double		hue;
 	double		saturation;
 	double		value;
+	t_color		color;
 	t_events	event;
 	t_numbers	*numbers;
 	t_points	*points;
@@ -104,6 +130,7 @@ t_numbers		*numbers_init(t_fractol *fractol);
 t_points		*points_init(t_fractol *fractol);
 
 int				get_color(t_fractol *fractol, int iteration);
+// void			calculate_color(t_fractol *fractol, double smooth, size_t iteration);
 
 int				key_press(int key, t_fractol *fractol);
 #endif

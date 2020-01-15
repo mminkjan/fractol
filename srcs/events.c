@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/15 16:53:29 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/15 18:40:38 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,43 +48,13 @@ int		key_press(int key, t_fractol *fractol)
 
 int		mouse_press(int key, int x, int y, t_fractol *fractol)
 {
-	// x = 0;
-	// y = 0;
-	double	diff_x;
-	double	diff_y;
-	double	start_pan_x;
-	double	start_pan_y;
-
-	if ((fractol->event.hold_x == 0 && fractol->event.hold_y == 0) || fractol->event.hold_x != x || fractol->event.hold_y != y)
-	{
-		fractol->event.hold_x = x;
-		fractol->event.hold_y = y;
-	}
-	start_pan_x = fractol->event.hold_x;
-	start_pan_y = fractol->event.hold_y;
+	x = 0;
+	y = 0;
 	if (key == SCROLL_UP && fractol->event.zoom > 0.5)
-	{
 		fractol->event.zoom -= 0.5;
-	}
 	if (key == SCROLL_DOWN)
-	{
 		fractol->event.zoom += 0.5;
-		diff_x = fractol->event.hold_x - start_pan_x * fractol->event.zoom;
-		diff_y = fractol->event.hold_y - start_pan_y * fractol->event.zoom;
-		if (diff_x != x && diff_y != y)
-		{
-			fractol->event.mouse_x -= diff_x - x; //fractol->points->x + (diff_x * 0.02);
-			fractol->event.mouse_y -= diff_y - y; //fractol->points->y + (diff_y * 0.02);
-			start_pan_x = fractol->event.mouse_x;
-			start_pan_y = fractol->event.mouse_y;
-		}
-		if (diff_x == x && diff_y == y)
-		{
-			fractol->event.hold_x = 0;
-			fractol->event.hold_y = 0;
-		}
 
-	}
 	if (key == MOUSE_PRESS)
 		fractol->event.mouse_press = 1;
 	

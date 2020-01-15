@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/15 16:03:59 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/15 17:01:22 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ typedef struct	s_events
 	int			mouse_press;
 	double		mouse_x;
 	double		mouse_y;
+	double		start_pan_x;
+	double		start_pan_y;
 	double		hold_x;
 	double		hold_y;
 }				t_events;

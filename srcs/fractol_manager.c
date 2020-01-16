@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/16 18:23:23 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/16 20:28:08 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ static void		constant_calculation(t_fractol *fractol, t_numbers *number, t_point
 		number->old_real = 0;
 		number->old_i = 0;
 	}
-	event.mouse_x = 0;
-	event.mouse_y = 0;
 }
 
 static void		draw_fractol(t_fractol *fractol)
@@ -94,9 +92,9 @@ static void		draw_fractol(t_fractol *fractol)
 int				fractol_manager(t_fractol *fractol)
 {
 	mlx_key_hook(fractol->window_ptr, key_press, fractol);
-	// mlx_hook(fractol->window_ptr, 6, 0, mouse_move, fractol);
 	mlx_hook(fractol->window_ptr, 4, 0, mouse_press, fractol);
-	// mlx_hook(fractol->window_ptr, 5, 0, mouse_release, fractol);
+	mlx_hook(fractol->window_ptr, 6, 0, mouse_move, fractol);
+	mlx_hook(fractol->window_ptr, 5, 0, mouse_release, fractol);
 	draw_fractol(fractol);
 	mlx_put_image_to_window(fractol->mlx_ptr, fractol->window_ptr,\
 		fractol->image_ptr, 0, 0);

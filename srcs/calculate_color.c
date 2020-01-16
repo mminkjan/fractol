@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/13 18:35:13 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/16 18:48:18 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/16 19:26:46 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void			set_color_to_end(t_color *color, t_events *events)
 	// else
 	// {
 		color->start = DEFAULT_MIDDLE;
-		color->end = DEFAULT_START;
+		color->end = ONE_START;
 	// }
 }
 
@@ -85,7 +85,7 @@ int		get_color(t_fractol *fractol, int iteration)
 	}
 	else
 	{
-		percentage = ((iteration - (float)(MAX_ITERATIONS / 4)) / (float)(MAX_ITERATIONS / 4)); 
+		percentage = (iteration - (float)(MAX_ITERATIONS / 4));// / (float)(MAX_ITERATIONS / 4)); 
 		set_color_to_end(&color, &fractol->event);
 	}
 	red = get_bit_value((color.start >> 16) & 0xFF, (color.end >> 16) & 0xFF, percentage);

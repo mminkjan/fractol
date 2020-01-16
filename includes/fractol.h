@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/15 17:01:22 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/16 20:19:13 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 # define INCREASE_REAL 14
 # define DECREASE_REAL 15
 
-# define MAX_ITERATIONS 100
+# define MAX_ITERATIONS 10
 
 
 # define WIDTH 1200
@@ -143,5 +143,5 @@ int				get_color(t_fractol *fractol, int iteration);
 int				key_press(int key, t_fractol *fractol);
 int				mouse_press(int key, int x, int y, t_fractol *fractol);
 int				mouse_release(int key, int x, int y, t_fractol *fracol);
-// int				mouse_move(int key, int x, int y, t_fractol *fractol);
+int				mouse_move(int x, int y, t_fractol *fractol);
 #endif

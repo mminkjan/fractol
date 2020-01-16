@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/15 18:40:38 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/16 20:37:01 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,31 @@ int		key_press(int key, t_fractol *fractol)
 
 int		mouse_press(int key, int x, int y, t_fractol *fractol)
 {
-	x = 0;
-	y = 0;
+	// x = 0;
+	// y = 0;
 	if (key == SCROLL_UP && fractol->event.zoom > 0.5)
 		fractol->event.zoom -= 0.5;
 	if (key == SCROLL_DOWN)
 		fractol->event.zoom += 0.5;
-
 	if (key == MOUSE_PRESS)
+	{
 		fractol->event.mouse_press = 1;
-	
+		fractol->event.hold_x = x;
+		fractol->event.hold_y = y;
+	}
 	return (0);
 }
 
-// int		mouse_move(int key, int x, int y, t_fractol *fractol)
-// {
-
-// }
+int		mouse_move(int x, int y, t_fractol *fractol)
+{
+	if (fractol->event.mouse_press == 1)
+	{
+		fractol->event.mouse_x += 0.001 * (fractol->event.hold_x - x) / fractol->event.zoom;
+		fractol->event.mouse_y += 0.001 * (fractol->event.hold_y - y) / fractol->event.zoom;
+		printf("move: %f, %f\n", fractol->event.mouse_x, fractol->event.mouse_y);
+	}
+	return (0);
+}
 
 int		mouse_release(int key, int x, int y, t_fractol *fractol)
 {

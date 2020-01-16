@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/15 18:43:11 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/16 18:23:23 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ static void		constant_calculation(t_fractol *fractol, t_numbers *number, t_point
 	event = fractol->event;
 	if (fractol->type == 1 || fractol->type == 3) // Julia
 	{
-		number->old_real = ((points->x - WIDTH / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_x;
-		number->old_i = ((points->y - HEIGHT / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_y;
+		number->new_real = ((points->x - WIDTH / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_x;
+		number->new_i = ((points->y - HEIGHT / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_y;
+		number->old_real = number->new_real;
+		number->old_i = number->new_i;
 	}
 	else if (fractol->type == 2) // Mandelbrot 
 	{

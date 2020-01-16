@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/13 18:35:13 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/15 14:12:07 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/16 18:48:18 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,43 +27,45 @@ static int			get_bit_value(int start, int end, double percentage)
 
 static void			set_color_to_end(t_color *color, t_events *events)
 {
-	if (events->color_middle == 0)
-		color->start = ONE_MIDDLE;
-	if (events->color_middle == 1)
-		color->start = TWO_MIDDLE;
-	if (events->color_middle == 2)
-		color->start = THREE_MIDDLE;
-	if (events->color_end == 0)
-		color->end = ONE_END;
-	if (events->color_end == 1)
-		color->end = TWO_END;
-	if (events->color_end == 2)
-		color->end = THREE_END;
+	(void)events;
+	// if (events->color_middle == 0)
+	// 	color->start = ONE_MIDDLE;
+	// if (events->color_middle == 1)
+	// 	color->start = TWO_MIDDLE;
+	// if (events->color_middle == 2)
+	// 	color->start = THREE_MIDDLE;
+	// if (events->color_end == 0)
+	// 	color->start = ONE_END;
+	// if (events->color_end == 1)
+	// 	color->start = TWO_END;
+	// if (events->color_end == 2)
+	// 	color->start = THREE_END;
 	// else
 	// {
-	// 	color->start = DEFAULT_END;
-	// 	color->end = DEFAULT_MIDDLE;
+		color->start = DEFAULT_MIDDLE;
+		color->end = DEFAULT_START;
 	// }
 }
 
 static void			set_color_to_mid(t_color *color, t_events *events)
 {
-	if (events->color_start == 0)
-		color->start = ONE_START;
-	if (events->color_start == 1)
-		color->start = TWO_START;
-	if (events->color_start == 2)
-		color->start = THREE_START;
-	if (events->color_middle == 0)
-		color->end = ONE_MIDDLE;
-	if (events->color_middle == 1)
-		color->end = TWO_MIDDLE;
-	if (events->color_middle == 2)
-		color->end = THREE_MIDDLE;
+	(void)events;
+	// if (events->color_start == 0)
+	// 	color->start = ONE_START;
+	// if (events->color_start == 1)
+	// 	color->start = TWO_START;
+	// if (events->color_start == 2)
+	// 	color->start = THREE_START;
+	// if (events->color_middle == 0)
+	// 	color->end = ONE_MIDDLE;
+	// if (events->color_middle == 1)
+	// 	color->end = TWO_MIDDLE;
+	// if (events->color_middle == 2)
+	// 	color->end = THREE_MIDDLE;
 	// else
 	// {
-	// 	color->start = DEFAULT_START;
-	// 	color->end = DEFAULT_MIDDLE;
+		color->start = DEFAULT_START;
+		color->end = DEFAULT_MIDDLE;
 	// }
 }
 

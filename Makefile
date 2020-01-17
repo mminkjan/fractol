@@ -6,7 +6,7 @@
 #    By: jesmith <jesmith@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/08 11:03:39 by jesmith        #+#    #+#                 #
-#    Updated: 2020/01/15 10:02:38 by jesmith       ########   odam.nl          #
+#    Updated: 2020/01/17 14:41:23 by mminkjan      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT = libft/
 
 SRCS = ./srcs/
 
-SRCS_FILES = main utilities mlx_setup fractol_manager events calculate_color
+SRCS_FILES = main utilities mlx_setup fractol_manager events calculate_color2
 
 CFILES = $(SRCS_FILES:%=$(SRCS)%.c)
 

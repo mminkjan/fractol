@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/16 20:19:13 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/17 17:26:27 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@
 # define INCREASE_REAL 14
 # define DECREASE_REAL 15
 
-# define MAX_ITERATIONS 10
+# define MAX_ITERATIONS 100
 
 
-# define WIDTH 1200
-# define HEIGHT 1000
+# define WIDTH 500
+# define HEIGHT 500
 
 # include <math.h>
 # include <stdio.h> //remove later!
@@ -137,8 +137,9 @@ t_fractol		*fractol_init(void);
 t_numbers		*numbers_init(t_fractol *fractol);
 t_points		*points_init(t_fractol *fractol);
 
-int				get_color(t_fractol *fractol, int iteration);
+// int				get_color(t_fractol *fractol, int iteration);
 // void			calculate_color(t_fractol *fractol, double smooth, size_t iteration);
+int				get_color(t_fractol *fractol, int iteration);
 
 int				key_press(int key, t_fractol *fractol);
 int				mouse_press(int key, int x, int y, t_fractol *fractol);

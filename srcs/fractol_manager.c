@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/16 20:28:08 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/17 15:48:47 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void		draw_fractol(t_fractol *fractol)
 	t_events	events;
 	t_numbers	*number;
 	int			iteration;
+	float		s_iteration;
 
 	points = fractol->points;
 	events = fractol->event;
@@ -79,6 +80,8 @@ static void		draw_fractol(t_fractol *fractol)
 			}
 			if (iteration != MAX_ITERATIONS)
 			{
+				s_iteration = number->new_real + (number->new_i / 10);
+				
 				fractol->rgb_color = get_color(fractol, iteration);
 				put_pixel(fractol);
 			}

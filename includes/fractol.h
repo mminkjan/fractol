@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/18 16:18:08 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/18 20:45:14 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,20 @@
 # define TWO 19
 # define THREE 20
 
-
 # define ONE_START 0xffffff
-# define TWO_START 0xFF238A
-# define THREE_START 0x23FFF8
+# define ONE_END 0x240b36
 
-# define ONE_MIDDLE 0xC70039
-# define TWO_MIDDLE 0x29A965
-# define THREE_MIDDLE 0x2972A9
+# define TWO_START 0x1a2a6c
+# define TWO_MIDDLE 0xb21f1f
+# define TWO_END 0xfdbb2d
 
-# define ONE_END 0x581845
-# define TWO_END 0x46037D
-# define THREE_END 0xFF0000
+# define THREE_START 0xCC95C0
+# define THREE_MIDDLE 0xdbd4b4
+# define THREE_END 0x7AAA1d2
 
+# define FOUR_START 0x1E9600
+# define FOUR_MIDDLE 0xFFF200
+# define FOUR_END 0xFF0000
 # define DEFAULT_START 0xffa500
 # define DEFAULT_MIDDLE 0xee3a6a
 # define DEFAULT_END 0x72b2f3
@@ -46,16 +47,13 @@
 # define MOUSE_PRESS 1
 
 # define ESC 53
-# define MOVE_UP 126
-# define MOVE_DOWN 125
-# define MOVE_LEFT 123
-# define MOVE_RIGHT 124
-# define INCREASE_ITERATIONS 24 // +
-# define DECREASE_ITERATIONS 27 // -
-# define INCREASE_IMAGINARY 29 // 0  
-# define DECREASE_IMAGINARY 25 // 9
-# define INCREASE_REAL 14
-# define DECREASE_REAL 15
+# define INCREASE_SATURATION 126
+# define DECREASE_SATURATION 125
+# define INCREASE_VALUE 123
+# define DECREASE_VALUE 124
+# define INCREASE_ITERATIONS 24
+# define DECREASE_ITERATIONS 27
+# define SPACE 49
 # define RESET 51
 
 // # define MAX_ITERATIONS 2147483648
@@ -68,23 +66,19 @@
 
 typedef struct	s_numbers
 {
-	double		c_real; //for Julia
+	double		c_real;
 	double		c_i;
 	double		new_real;
 	double		new_i;
 	double		old_real;
 	double		old_i;
-	double		pixel_real; // for Mandelbort
-	double		pixel_i;
 }				t_numbers;
 
 typedef struct	s_events
 {
 	double		zoom;
 	double		key;
-	int			color_start;
-	int			color_middle;
-	int			color_end;
+	double		color_set;
 	int			mouse_press;
 	double		mouse_x;
 	double		mouse_y;
@@ -100,10 +94,13 @@ typedef struct	s_points
 	double		y;
 }				t_points;
 
-typedef struct s_color
+typedef struct	s_color
 {
 	int			start;
 	int			end;
+	float		hue;
+	float		saturation;
+	float		value;
 }				t_color;
 
 typedef struct	s_fractol
@@ -135,12 +132,13 @@ t_fractol		*fractol_init(void);
 t_numbers		*numbers_init(t_fractol *fractol);
 t_points		*points_init(t_fractol *fractol);
 
-// int				get_color(t_fractol *fractol, int iteration);
-// void			calculate_color(t_fractol *fractol, double smooth, size_t iteration);
 int				get_color(t_fractol *fractol, int iteration);
 
 int				key_press(int key, t_fractol *fractol);
+
 int				mouse_press(int key, int x, int y, t_fractol *fractol);
 int				mouse_release(int key, int x, int y, t_fractol *fracol);
 int				mouse_move(int x, int y, t_fractol *fractol);
+
+void			print_interface(t_fractol *fractol);
 #endif

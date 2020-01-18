@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/18 16:33:34 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/18 20:41:09 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int				fractol_manager(t_fractol *fractol)
 	mlx_hook(fractol->window_ptr, 5, 0, mouse_release, fractol);
 	draw_fractol(fractol);
 	mlx_put_image_to_window(fractol->mlx_ptr, fractol->window_ptr,\
-		fractol->image_ptr, 0, 0);
+		fractol->image_ptr, 400, 0);
 	ft_bzero(fractol->addr_str, (fractol->bits_ppixel / 8) * WIDTH * HEIGHT);
 	return (0);
 }

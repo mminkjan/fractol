@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/18 16:12:04 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/18 20:40:09 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,26 +69,29 @@ t_fractol	*fractol_init(void)
 		fractol_exit(MALLOC_ERR, fractol);
 	fractol->event.zoom = 1.0;
 	fractol->max_iterations = 256;
+	fractol->color.saturation = 150;
+	fractol->color.value = 100;
+	fractol->event.color_set = 1;
 	return (fractol);
 }
 
 void		fractol_exit(char *str, t_fractol *fractol)
 {
 	ft_putstr(str);
-	if (fractol != NULL)
-	{
-		ft_bzero(fractol, sizeof(t_fractol));
-		free(fractol);
-	}
-	if (fractol->points != NULL)
+	if (fractol != NULL && fractol->points != NULL)
 	{
 		ft_bzero(fractol->points, sizeof(t_points));
 		free(fractol->points);
 	}
-	if (fractol->numbers != NULL)
+	if (fractol != NULL && fractol->numbers != NULL)
 	{
 		ft_bzero(fractol->numbers, sizeof(t_numbers));
 		free(fractol->numbers);
+	}
+	if (fractol != NULL)
+	{
+		ft_bzero(fractol, sizeof(t_fractol));
+		free(fractol);
 	}
 	exit(0);
 }

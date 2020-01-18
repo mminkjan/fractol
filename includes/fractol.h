@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/17 17:26:27 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/18 16:18:08 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,18 @@
 # define MOVE_DOWN 125
 # define MOVE_LEFT 123
 # define MOVE_RIGHT 124
-# define INCREASE_ITERATIONS 24
-# define DECREASE_ITERATIONS 27
-# define INCREASE_IMAGINARY 12
-# define DECREASE_IMAGINARY 13
+# define INCREASE_ITERATIONS 24 // +
+# define DECREASE_ITERATIONS 27 // -
+# define INCREASE_IMAGINARY 29 // 0  
+# define DECREASE_IMAGINARY 25 // 9
 # define INCREASE_REAL 14
 # define DECREASE_REAL 15
+# define RESET 51
 
-# define MAX_ITERATIONS 100
+// # define MAX_ITERATIONS 2147483648
 
-
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 1200
+# define HEIGHT 1000
 
 # include <math.h>
 # include <stdio.h> //remove later!
@@ -116,11 +116,9 @@ typedef struct	s_fractol
 	int			bits_ppixel;
 	int			size_line;
 	char		*argv;
+	int			max_iterations;
 	int			type;
 	int			rgb_color;
-	double		hue;
-	double		saturation;
-	double		value;
 	t_color		color;
 	t_events	event;
 	t_numbers	*numbers;

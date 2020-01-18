@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/14 18:19:22 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/18 16:12:04 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ t_fractol	*fractol_init(void)
 	if (fractol == NULL)
 		fractol_exit(MALLOC_ERR, fractol);
 	fractol->event.zoom = 1.0;
-	fractol->saturation = 0.8;
-	fractol->value = 1.0;
+	fractol->max_iterations = 256;
 	return (fractol);
 }
 

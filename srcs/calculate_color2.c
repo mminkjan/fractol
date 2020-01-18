@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 12:47:19 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/17 18:25:31 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/18 16:02:32 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int		get_color(t_fractol *fractol, int iteration)
 
 	(void)fractol;
 	h = 0;
-	s = scale(iteration * 10, MAX_ITERATIONS, 360);
-	v = scale(iteration * 100, MAX_ITERATIONS, 360);
+	s = scale(iteration * 10, fractol->max_iterations, 360);
+	v = scale(iteration * 100, fractol->max_iterations, 360);
 	h = scale(h, 360, 255);
 	s = scale(s, 100, 255);
 	v = scale(v, 100, 255);

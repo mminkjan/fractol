@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/16 20:43:16 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/18 16:30:57 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,38 @@ static void		color_key(int key, t_events *event)
 
 int		key_press(int key, t_fractol *fractol)
 {
+	double hold_i;
+	double hold_real;
+
+	if (fractol->numbers->c_real == 0.3 && fractol->numbers->c_i == -0.01)
+	{
+		hold_i = fractol->numbers->c_i;
+		hold_real = fractol->numbers->c_real;
+	}
 	if (key == ESC)
 	{
 		ft_bzero(fractol, sizeof(fractol));
 		free(fractol);
 		exit(0);
+	}
+	if (key == INCREASE_ITERATIONS)
+		fractol->max_iterations *= 2;
+	if (key == DECREASE_ITERATIONS)
+		if (fractol->max_iterations > 10)
+			fractol->max_iterations /= 2;
+	if (key == DECREASE_IMAGINARY && fractol->numbers->c_i >= 2.0)
+		fractol->numbers->c_i /= 0.2;
+	if (key == INCREASE_IMAGINARY)
+		fractol->numbers->c_i *= -0.2;
+	if (key == DECREASE_REAL && fractol->numbers->c_real >= 2.0)
+		fractol->numbers->c_i /= 0.2;
+	if (key == INCREASE_REAL)
+		fractol->numbers->c_i *= 0.2;
+	if (key == RESET)
+	{
+		fractol->numbers->c_i = hold_i;
+		fractol->numbers->c_real = hold_real;
+		fractol->max_iterations = 256;
 	}
 	color_key(key, &fractol->event);
 	return (0);
@@ -48,8 +75,6 @@ int		key_press(int key, t_fractol *fractol)
 
 int		mouse_press(int key, int x, int y, t_fractol *fractol)
 {
-	// x = 0;
-	// y = 0;
 	if (key == SCROLL_UP && fractol->event.zoom > 0.5)
 		fractol->event.zoom -= 0.5;
 	if (key == SCROLL_DOWN)
@@ -67,9 +92,8 @@ int		mouse_move(int x, int y, t_fractol *fractol)
 {
 	if (fractol->event.mouse_press == 1)
 	{
-		fractol->event.mouse_x +=  (fractol->event.hold_x - x) / WIDTH;
+		fractol->event.mouse_x += (fractol->event.hold_x - x) / WIDTH;
 		fractol->event.mouse_y += (fractol->event.hold_y - y) / HEIGHT;
-		printf("move: %f, %f\n", fractol->event.mouse_x, fractol->event.mouse_y);
 	}
 	return (0);
 }

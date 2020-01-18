@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/17 15:48:47 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/18 16:33:34 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,55 @@ static void		put_pixel(t_fractol *fractol)
 	}
 }
 
-static void		constant_calculation(t_fractol *fractol, t_numbers *number, t_points *points)
+static void		constant_calculation(t_fractol *fractol,
+					t_numbers *number, t_points *points)
 {
 	t_events event;
 
 	event = fractol->event;
-	if (fractol->type == 1 || fractol->type == 3) // Julia
+	if (fractol->type == 1 || fractol->type == 3)
 	{
-		number->new_real = ((points->x - WIDTH / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_x;
-		number->new_i = ((points->y - HEIGHT / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_y;
+		number->new_real = ((points->x - WIDTH / 2.0) * 4.0) \
+			/ (WIDTH * event.zoom) + event.mouse_x;
+		number->new_i = ((points->y - HEIGHT / 2.0) * 4.0) \
+			/ (WIDTH * event.zoom) + event.mouse_y;
 		number->old_real = number->new_real;
 		number->old_i = number->new_i;
 	}
-	else if (fractol->type == 2) // Mandelbrot 
+	else if (fractol->type == 2)
 	{
-		number->c_real = ((points->x - WIDTH / 2.0) * 4.0)  / (WIDTH * event.zoom) + event.mouse_x;
-		number->c_i = ((points->y - HEIGHT / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_y;
+		number->c_real = ((points->x - WIDTH / 2.0) * 4.0)  \
+			/ (WIDTH * event.zoom) + event.mouse_x;
+		number->c_i = ((points->y - HEIGHT / 2.0) * 4.0) \
+			/ (WIDTH * event.zoom) + event.mouse_y;
 		number->old_real = 0;
 		number->old_i = 0;
+	}
+}
+
+static void		set_calculation(t_fractol *fractol,
+					t_numbers *number, t_points *points)
+{
+	int			iteration;
+	float		s_iteration;
+
+	constant_calculation(fractol, number, points);
+	iteration = 0;
+	while (number->old_real * number->old_real + \
+	number->old_i * number->old_i <= 4 && iteration < fractol->max_iterations)
+	{
+		number->new_real = number->old_real * number->old_real - \
+			number->old_i * number->new_i + number->c_real;
+		number->new_i = 2 * number->old_real * number->old_i + number->c_i;
+		number->old_real = number->new_real;
+		number->old_i = number->new_i;
+		iteration++;
+	}
+	if (iteration != fractol->max_iterations)
+	{
+		s_iteration = number->new_real + (number->new_i / 10);
+		fractol->rgb_color = get_color(fractol, iteration);
+		put_pixel(fractol);
 	}
 }
 
@@ -57,8 +88,6 @@ static void		draw_fractol(t_fractol *fractol)
 	t_points	*points;
 	t_events	events;
 	t_numbers	*number;
-	int			iteration;
-	float		s_iteration;
 
 	points = fractol->points;
 	events = fractol->event;
@@ -68,23 +97,7 @@ static void		draw_fractol(t_fractol *fractol)
 		points->x = 0;
 		while (points->x < WIDTH)
 		{
-			constant_calculation(fractol, number, points);
-       		iteration = 0;
-			while (number->old_real * number->old_real + number->old_i * number->old_i <= 4 && iteration < MAX_ITERATIONS) 
-			{
-				number->new_real = number->old_real * number->old_real -  number->old_i * number->new_i + number->c_real;
-				number->new_i = 2 * number->old_real * number->old_i + number->c_i;
-				number->old_real = number->new_real;
-				number->old_i = number->new_i;
-				iteration++;
-			}
-			if (iteration != MAX_ITERATIONS)
-			{
-				s_iteration = number->new_real + (number->new_i / 10);
-				
-				fractol->rgb_color = get_color(fractol, iteration);
-				put_pixel(fractol);
-			}
+			set_calculation(fractol, number, points);
 			points->x++;
 		}
 		points->y++;

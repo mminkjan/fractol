@@ -3,75 +3,94 @@
 /*                                                        ::::::::            */
 /*   calculate_color.c                                  :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
+/*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/17 12:47:19 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/18 20:31:53 by jesmith       ########   odam.nl         */
+/*   Created: 2020/01/13 18:35:13 by jesmith        #+#    #+#                */
+/*   Updated: 2020/01/19 16:24:34 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int			hsv_to_rgb(float *h, float *s, float *v)
+static int		get_bit_value(int start, int end, double percentage)
 {
-	int			i;
-	float		f;
-	float		p;
-	float		q;
-	float		t;
-
-	if (s == 0)
-		return ((int)*v | (int)*v | (int)*v);
-	*h /= 60;
-	i = floor(*h);
-	f = *h - i;
-	p = *v * (1 - (*s));
-	q = *v * (1 - f * (*s));
-	t = *v * (1 - (1 - f) * (*s));
-	if (i == 0)
-		return ((int)v | (int)t | (int)p);
-	else if (i == 1)
-		return ((int)q | (int)v | (int)p);
-	else if (i == 2)
-		return ((int)p | (int)v | (int)t);
-	else if (i == 3)
-		return ((int)p | (int)q | (int)v);
-	else if (i == 4)
-		return ((int)t | (int)p | (int)v);
-	return ((int)v | (int)p | (int)q);
+	return ((int)((1 - percentage) * start + percentage * end));
 }
 
-float	scale(float x, float max_in,
-	float max_out)
+static void		set_color_to_end(t_color *color, t_events *events)
 {
-	return (x * max_out / max_in);
-}
-
-int		get_color(t_fractol *fractol, int iteration)
-{
-	t_color		color;
-	float		percent;		
-
-	color = fractol->color;
-	color.hue = 0xc31432;
-	if (iteration < fractol->max_iterations / 4)
+	if (events->color_set == 0)
 	{
-		percent = scale(iteration, fractol->max_iterations, fractol->max_iterations / 4);
-		color.hue = fractol->color.start;
+		color->start = ONE_END;
+		color->end = ONE_MIDDLE;
+	}
+	if (events->color_set == 1)
+	{
+		color->start = TWO_END;
+		color->end = TWO_MIDDLE;
+	}
+	if (events->color_set == 2)
+	{
+		color->start = THREE_END;
+		color->end = THREE_MIDDLE;
+	}
+}
+
+static void		set_color_to_mid(t_color *color, t_events *events)
+{
+	if (events->color_set == 0)
+	{
+		color->start = ONE_START;
+		color->end = ONE_MIDDLE;
+	}
+	if (events->color_set == 1)
+	{
+		color->start = TWO_START;
+		color->end = TWO_MIDDLE;
+	}
+	if (events->color_set == 2)
+	{
+		color->start = THREE_START;
+		color->end = THREE_MIDDLE;
 	}
 	else
 	{
-		percent = scale(iteration, fractol->max_iterations, (fractol->max_iterations - fractol->max_iterations / 4));
-		color.hue = fractol->color.end;
+		color->end = DEFAULT_MIDDLE;
+		color->start = DEFAULT_END;
 	}
-	// color.saturation = scale(percent * color.saturation, fractol->max_iterations, 360);
-	// if (color.saturation <= 5.0)
-	// 	color.saturation = 10;
-	// color.value = scale(percent * color.value, fractol->max_iterations, 360);
-	// if (color.value <= 0.0)
-	// 	color.value = 10;
-	color.hue = scale(color.hue, 360, 255);
-	color.saturation = scale(color.saturation * percent, 100, 255);
-	color.value = scale(color.value, 100, 255);
-	return (hsv_to_rgb(&color.hue, &color.saturation, &color.value));
+}
+
+int				rgb_color(t_fractol *fractol, int iteration)
+{
+	double	percentage;
+	t_color color;
+	int		red;
+	int		green;
+	int		blue;
+
+	color = fractol->color;
+	if (iteration < fractol->max_iterations / 4)
+	{
+		percentage = iteration / (float)(fractol->max_iterations / 4);
+		set_color_to_mid(&color, &fractol->event);
+	}
+	else
+	{
+		percentage = (iteration - (float)(fractol->max_iterations / 4));
+		set_color_to_end(&color, &fractol->event);
+	}
+	red = get_bit_value(\
+		(color.start >> 16) & 0xFF, (color.end >> 16) & 0xFF, percentage);
+	green = get_bit_value(\
+		(color.start >> 8) & 0xFF, (color.end >> 8) & 0xFF, percentage);
+	blue = get_bit_value(color.start & 0xFF, color.end & 0xFF, percentage);
+	return (red << 16 | green << 8 | blue);
+}
+
+void			get_color(t_fractol *fractol, int iteration)
+{
+	if (fractol->event.color_grade == 1)
+		fractol->rgb_color = hsv_color(fractol, iteration);
+	else
+		fractol->rgb_color = rgb_color(fractol, iteration);
 }

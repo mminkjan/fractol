@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/18 20:41:09 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/19 16:26:55 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void		set_calculation(t_fractol *fractol,
 	if (iteration != fractol->max_iterations)
 	{
 		s_iteration = number->new_real + (number->new_i / 10);
-		fractol->rgb_color = get_color(fractol, iteration);
+		get_color(fractol, iteration);
 		put_pixel(fractol);
 	}
 }

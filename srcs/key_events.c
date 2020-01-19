@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/18 20:39:01 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/19 16:26:29 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,15 @@ static void		color_key(int key, t_fractol *fractol)
 {
 	if (key == SPACE)
 	{
-		if (fractol->event.color_set == 1)
-		{
-			fractol->color.start = 249;
-			fractol->color.end = 210;
+		if (fractol->event.color_set == 0)
 			fractol->event.color_set++;
-		}
+		else if (fractol->event.color_set == 1)
+			fractol->event.color_set++;
 		else if (fractol->event.color_set == 2)
-		{
-			fractol->color.start = 20;
-			fractol->color.end = 359;
-			fractol->event.color_set++;
-		}
-		else if (fractol->event.color_set == 3)
-		{
-			fractol->color.start = 198;
-			fractol->color.end = 185;
-			fractol->event.color_set = 1;
-		}
+			fractol->event.color_set = 0;
 	}
+	if (key == HSV)
+		fractol->event.color_grade = 1;
 }
 
 static void		reset_escape_key(int key, t_fractol *fractol)
@@ -54,9 +44,8 @@ static void		reset_escape_key(int key, t_fractol *fractol)
 		fractol->max_iterations = 256;
 		fractol->color.saturation = 100;
 		fractol->color.value = 100;
-		fractol->event.zoom = 1.0;
-		fractol->event.mouse_x = 0;
-		fractol->event.mouse_y = 0;
+		fractol->event.zoom = 1.1;
+		fractol->event.color_grade = 0;
 	}
 	if (key == ESC)
 	{

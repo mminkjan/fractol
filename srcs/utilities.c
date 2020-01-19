@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/18 20:40:09 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/19 15:58:54 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,11 @@ t_fractol	*fractol_init(void)
 	if (fractol == NULL)
 		fractol_exit(MALLOC_ERR, fractol);
 	fractol->event.zoom = 1.0;
-	fractol->max_iterations = 256;
-	fractol->color.saturation = 150;
-	fractol->color.value = 100;
-	fractol->event.color_set = 1;
+	fractol->max_iterations = 150;
+	fractol->color.saturation = 100;
+	fractol->color.value = 50;
+	fractol->color.start = DEFAULT_START;
+	fractol->color.end = DEFAULT_END;
 	return (fractol);
 }
 

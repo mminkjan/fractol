@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/18 20:45:14 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/19 16:22:23 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define THREE 20
 
 # define ONE_START 0xffffff
+# define ONE_MIDDLE 0xFFF200
 # define ONE_END 0x240b36
 
 # define TWO_START 0x1a2a6c
@@ -47,6 +48,7 @@
 # define MOUSE_PRESS 1
 
 # define ESC 53
+# define HSV 259
 # define INCREASE_SATURATION 126
 # define DECREASE_SATURATION 125
 # define INCREASE_VALUE 123
@@ -55,8 +57,6 @@
 # define DECREASE_ITERATIONS 27
 # define SPACE 49
 # define RESET 51
-
-// # define MAX_ITERATIONS 2147483648
 
 # define WIDTH 1200
 # define HEIGHT 1000
@@ -86,6 +86,7 @@ typedef struct	s_events
 	double		start_pan_y;
 	double		hold_x;
 	double		hold_y;
+	int			color_grade;
 }				t_events;
 
 typedef struct	s_points
@@ -115,6 +116,7 @@ typedef struct	s_fractol
 	char		*argv;
 	int			max_iterations;
 	int			type;
+	int			i;
 	int			rgb_color;
 	t_color		color;
 	t_events	event;
@@ -132,7 +134,8 @@ t_fractol		*fractol_init(void);
 t_numbers		*numbers_init(t_fractol *fractol);
 t_points		*points_init(t_fractol *fractol);
 
-int				get_color(t_fractol *fractol, int iteration);
+void			get_color(t_fractol *fractol, int iteration);
+int				hsv_color(t_fractol *fractol, int iteration);
 
 int				key_press(int key, t_fractol *fractol);
 

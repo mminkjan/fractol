@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:09:45 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/15 10:01:48 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/19 16:30:13 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int			main(int argc, char **argv)
 	check_input(fractol, argv);
 	fractol->points = points_init(fractol);
 	mlx_setup(fractol);
+	print_interface(fractol);
 	mlx_loop_hook(fractol->mlx_ptr, fractol_manager, fractol);
 	mlx_loop(fractol->mlx_ptr);
 	return (0);

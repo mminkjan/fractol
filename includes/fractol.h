@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/19 16:22:23 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/19 16:44:20 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define MOUSE_PRESS 1
 
 # define ESC 53
-# define HSV 259
+# define HSV 261
 # define INCREASE_SATURATION 126
 # define DECREASE_SATURATION 125
 # define INCREASE_VALUE 123

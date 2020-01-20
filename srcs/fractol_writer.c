@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/19 16:58:01 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 20:50:09 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/20 23:00:16 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static t_pixel	fractol_calculate(t_fractol *fractol, int x, int y)
 		i++;
 	}
 	return ((t_pixel){{number->old_real, number->old_i}, i});
-
 }
 
 static void	*render_thread(void *t)
@@ -74,12 +73,9 @@ static void	*render_thread(void *t)
 		x = 0;
 		while (x < WIDTH)
 		{
-			// printf("siii\n");
-			// index = y * WIDTH + x;
 			*(thread->fractol->pixel + y * WIDTH + x)  = fractol_calculate(thread->fractol, x, y);
 			x++;
 		}
-		// printf("id = %d : start = %d | end = %d y = %d  x = %d\n",thread->id, HEIGHT / THREADS * thread->id, HEIGHT / THREADS * (thread->id + 1), y, x);
 		y++;
 	}
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/19 15:58:54 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/20 13:44:57 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void		check_input(t_fractol *fractol, char **argv)
 	}
 	else
 		fractol_exit(USAGE_ERR, fractol);
+	fractol->render = render_init(fractol);
 }
 
 t_numbers	*numbers_init(t_fractol *fractol)

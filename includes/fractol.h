@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/19 16:44:20 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/20 13:52:39 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include "../libft/libft.h"
 # include "../minilibx_macos/mlx.h"
+# include "../includes/thread.h"
 
-# define USAGE_ERR "usage error: input valid parameter\
+# define USAGE_ERR "usage error: input valid parameter \
 						\nJulia\nMandelbrot\nJessie\n"
 # define MALLOC_ERR "error: malloc\n"
 
@@ -99,9 +100,10 @@ typedef struct	s_color
 {
 	int			start;
 	int			end;
-	float		hue;
-	float		saturation;
-	float		value;
+	double		hue;
+	double		saturation;
+	double		value;
+	int			color_ppixel[HEIGHT * WIDTH];
 }				t_color;
 
 typedef struct	s_fractol
@@ -122,6 +124,7 @@ typedef struct	s_fractol
 	t_events	event;
 	t_numbers	*numbers;
 	t_points	*points;
+	t_render	*render;
 }				t_fractol;
 
 int				main(int argc, char **argv);
@@ -133,9 +136,6 @@ void			fractol_exit(char *str, t_fractol *fractol);
 t_fractol		*fractol_init(void);
 t_numbers		*numbers_init(t_fractol *fractol);
 t_points		*points_init(t_fractol *fractol);
-
-void			get_color(t_fractol *fractol, int iteration);
-int				hsv_color(t_fractol *fractol, int iteration);
 
 int				key_press(int key, t_fractol *fractol);
 

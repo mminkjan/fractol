@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   utilities_render.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/08 16:09:45 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 10:38:15 by jesmith       ########   odam.nl         */
+/*   Created: 2020/01/20 13:35:20 by jesmith        #+#    #+#                */
+/*   Updated: 2020/01/20 13:39:51 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int			main(int argc, char **argv)
+t_render	*render_init(t_fractol *fractol)
 {
-	t_fractol *fractol;
+	t_render *temp;
 
-	fractol = NULL;
-	if (argc != 2)
-		fractol_exit(USAGE_ERR, fractol);
-	fractol = fractol_init();
-	check_input(fractol, argv);
-	fractol->points = points_init(fractol);
-	mlx_setup(fractol);
-	print_interface(fractol);
-	mlx_loop_hook(fractol->mlx_ptr, fractol_writer, fractol);
-	mlx_loop(fractol->mlx_ptr);
-	return (0);
+	temp = (t_render*)ft_memalloc(sizeof(t_render));
+	if (temp == NULL)
+		fractol_exit(MALLOC_ERR, fractol);
+	return (temp);
 }

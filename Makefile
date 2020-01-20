@@ -6,7 +6,7 @@
 #    By: jesmith <jesmith@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/08 11:03:39 by jesmith        #+#    #+#                 #
-#    Updated: 2020/01/19 16:08:52 by jesmith       ########   odam.nl          #
+#    Updated: 2020/01/20 13:39:04 by jesmith       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,15 @@ LIBFT = libft/
 
 SRCS = ./srcs/
 
-SRCS_FILES = main utilities mlx_setup fractol_manager key_events \
-			calculate_color mouse_events user_interface hsv_color
+SRCS_FILES = main utilities mlx_setup key_events draw_fractol\
+			get_color mouse_events user_interface fractol_writer\
+			utilities_render
 
 CFILES = $(SRCS_FILES:%=$(SRCS)%.c)
 
 OFILES = $(CFILES:%.c=%.o)
 
-HEADERS = includes/fractol.h
+HEADERS = includes/fractol.h includes/thread.h
 
 ADD_FILES = Makefile author
 

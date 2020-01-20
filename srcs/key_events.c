@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/19 16:26:29 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/20 12:07:31 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void		color_key(int key, t_fractol *fractol)
 		else if (fractol->event.color_set == 2)
 			fractol->event.color_set = 0;
 	}
-	if (key == HSV)
+	if (key == LINEAR)
 		fractol->event.color_grade = 1;
 }
 

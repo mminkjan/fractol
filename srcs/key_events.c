@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 20:51:42 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/20 21:38:19 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static void		reset_escape_key(int key, t_fractol *fractol)
 		fractol->color.value = 100;
 		fractol->event.zoom = 1.1;
 		fractol->event.color_grade = 0;
+		fractol->event.mouse_x = 0;
+		fractol->event.mouse_y = 0;
 	}
 	if (key == ESC)
 	{

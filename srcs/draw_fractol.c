@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 12:23:09 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 21:03:09 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/20 21:32:06 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	draw_fractol(t_fractol *fractol)
 			index = y * WIDTH + x;
 			pixel = fractol->pixel[index];
 			if (pixel.i < fractol->max_iterations)
-				color = get_color(fractol, pixel.i);
+				color = get_color(fractol, (float)pixel.i);
 				// color = 0xffffff;
 				// fractol->color.color_ppixel[index] = 0xfffff;
 			// }

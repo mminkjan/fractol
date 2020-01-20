@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 12:03:57 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 21:05:59 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/20 21:38:57 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static int		rgb_color(t_fractol *fractol, double iteration)
 	int		green;
 	int		blue;
 
-	color = fractol->color;
 	if (iteration < fractol->max_iterations / 4)
 	{
 		percentage = iteration / (float)(fractol->max_iterations / 4);
@@ -108,10 +107,7 @@ static double	smooth_color(t_fractol *fractol, double iterations)
 
 int				get_color(t_fractol *fractol, double iterations)
 {
-	int ret_val;
-
 	if (fractol->event.color_grade == 0)
 		iterations = smooth_color(fractol, iterations);
-	ret_val = rgb_color(fractol, iterations);
-	return (ret_val);
+	return (rgb_color(fractol, iterations));
 }

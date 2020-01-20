@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 13:52:39 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/20 20:22:43 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@
 # define SPACE 49
 # define RESET 51
 
-# define WIDTH 1200
-# define HEIGHT 1000
+# define WIDTH 1000
+# define HEIGHT 700
 
 # include <math.h>
 # include <stdio.h> //remove later!
@@ -73,6 +73,7 @@ typedef struct	s_numbers
 	double		new_i;
 	double		old_real;
 	double		old_i;
+	t_complex	complex;
 }				t_numbers;
 
 typedef struct	s_events
@@ -124,7 +125,8 @@ typedef struct	s_fractol
 	t_events	event;
 	t_numbers	*numbers;
 	t_points	*points;
-	t_render	*render;
+	t_pixel		*pixel;
+	t_render	render;
 }				t_fractol;
 
 int				main(int argc, char **argv);

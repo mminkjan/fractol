@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 12:07:31 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/20 20:51:42 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ int				key_press(int key, t_fractol *fractol)
 	color_key(key, fractol);
 	fractol_key(key, fractol);
 	reset_escape_key(key, fractol);
+	fractol_writer(fractol);
 	return (0);
 }

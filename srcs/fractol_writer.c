@@ -6,11 +6,12 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/19 16:58:01 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 13:42:45 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/20 20:50:09 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+#include <stdint.h>
 
 static void		complex_calculation(t_fractol *fractol,
 					t_numbers *number, int x, int y)
@@ -38,38 +39,34 @@ static void		complex_calculation(t_fractol *fractol,
 	}
 }
 
-static void	fractol_calculate(t_fractol *fractol, int x, int y)
+static t_pixel	fractol_calculate(t_fractol *fractol, int x, int y)
 {
-	double		iteration;
-	size_t		index;
 	t_numbers	*number;
+	int			i;
 
 	number = fractol->numbers;
 	complex_calculation(fractol, number, x, y);
-	iteration = 0.0;
-	while (number->old_real * number->old_real + \
-	number->old_i * number->old_i <= 4 && iteration < fractol->max_iterations)
+	i = 0;
+	while (number->old_real * number->old_real + number->old_i * number->old_i < 4 && i < fractol->max_iterations)
 	{
 		number->new_real = number->old_real * number->old_real - \
 			number->old_i * number->new_i + number->c_real;
 		number->new_i = 2 * number->old_real * number->old_i + number->c_i;
 		number->old_real = number->new_real;
 		number->old_i = number->new_i;
-		iteration++;
+		i++;
 	}
-	if (iteration != fractol->max_iterations)
-	{
-		index = y * WIDTH + x;
-		fractol->color.color_ppixel[index] = get_color(fractol, iteration);
-	}
+	return ((t_pixel){{number->old_real, number->old_i}, i});
+
 }
 
 static void	*render_thread(void *t)
 {
-	int x;
-	int y;
-	t_thread *thread;
-
+	int			x;
+	int			y;
+	t_thread	*thread;
+	// int		index;
+	
 	thread = (t_thread*)t;
 	y = HEIGHT / THREADS * thread->id;
 	while (y < HEIGHT / THREADS * (thread->id + 1))
@@ -77,9 +74,12 @@ static void	*render_thread(void *t)
 		x = 0;
 		while (x < WIDTH)
 		{
-			fractol_calculate(thread->fractol, x, y);
+			// printf("siii\n");
+			// index = y * WIDTH + x;
+			*(thread->fractol->pixel + y * WIDTH + x)  = fractol_calculate(thread->fractol, x, y);
 			x++;
 		}
+		// printf("id = %d : start = %d | end = %d y = %d  x = %d\n",thread->id, HEIGHT / THREADS * thread->id, HEIGHT / THREADS * (thread->id + 1), y, x);
 		y++;
 	}
 	return (NULL);
@@ -87,33 +87,25 @@ static void	*render_thread(void *t)
 
 static void	fractol_thread(t_fractol *fractol)
 {
-	size_t		thread_count;
+	uintptr_t		thread_count;
 	t_render	*render;
 
-	render = fractol->render;
+	render = &fractol->render;
 	thread_count = 0;
 	while (thread_count < THREADS)
 	{
 		render->args[thread_count].id = thread_count;
 		render->args[thread_count].fractol = fractol;
-		pthread_create(render->thread + thread_count, NULL, render_thread, &(render->args[thread_count]));
+		pthread_create(&render->threads[thread_count], NULL, render_thread, &(render->args[thread_count]));
+		pthread_join(render->threads[thread_count], NULL);
 		thread_count++;
 	}
-	thread_count = 0;
-	while (thread_count < THREADS)
-	{
-		pthread_join(render->thread[thread_count], NULL);
-		thread_count++;
-	}
-	draw_fractol(fractol);
 }
 
 int		fractol_writer(t_fractol *fractol)
 {
-	mlx_key_hook(fractol->window_ptr, key_press, fractol);
-	mlx_hook(fractol->window_ptr, 4, 0, mouse_press, fractol);
-	mlx_hook(fractol->window_ptr, 6, 0, mouse_move, fractol);
-	mlx_hook(fractol->window_ptr, 5, 0, mouse_release, fractol);
 	fractol_thread(fractol);
+	draw_fractol(fractol);
+	ft_bzero(fractol->addr_str, fractol->size_line * fractol->bits_ppixel / 8);
 	return (0);
 }

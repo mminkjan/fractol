@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 10:25:31 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 13:39:41 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/20 20:07:56 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <pthread.h>
 # include "../includes/fractol.h"
 
-# define THREADS 8
+# define THREADS 7
 
 # define LINEAR 256
 
@@ -30,9 +30,22 @@ typedef struct	s_thread
 
 typedef struct	s_render
 {
-	pthread_t	thread[THREADS];
+	pthread_t	threads[THREADS];
 	t_thread	args[THREADS];
 }				t_render;
+
+typedef struct	s_complex
+{
+	double r;
+	double i;
+}				t_complex;
+
+typedef struct s_pixel
+{
+	t_complex c;
+	int		i;
+}				t_pixel;
+
 
 int			fractol_writer(t_fractol *fractol);
 int			get_color(t_fractol *fractol, double iterations);

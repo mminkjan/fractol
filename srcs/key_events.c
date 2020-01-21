@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/21 18:55:29 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/21 19:50:12 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void		color_key(int key, t_fractol *fractol)
 			fractol->event.color_grade = 1;
 		else
 			fractol->event.color_grade = 0;
-		fractol_writer(fractol);
 	}
 }
 

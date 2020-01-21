@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 20:22:43 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/21 19:38:47 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct	s_color
 	double		hue;
 	double		saturation;
 	double		value;
+	double		percent;
 	int			color_ppixel[HEIGHT * WIDTH];
 }				t_color;
 

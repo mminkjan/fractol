@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 10:25:31 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 21:33:38 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/21 19:18:43 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define LINEAR 256
 
-typedef struct  s_fractol	t_fractol;
+typedef struct s_fractol	t_fractol;
 
 typedef struct	s_thread
 {
@@ -40,12 +40,11 @@ typedef struct	s_complex
 	double i;
 }				t_complex;
 
-typedef struct s_pixel
+typedef struct	s_pixel
 {
-	t_complex c;
-	int		i;
+	t_complex	c;
+	int			i;
 }				t_pixel;
-
 
 int			fractol_writer(t_fractol *fractol);
 int			get_color(t_fractol *fractol, double iterations);

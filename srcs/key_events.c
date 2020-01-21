@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/19 16:26:29 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/21 09:59:06 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void		color_key(int key, t_fractol *fractol)
 		fractol->event.color_grade = 1;
 }
 
-static void		reset_escape_key(int key, t_fractol *fractol)
+static void		reset_key(int key, t_fractol *fractol)
 {
 	if (key == RESET)
 	{
@@ -46,12 +46,8 @@ static void		reset_escape_key(int key, t_fractol *fractol)
 		fractol->color.value = 100;
 		fractol->event.zoom = 1.1;
 		fractol->event.color_grade = 0;
-	}
-	if (key == ESC)
-	{
-		ft_bzero(fractol, sizeof(fractol));
-		free(fractol);
-		exit(0);
+		fractol->event.mouse_x = 0;
+		fractol->event.mouse_y = 0;
 	}
 }
 
@@ -70,6 +66,14 @@ static void		fractol_key(int key, t_fractol *fractol)
 		fractol->type = 3;
 		fractol->numbers->c_real = 0.3;
 		fractol->numbers->c_i = -0.01;
+	}
+	if (key == ESC)
+	{
+		ft_bzero(fractol->points, sizeof(fractol->points));
+		ft_bzero(fractol->numbers, sizeof(fractol->numbers));
+		ft_bzero(fractol, sizeof(fractol));
+		free(fractol);
+		exit(0);
 	}
 }
 
@@ -99,6 +103,6 @@ int				key_press(int key, t_fractol *fractol)
 	increase_decrease_keys(key, fractol);
 	color_key(key, fractol);
 	fractol_key(key, fractol);
-	reset_escape_key(key, fractol);
+	reset_key(key, fractol);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/13 18:35:13 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/19 16:24:34 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/21 10:00:42 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void		set_color_to_mid(t_color *color, t_events *events)
 	}
 }
 
-int				rgb_color(t_fractol *fractol, int iteration)
+static int		rgb_color(t_fractol *fractol, int iteration)
 {
 	double	percentage;
 	t_color color;

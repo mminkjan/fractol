@@ -6,13 +6,13 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 12:47:19 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/19 16:24:17 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/21 10:00:41 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int			hsv_to_rgb(float *h, float *s, float *v)
+static int		hsv_to_rgb(float *h, float *s, float *v)
 {
 	int			i;
 	float		f;
@@ -41,7 +41,7 @@ int			hsv_to_rgb(float *h, float *s, float *v)
 	return ((int)v | (int)p | (int)q);
 }
 
-float		scale(float x, float max_in,
+static float	scale(float x, float max_in,
 	float max_out)
 {
 	return (x * max_out / max_in);

@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 21:38:19 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/21 18:55:29 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,16 @@ static void		color_key(int key, t_fractol *fractol)
 			fractol->event.color_set = 0;
 	}
 	if (key == LINEAR)
-		fractol->event.color_grade = 1;
+	{
+		if (fractol->event.color_grade == 0)
+			fractol->event.color_grade = 1;
+		else
+			fractol->event.color_grade = 0;
+		fractol_writer(fractol);
+	}
 }
 
-static void		reset_escape_key(int key, t_fractol *fractol)
+static void		reset_key(int key, t_fractol *fractol)
 {
 	if (key == RESET)
 	{
@@ -49,12 +55,6 @@ static void		reset_escape_key(int key, t_fractol *fractol)
 		fractol->event.mouse_x = 0;
 		fractol->event.mouse_y = 0;
 	}
-	if (key == ESC)
-	{
-		ft_bzero(fractol, sizeof(fractol));
-		free(fractol);
-		exit(0);
-	}
 }
 
 static void		fractol_key(int key, t_fractol *fractol)
@@ -75,7 +75,7 @@ static void		fractol_key(int key, t_fractol *fractol)
 	}
 }
 
-static void		increase_decrease_keys(int key, t_fractol *fractol)
+static void		iteration_escape_key(int key, t_fractol *fractol)
 {
 	if (key == INCREASE_ITERATIONS)
 		fractol->max_iterations *= 2;
@@ -94,14 +94,20 @@ static void		increase_decrease_keys(int key, t_fractol *fractol)
 	if (key == DECREASE_VALUE)
 		if (fractol->color.value >= 5)
 			fractol->color.value += 0.5;
+	if (key == ESC)
+	{
+		ft_bzero(fractol, sizeof(fractol));
+		free(fractol);
+		exit(0);
+	}
 }
 
 int				key_press(int key, t_fractol *fractol)
 {
-	increase_decrease_keys(key, fractol);
+	iteration_escape_key(key, fractol);
 	color_key(key, fractol);
 	fractol_key(key, fractol);
-	reset_escape_key(key, fractol);
+	reset_key(key, fractol);
 	fractol_writer(fractol);
 	return (0);
 }

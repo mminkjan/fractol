@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/19 15:58:54 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 16:18:58 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ void		check_input(t_fractol *fractol, char **argv)
 	else if (ft_strcmp("Mandelbrot", argv[1]) == 0)
 	{
 		fractol->argv = ft_strdup("Mandelbrot");
+		fractol->numbers = numbers_init(fractol);
 		fractol->type = 2;
-		fractol->numbers = numbers_init(fractol);
+		fractol->two = 2;
 	}
-	else if (ft_strcmp("Jessie", argv[1]) == 0)
+	else if (ft_strcmp("Mandelbar", argv[1]) == 0)
 	{
-		fractol->argv = ft_strdup("Jessie");
-		fractol->type = 3;
+		fractol->argv = ft_strdup("Mandelbar");
 		fractol->numbers = numbers_init(fractol);
-		fractol->numbers->c_real = 0.3;
-		fractol->numbers->c_i = -0.01;
+		fractol->type = 3;
+		fractol->two = -2;
 	}
 	else
 		fractol_exit(USAGE_ERR, fractol);
@@ -50,16 +50,6 @@ t_numbers	*numbers_init(t_fractol *fractol)
 	return (number);
 }
 
-t_points	*points_init(t_fractol *fractol)
-{
-	t_points *points;
-
-	points = (t_points*)ft_memalloc(sizeof(t_points));
-	if (points == NULL)
-		fractol_exit(MALLOC_ERR, fractol);
-	return (points);
-}
-
 t_fractol	*fractol_init(void)
 {
 	t_fractol *fractol;
@@ -69,21 +59,12 @@ t_fractol	*fractol_init(void)
 		fractol_exit(MALLOC_ERR, fractol);
 	fractol->event.zoom = 1.0;
 	fractol->max_iterations = 150;
-	fractol->color.saturation = 100;
-	fractol->color.value = 50;
-	fractol->color.start = DEFAULT_START;
-	fractol->color.end = DEFAULT_END;
 	return (fractol);
 }
 
 void		fractol_exit(char *str, t_fractol *fractol)
 {
 	ft_putstr(str);
-	if (fractol != NULL && fractol->points != NULL)
-	{
-		ft_bzero(fractol->points, sizeof(t_points));
-		free(fractol->points);
-	}
 	if (fractol != NULL && fractol->numbers != NULL)
 	{
 		ft_bzero(fractol->numbers, sizeof(t_numbers));

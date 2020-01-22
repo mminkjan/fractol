@@ -6,103 +6,100 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/19 16:30:38 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 16:43:21 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static void		put_pixel(t_fractol *fractol)
+static void		put_pixel(t_fractol *fractol, int color, int x, int y)
 {
 	size_t		index;
-	t_points	*points;
 
-	points = fractol->points;
-	if (points->x >= 0 && points->x < WIDTH && \
-			points->y >= 0 && points->y < HEIGHT)
+	if (x >= 0 && x < WIDTH && \
+			y >= 0 && y < HEIGHT)
 	{
-		index = ((int)points->y * fractol->size_line) + \
-			((int)points->x * fractol->bits_ppixel / 8);
-		fractol->addr_str[index] = fractol->rgb_color;
+		index = (y * fractol->size_line) + (x * fractol->bits_ppixel / 8);
+		fractol->addr_str[index] = color;
 		index++;
-		fractol->addr_str[index] = fractol->rgb_color >> 8;
+		fractol->addr_str[index] = color >> 8;
 		index++;
-		fractol->addr_str[index] = fractol->rgb_color >> 16;
+		fractol->addr_str[index] = color >> 16;
 	}
 }
 
 static void		constant_calculation(t_fractol *fractol,
-					t_numbers *number, t_points *points)
+					t_numbers *nb, int x, int y)
 {
 	t_events event;
 
 	event = fractol->event;
-	if (fractol->type == 1 || fractol->type == 3)
+	if (fractol->type == 1)
 	{
-		number->new_real = ((points->x - WIDTH / 2.0) * 4.0) \
+		nb->new_real = ((x - WIDTH / 2.0) * 4.0) \
 			/ (WIDTH * event.zoom) + event.mouse_x;
-		number->new_i = ((points->y - HEIGHT / 2.0) * 4.0) \
+		nb->new_i = ((y - HEIGHT / 2.0) * 4.0) \
 			/ (WIDTH * event.zoom) + event.mouse_y;
-		number->old_real = number->new_real;
-		number->old_i = number->new_i;
+		nb->old_real = nb->new_real;
+		nb->old_i = nb->new_i;
 	}
-	else if (fractol->type == 2)
+	else if (fractol->type == 2 || fractol->type == 3)
 	{
-		number->c_real = ((points->x - WIDTH / 2.0) * 4.0)  \
+		nb->c_real = ((x - WIDTH / 2.0) * 4.0)  \
 			/ (WIDTH * event.zoom) + event.mouse_x;
-		number->c_i = ((points->y - HEIGHT / 2.0) * 4.0) \
+		nb->c_i = ((y - HEIGHT / 2.0) * 4.0) \
 			/ (WIDTH * event.zoom) + event.mouse_y;
-		number->old_real = 0;
-		number->old_i = 0;
+		nb->old_real = 0;
+		nb->old_i = 0;
 	}
 }
 
 static void		set_calculation(t_fractol *fractol,
-					t_numbers *number, t_points *points)
+					t_numbers *nb, int x, int y)
 {
-	int			iteration;
-	float		s_iteration;
+	int			iterations;
+	int			color;
 
-	constant_calculation(fractol, number, points);
-	iteration = 0;
-	while (number->old_real * number->old_real + \
-	number->old_i * number->old_i <= 4 && iteration < fractol->max_iterations)
+	constant_calculation(fractol, nb, x, y);
+	iterations = 0;
+	while (nb->old_real * nb->old_real + \
+	nb->old_i * nb->old_i <= 4 && iterations < fractol->max_iterations)
 	{
-		number->new_real = number->old_real * number->old_real - \
-			number->old_i * number->new_i + number->c_real;
-		number->new_i = 2 * number->old_real * number->old_i + number->c_i;
-		number->old_real = number->new_real;
-		number->old_i = number->new_i;
-		iteration++;
+		nb->new_real = nb->old_real * nb->old_real - \
+			nb->old_i * nb->new_i + nb->c_real;
+		nb->new_i = fractol->two * nb->old_real * nb->old_i + nb->c_i;
+		nb->old_real = nb->new_real;
+		nb->old_i = nb->new_i;
+		iterations++;
 	}
-	if (iteration != fractol->max_iterations)
+	if (iterations != fractol->max_iterations)
 	{
-		s_iteration = number->new_real + (number->new_i / 10);
-		get_color(fractol, iteration);
-		put_pixel(fractol);
+		color = get_color(fractol, iterations);
+		put_pixel(fractol, color, x, y);
 	}
 }
 
 static void		draw_fractol(t_fractol *fractol)
 {
-	t_points	*points;
 	t_events	events;
-	t_numbers	*number;
+	t_numbers	*nb;
+	int			x;
+	int			y;
 
-	points = fractol->points;
+	y = 0;
 	events = fractol->event;
-	number = fractol->numbers;
-	while (points->y < HEIGHT)
+	nb = fractol->numbers;
+	while (y < HEIGHT)
 	{
-		points->x = 0;
-		while (points->x < WIDTH)
+		x = 0;
+		while (x < WIDTH)
 		{
-			set_calculation(fractol, number, points);
-			points->x++;
+			set_calculation(fractol, nb, x, y);
+			x++;
 		}
-		points->y++;
+		y++;
 	}
-	points->y = 0;
+	y = 0;
 }
 
 int				fractol_manager(t_fractol *fractol)

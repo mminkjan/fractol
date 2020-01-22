@@ -6,13 +6,21 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 12:47:19 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/21 10:00:41 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/01/22 16:29:14 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static int		hsv_to_rgb(float *h, float *s, float *v)
+static int	rgb(float r, float g, float b)
+{
+	r *= 255;
+	g *= 255;
+	b *= 255;
+	return ((int)r << 16 | (int)g << 8 | (int)b);
+}
+
+static int	hsv_to_rgb(float h, float s, float v)
 {
 	int			i;
 	float		f;
@@ -21,52 +29,35 @@ static int		hsv_to_rgb(float *h, float *s, float *v)
 	float		t;
 
 	if (s == 0)
-		return ((int)*v | (int)*v | (int)*v);
-	*h /= 60;
-	i = floor(*h);
-	f = *h - i;
-	p = *v * (1 - (*s));
-	q = *v * (1 - f * (*s));
-	t = *v * (1 - (1 - f) * (*s));
+		return ((int)v | (int)v | (int)v);
+	h /= 60;
+	i = floor(h);
+	f = h - i;
+	p = v * (1.f - s);
+	q = v * (1.f - s * f);
+	t = v * (1.f - s * (1.f - f));
 	if (i == 0)
-		return ((int)v | (int)t | (int)p);
+		return (rgb(v, t, p));
 	else if (i == 1)
-		return ((int)q | (int)v | (int)p);
+		return (rgb(q, v, p));
 	else if (i == 2)
-		return ((int)p | (int)v | (int)t);
+		return (rgb(p, v, t));
 	else if (i == 3)
-		return ((int)p | (int)q | (int)v);
+		return (rgb(p, q, v));
 	else if (i == 4)
-		return ((int)t | (int)p | (int)v);
-	return ((int)v | (int)p | (int)q);
+		return (rgb(t, p, v));
+	return (rgb(v, p, q));
 }
 
-static float	scale(float x, float max_in,
-	float max_out)
-{
-	return (x * max_out / max_in);
-}
-
-int			hsv_color(t_fractol *fractol, int iteration)
+int			hsv_color(double iterations)
 {
 	t_color		color;
-	float		percent;
 
-	color = fractol->color;
-	if (iteration < fractol->max_iterations / 4)
-	{
-		percent = scale(iteration, fractol->max_iterations,\
-			fractol->max_iterations / 4);
-		color.hue = fractol->color.start;
-	}
+	if (iterations < 40)
+		color.hue = (int)((360 - 150) * (iterations / 40));
 	else
-	{
-		percent = scale(iteration, fractol->max_iterations,\
-			(fractol->max_iterations - fractol->max_iterations / 4));
-		color.hue = fractol->color.end;
-	}
-	color.hue = scale(color.hue, 360, 255);
-	color.saturation = scale(color.saturation * percent, 100, 255);
-	color.value = scale(color.value, 100, 255);
-	return (hsv_to_rgb(&color.hue, &color.saturation, &color.value));
+		color.hue = (int)(360 * (iterations / 150));
+	color.saturation = 1;
+	color.value = 1;
+	return (hsv_to_rgb(color.hue, color.saturation, color.value));
 }

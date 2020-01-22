@@ -6,7 +6,7 @@
 #    By: jesmith <jesmith@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/08 11:03:39 by jesmith        #+#    #+#                 #
-#    Updated: 2020/01/19 16:08:52 by jesmith       ########   odam.nl          #
+#    Updated: 2020/01/22 17:13:58 by mminkjan      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBFT = libft/
 SRCS = ./srcs/
 
 SRCS_FILES = main utilities mlx_setup fractol_manager key_events \
-			calculate_color mouse_events user_interface hsv_color
+			get_color mouse_events user_interface hsv_color
 
 CFILES = $(SRCS_FILES:%=$(SRCS)%.c)
 
@@ -66,6 +66,6 @@ add : fclean
 
 push :
 ifdef MSG
-	@git commit -m
-	@git push -u origin
+	@git commit -m MSG
+	@git push -u 
 endif

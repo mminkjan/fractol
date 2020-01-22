@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   calculate_color.c                                  :+:    :+:            */
+/*   get_color.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/13 18:35:13 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/21 10:00:42 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/01/22 17:10:20 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,9 @@ static void		set_color_to_mid(t_color *color, t_events *events)
 		color->start = THREE_START;
 		color->end = THREE_MIDDLE;
 	}
-	else
-	{
-		color->end = DEFAULT_MIDDLE;
-		color->start = DEFAULT_END;
-	}
 }
 
-static int		rgb_color(t_fractol *fractol, int iteration)
+static int		rgb_color(t_fractol *fractol, int iterations)
 {
 	double	percentage;
 	t_color color;
@@ -69,14 +64,14 @@ static int		rgb_color(t_fractol *fractol, int iteration)
 	int		blue;
 
 	color = fractol->color;
-	if (iteration < fractol->max_iterations / 4)
+	if (iterations < fractol->max_iterations / 4)
 	{
-		percentage = iteration / (float)(fractol->max_iterations / 4);
+		percentage = iterations / (float)(fractol->max_iterations / 4);
 		set_color_to_mid(&color, &fractol->event);
 	}
 	else
 	{
-		percentage = (iteration - (float)(fractol->max_iterations / 4));
+		percentage = iterations / (float)fractol->max_iterations;
 		set_color_to_end(&color, &fractol->event);
 	}
 	red = get_bit_value(\
@@ -87,10 +82,9 @@ static int		rgb_color(t_fractol *fractol, int iteration)
 	return (red << 16 | green << 8 | blue);
 }
 
-void			get_color(t_fractol *fractol, int iteration)
+int				get_color(t_fractol *fractol, int iteration)
 {
 	if (fractol->event.color_grade == 1)
-		fractol->rgb_color = hsv_color(fractol, iteration);
-	else
-		fractol->rgb_color = rgb_color(fractol, iteration);
+		return (hsv_color(iteration));
+	return (rgb_color(fractol, iteration));
 }

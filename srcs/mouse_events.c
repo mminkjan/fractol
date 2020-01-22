@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 19:20:35 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/21 19:59:05 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 19:28:00 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int				mouse_move(int x, int y, t_fractol *fractol)
 			(fractol->event.hold_x - x) / (WIDTH * fractol->event.zoom);
 		fractol->event.mouse_y += \
 			(fractol->event.hold_y - y) / (HEIGHT * fractol->event.zoom);
+		fractol->event.hold_x = x;
+		fractol->event.hold_y = y;
 		fractol_writer(fractol);
 	}
 	if (fractol->event.mouse_press == 0 && fractol->type == 1)

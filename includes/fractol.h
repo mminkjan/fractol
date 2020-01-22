@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 19:25:38 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 19:29:36 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ typedef struct	s_fractol
 	char		*argv;
 	int			max_iterations;
 	int			type;
-	int			i;
 	int			two;
 	t_color		color;
 	t_events	event;

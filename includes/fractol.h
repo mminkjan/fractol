@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 18:46:26 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 18:56:19 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@
 # define SPACE 49
 # define RESET 51
 
-# define WIDTH 1200
-# define HEIGHT 1000
+# define WIDTH 600
+# define HEIGHT 600
 
 typedef struct	s_numbers
 {

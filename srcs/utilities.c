@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 15:52:29 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/22 20:05:17 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void				check_input(t_fractol *fractol, char **argv)
 		fractol->type = 1;
 		fractol->numbers->c_real = -0.7;
 		fractol->numbers->c_i = 0.27015;
+		fractol->two = 2;
 	}
 	else if (ft_strcmp("Mandelbrot", argv[1]) == 0)
 	{

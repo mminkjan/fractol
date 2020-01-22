@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 18:53:40 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 20:02:09 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define ARROW_DOWN 125
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
+# define FREEZE 261
 # define SPACE 49
 # define RESET 51
 
@@ -68,6 +69,7 @@ typedef struct	s_events
 {
 	double		zoom;
 	double		key;
+	int			freeze;
 	double		color_set;
 	int			mouse_press;
 	double		mouse_x;

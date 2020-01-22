@@ -6,28 +6,28 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 12:23:09 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 21:47:08 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 12:55:35 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	put_pixel(t_fractol *fractol, int color, int x, int y)
+static void	put_pixel(t_fractol *fractol, int color, int x, int y)
 {
-	size_t	sub_dex;
+	size_t	index;
 
 	if (x >= 0 && x < WIDTH && y < HEIGHT && y >= 0)
 	{
-		sub_dex = (y * fractol->size_line) + (x * fractol->bits_ppixel / 8);
-		fractol->addr_str[sub_dex] = color;
-		sub_dex++;
-		fractol->addr_str[sub_dex] = color >> 8;
-		sub_dex++;
-		fractol->addr_str[sub_dex] = color >> 16;
+		index = (y * fractol->size_line) + (x * fractol->bits_ppixel / 8);
+		fractol->addr_str[index] = color;
+		index++;
+		fractol->addr_str[index] = color >> 8;
+		index++;
+		fractol->addr_str[index] = color >> 16;
 	}
 }
 
-void	draw_fractol(t_fractol *fractol)
+void		draw_fractol(t_fractol *fractol)
 {
 	int		x;
 	int		y;
@@ -52,5 +52,6 @@ void	draw_fractol(t_fractol *fractol)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(fractol->mlx_ptr, fractol->window_ptr, fractol->image_ptr, 400, 0);
+	mlx_put_image_to_window(fractol->mlx_ptr, \
+		fractol->window_ptr, fractol->image_ptr, 400, 0);
 }

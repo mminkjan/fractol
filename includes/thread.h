@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 10:25:31 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 12:19:28 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 12:30:55 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ typedef struct	s_pixel
 int			fractol_writer(t_fractol *fractol);
 int			get_color(t_fractol *fractol, double iterations);
 void		draw_fractol(t_fractol *fractol);
+int			hsv_color(t_fractol *fractol, double iterations);
 
 #endif

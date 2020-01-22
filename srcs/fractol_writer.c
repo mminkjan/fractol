@@ -6,12 +6,11 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/19 16:58:01 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 12:23:36 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 12:52:59 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-#include <stdint.h>
 
 static void		complex_calculation(t_fractol *fractol,
 					t_numbers *number, int x, int y)
@@ -42,21 +41,22 @@ static void		complex_calculation(t_fractol *fractol,
 static t_pixel	fractol_calculate(t_fractol *fractol, int x, int y)
 {
 	t_numbers	*number;
-	int			i;
+	int			iterations;
 
 	number = fractol->numbers;
 	complex_calculation(fractol, number, x, y);
-	i = 0;
-	while (number->old_real * number->old_real + number->old_i * number->old_i < 4 && i < fractol->max_iterations)
+	iterations = 0;
+	while (number->old_real * number->old_real + number->old_i * number->old_i < 4 \
+		&& iterations < fractol->max_iterations)
 	{
 		number->new_real = number->old_real * number->old_real - \
 			number->old_i * number->new_i + number->c_real;
 		number->new_i = 2 * number->old_real * number->old_i + number->c_i;
 		number->old_real = number->new_real;
 		number->old_i = number->new_i;
-		i++;
+		iterations++;
 	}
-	return ((t_pixel){{number->old_real, number->old_i}, i});
+	return ((t_pixel){{number->old_real, number->old_i}, iterations});
 }
 
 static void	*render_thread(void *t)
@@ -96,7 +96,8 @@ static void	fractol_thread(t_fractol *fractol)
 		thread_count++;
 	}
 }
-int		fractol_writer(t_fractol *fractol)
+
+int			fractol_writer(t_fractol *fractol)
 {
 	fractol_thread(fractol);
 	draw_fractol(fractol);

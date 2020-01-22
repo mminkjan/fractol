@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:09:45 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 12:19:06 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 12:41:08 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int			main(int argc, char **argv)
 	mlx_setup(fractol);
 	print_interface(fractol);
 	fractol_writer(fractol);
-	mlx_key_hook(fractol->window_ptr, key_press, fractol);
 	mlx_expose_hook(fractol->window_ptr, hook_expose, fractol);
+	mlx_key_hook(fractol->window_ptr, key_press, fractol);
 	mlx_hook(fractol->window_ptr, 4, 0, mouse_press, fractol);
 	mlx_hook(fractol->window_ptr, 6, 0, mouse_move, fractol);
 	mlx_hook(fractol->window_ptr, 5, 0, mouse_release, fractol);

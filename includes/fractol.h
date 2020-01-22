@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 12:23:47 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 12:54:19 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ typedef struct	s_fractol
 	char		*argv;
 	int			max_iterations;
 	int			type;
-	int			rgb_color;
 	t_color		color;
 	t_events	event;
 	t_numbers	*numbers;
@@ -125,7 +124,6 @@ int				fractol_manager(t_fractol *fractol);
 void			check_input(t_fractol *fractol, char **argv);
 void			fractol_exit(char *str, t_fractol *fractol);
 t_fractol		*fractol_init(void);
-t_numbers		*numbers_init(t_fractol *fractol);
 
 int				key_press(int key, t_fractol *fractol);
 

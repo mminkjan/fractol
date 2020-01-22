@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 16:49:01 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/22 18:46:26 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define ONE 18
 # define TWO 19
 # define THREE 20
+# define FOUR 21
 
 # define ONE_START 0x0B171A
 # define ONE_MIDDLE 0xE6DADA
@@ -43,6 +44,10 @@
 # define ESC 53
 # define INCREASE_ITERATIONS 24
 # define DECREASE_ITERATIONS 27
+# define ARROW_UP 126
+# define ARROW_DOWN 125
+# define ARROW_RIGHT 124
+# define ARROW_LEFT 123
 # define SPACE 49
 # define RESET 51
 

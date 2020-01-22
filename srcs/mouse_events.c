@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 19:20:35 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/21 18:04:12 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 18:00:48 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int				mouse_move(int x, int y, t_fractol *fractol)
 	{
 		if (y < HEIGHT / 2)
 		{
-			fractol->numbers->c_real += 0.07;
-			fractol->numbers->c_i += 0.07;
+			fractol->numbers->c_real += 0.01;
+			fractol->numbers->c_i += 0.02;
 		}
 		else if (y > HEIGHT / 2)
 		{
-			fractol->numbers->c_real -= 0.07;
-			fractol->numbers->c_i -= 0.07;
+			fractol->numbers->c_real -= 0.01;
+			fractol->numbers->c_i -= 0.02;
 		}
 	}
 	return (0);

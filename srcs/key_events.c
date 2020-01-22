@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 17:56:56 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 18:50:11 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static void		fractol_key(int key, t_fractol *fractol)
 	if (key == ONE)
 	{
 		fractol->type = 1;
+		fractol->two = 2;
 		fractol->numbers->c_real = -0.7;
 		fractol->numbers->c_i = 0.27015;
 	}
@@ -83,10 +84,18 @@ static void		fractol_key(int key, t_fractol *fractol)
 
 static void		increase_decrease_keys(int key, t_fractol *fractol)
 {
-	if (key == INCREASE_ITERATIONS && fractol->max_iterations < 1200)
-		fractol->max_iterations *= 2;
+	if (key == INCREASE_ITERATIONS && fractol->max_iterations < 760)
+		fractol->max_iterations *= 1.5;
 	if (key == DECREASE_ITERATIONS && fractol->max_iterations > 10)
-		fractol->max_iterations /= 2;
+		fractol->max_iterations /= 1.5;
+	if (key == ARROW_UP)
+		fractol->event.mouse_y += 0.5;
+	if (key == ARROW_DOWN)
+		fractol->event.mouse_y -= 0.5;
+	if (key == ARROW_LEFT)
+		fractol->event.mouse_x += 0.5;
+	if (key == ARROW_RIGHT)
+		fractol->event.mouse_x -= 0.5;
 }
 
 int				key_press(int key, t_fractol *fractol)

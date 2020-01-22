@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 18:50:11 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 19:00:33 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ static void		increase_decrease_keys(int key, t_fractol *fractol)
 	if (key == DECREASE_ITERATIONS && fractol->max_iterations > 10)
 		fractol->max_iterations /= 1.5;
 	if (key == ARROW_UP)
-		fractol->event.mouse_y += 0.5;
+		fractol->event.mouse_y -= 0.5 / fractol->event.zoom;
 	if (key == ARROW_DOWN)
-		fractol->event.mouse_y -= 0.5;
+		fractol->event.mouse_y += 0.5 / fractol->event.zoom;
 	if (key == ARROW_LEFT)
-		fractol->event.mouse_x += 0.5;
+		fractol->event.mouse_x -= 0.5 / fractol->event.zoom;
 	if (key == ARROW_RIGHT)
-		fractol->event.mouse_x -= 0.5;
+		fractol->event.mouse_x += 0.5 / fractol->event.zoom;
 }
 
 int				key_press(int key, t_fractol *fractol)

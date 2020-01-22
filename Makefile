@@ -6,7 +6,7 @@
 #    By: jesmith <jesmith@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/08 11:03:39 by jesmith        #+#    #+#                 #
-#    Updated: 2020/01/22 12:52:22 by mminkjan      ########   odam.nl          #
+#    Updated: 2020/01/22 15:59:08 by mminkjan      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,6 @@ add : fclean
 
 push :
 ifdef MSG
-	@git commit -m
-	@git push -u origin
+	@git commit -m MSG
+	@git push -u 
 endif

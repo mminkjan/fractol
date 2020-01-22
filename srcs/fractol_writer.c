@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/19 16:58:01 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 23:00:16 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 12:23:36 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static void	*render_thread(void *t)
 	int			x;
 	int			y;
 	t_thread	*thread;
-	// int		index;
 	
 	thread = (t_thread*)t;
 	y = HEIGHT / THREADS * thread->id;
@@ -83,7 +82,7 @@ static void	*render_thread(void *t)
 
 static void	fractol_thread(t_fractol *fractol)
 {
-	uintptr_t		thread_count;
+	int			thread_count;
 	t_render	*render;
 
 	render = &fractol->render;
@@ -97,7 +96,6 @@ static void	fractol_thread(t_fractol *fractol)
 		thread_count++;
 	}
 }
-
 int		fractol_writer(t_fractol *fractol)
 {
 	fractol_thread(fractol);

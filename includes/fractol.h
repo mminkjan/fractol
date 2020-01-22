@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/21 19:38:47 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 12:23:47 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ typedef struct	s_numbers
 	double		new_i;
 	double		old_real;
 	double		old_i;
-	t_complex	complex;
 }				t_numbers;
 
 typedef struct	s_events
@@ -84,18 +83,10 @@ typedef struct	s_events
 	int			mouse_press;
 	double		mouse_x;
 	double		mouse_y;
-	double		start_pan_x;
-	double		start_pan_y;
 	double		hold_x;
 	double		hold_y;
 	int			color_grade;
 }				t_events;
-
-typedef struct	s_points
-{
-	double		x;
-	double		y;
-}				t_points;
 
 typedef struct	s_color
 {
@@ -104,7 +95,6 @@ typedef struct	s_color
 	double		hue;
 	double		saturation;
 	double		value;
-	double		percent;
 	int			color_ppixel[HEIGHT * WIDTH];
 }				t_color;
 
@@ -120,12 +110,10 @@ typedef struct	s_fractol
 	char		*argv;
 	int			max_iterations;
 	int			type;
-	int			i;
 	int			rgb_color;
 	t_color		color;
 	t_events	event;
 	t_numbers	*numbers;
-	t_points	*points;
 	t_pixel		*pixel;
 	t_render	render;
 }				t_fractol;
@@ -138,7 +126,6 @@ void			check_input(t_fractol *fractol, char **argv);
 void			fractol_exit(char *str, t_fractol *fractol);
 t_fractol		*fractol_init(void);
 t_numbers		*numbers_init(t_fractol *fractol);
-t_points		*points_init(t_fractol *fractol);
 
 int				key_press(int key, t_fractol *fractol);
 

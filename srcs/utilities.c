@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/21 19:19:41 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 12:18:24 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,6 @@ t_numbers	*numbers_init(t_fractol *fractol)
 	return (number);
 }
 
-t_points	*points_init(t_fractol *fractol)
-{
-	t_points *points;
-
-	points = (t_points*)ft_memalloc(sizeof(t_points));
-	if (points == NULL)
-		fractol_exit(MALLOC_ERR, fractol);
-	return (points);
-}
-
 t_fractol	*fractol_init(void)
 {
 	t_fractol *fractol;
@@ -80,11 +70,6 @@ t_fractol	*fractol_init(void)
 void		fractol_exit(char *str, t_fractol *fractol)
 {
 	ft_putstr(str);
-	if (fractol != NULL && fractol->points != NULL)
-	{
-		ft_bzero(fractol->points, sizeof(t_points));
-		free(fractol->points);
-	}
 	if (fractol != NULL && fractol->numbers != NULL)
 	{
 		ft_bzero(fractol->numbers, sizeof(t_numbers));

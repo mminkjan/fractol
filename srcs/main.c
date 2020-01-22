@@ -6,13 +6,13 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:09:45 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/20 20:50:16 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/22 12:19:06 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int			hook_expose(t_fractol *fractol)
+static int	hook_expose(t_fractol *fractol)
 {
 	fractol_writer(fractol);
 	return (0);
@@ -27,7 +27,6 @@ int			main(int argc, char **argv)
 		fractol_exit(USAGE_ERR, fractol);
 	fractol = fractol_init();
 	check_input(fractol, argv);
-	fractol->points = points_init(fractol);
 	mlx_setup(fractol);
 	print_interface(fractol);
 	fractol_writer(fractol);

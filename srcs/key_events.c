@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/21 19:50:12 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 15:49:21 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void		color_key(int key, t_fractol *fractol)
 		else if (fractol->event.color_set == 2)
 			fractol->event.color_set = 0;
 	}
-	if (key == LINEAR)
+	if (key == HSV)
 	{
 		if (fractol->event.color_grade == 0)
 			fractol->event.color_grade = 1;
@@ -41,11 +41,10 @@ static void		reset_key(int key, t_fractol *fractol)
 			fractol->numbers->c_real = -0.7;
 			fractol->numbers->c_i = 0.27015;
 		}
+		if (fractol->type == 2)
+			fractol->two = 2;
 		if (fractol->type == 3)
-		{
-			fractol->numbers->c_real = 0.3;
-			fractol->numbers->c_i = -0.01;
-		}
+			fractol->two = -2;
 		fractol->max_iterations = 256;
 		fractol->color.saturation = 100;
 		fractol->color.value = 100;
@@ -65,12 +64,14 @@ static void		fractol_key(int key, t_fractol *fractol)
 		fractol->numbers->c_i = 0.27015;
 	}
 	if (key == TWO)
+	{
 		fractol->type = 2;
+		fractol->two = 2;
+	}
 	if (key == THREE)
 	{
 		fractol->type = 3;
-		fractol->numbers->c_real = 0.3;
-		fractol->numbers->c_i = -0.01;
+		fractol->two = -2;
 	}
 }
 

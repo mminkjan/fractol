@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 12:47:17 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/22 15:52:29 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,18 @@ void				check_input(t_fractol *fractol, char **argv)
 		fractol->argv = ft_strdup("Mandelbrot");
 		fractol->numbers = numbers_init(fractol);
 		fractol->type = 2;
+		fractol->two = 2;
 	}
-	else if (ft_strcmp("Jessie", argv[1]) == 0)
+	else if (ft_strcmp("Mandelbar", argv[1]) == 0)
 	{
-		fractol->argv = ft_strdup("Jessie");
+		fractol->argv = ft_strdup("Mandelbar");
 		fractol->numbers = numbers_init(fractol);
 		fractol->type = 3;
-		fractol->numbers->c_real = 0.3;
-		fractol->numbers->c_i = -0.01;
+		fractol->two = -2;
 	}
 	else
 		fractol_exit(USAGE_ERR, fractol);
 }
-
 
 t_fractol			*fractol_init(void)
 {

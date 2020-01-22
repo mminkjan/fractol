@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 12:54:19 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/22 15:55:22 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,26 @@
 # include "../libft/libft.h"
 # include "../minilibx_macos/mlx.h"
 # include "../includes/thread.h"
+# include <math.h>
 
-# define USAGE_ERR "usage error: input valid parameter \
-						\nJulia\nMandelbrot\nJessie\n"
+# define USAGE_ERR "usage: input valid fractol\nJulia\nMandelbrot\nMandelbar\n"
 # define MALLOC_ERR "error: malloc\n"
 
 # define ONE 18
 # define TWO 19
 # define THREE 20
 
-# define ONE_START 0xffffff
-# define ONE_MIDDLE 0xFFF200
-# define ONE_END 0x240b36
+# define ONE_START 0x0B171A
+# define ONE_MIDDLE 0xe6dada
+# define ONE_END 0xffffff
 
-# define TWO_START 0x1a2a6c
+# define TWO_START 0x000000
 # define TWO_MIDDLE 0xb21f1f
 # define TWO_END 0xfdbb2d
 
-# define THREE_START 0xCC95C0
-# define THREE_MIDDLE 0xdbd4b4
-# define THREE_END 0x7AAA1d2
-
-# define FOUR_START 0x1E9600
-# define FOUR_MIDDLE 0xFFF200
-# define FOUR_END 0xFF0000
-# define DEFAULT_START 0xffa500
-# define DEFAULT_MIDDLE 0xee3a6a
-# define DEFAULT_END 0x72b2f3
+# define THREE_START 0xFFF8DE
+# define THREE_MIDDLE 0xF7971E
+# define THREE_END 0x956900
 
 # define SCROLL_UP 5
 # define SCROLL_DOWN 4
@@ -61,9 +54,6 @@
 
 # define WIDTH 1000
 # define HEIGHT 700
-
-# include <math.h>
-# include <stdio.h> //remove later!
 
 typedef struct	s_numbers
 {
@@ -110,6 +100,7 @@ typedef struct	s_fractol
 	char		*argv;
 	int			max_iterations;
 	int			type;
+	int			two;
 	t_color		color;
 	t_events	event;
 	t_numbers	*numbers;

@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 16:47:29 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 18:53:40 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@
 # define MOUSE_PRESS 1
 
 # define ESC 53
-# define INCREASE_SATURATION 126
-# define DECREASE_SATURATION 125
-# define INCREASE_VALUE 123
-# define DECREASE_VALUE 124
 # define INCREASE_ITERATIONS 24
 # define DECREASE_ITERATIONS 27
+# define ARROW_UP 126
+# define ARROW_DOWN 125
+# define ARROW_LEFT 123
+# define ARROW_RIGHT 124
 # define SPACE 49
 # define RESET 51
 

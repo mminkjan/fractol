@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 17:00:40 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/22 17:56:56 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void		reset_key(int key, t_fractol *fractol)
 		{
 			fractol->numbers->c_real = -0.7;
 			fractol->numbers->c_i = 0.27015;
+			fractol->two = 2;
 		}
 		if (fractol->type == 2)
 			fractol->two = 2;

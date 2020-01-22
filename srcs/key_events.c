@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 19:00:33 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/22 20:00:00 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void		reset_key(int key, t_fractol *fractol)
 		fractol->event.color_set = 0;
 		fractol->event.mouse_x = 0;
 		fractol->event.mouse_y = 0;
+		fractol->event.mouse_press = 0;
 	}
 }
 
@@ -82,7 +83,7 @@ static void		fractol_key(int key, t_fractol *fractol)
 	}
 }
 
-static void		increase_decrease_keys(int key, t_fractol *fractol)
+static void		alteration_keys(int key, t_fractol *fractol)
 {
 	if (key == INCREASE_ITERATIONS && fractol->max_iterations < 760)
 		fractol->max_iterations *= 1.5;
@@ -96,11 +97,13 @@ static void		increase_decrease_keys(int key, t_fractol *fractol)
 		fractol->event.mouse_x -= 0.5 / fractol->event.zoom;
 	if (key == ARROW_RIGHT)
 		fractol->event.mouse_x += 0.5 / fractol->event.zoom;
+	if (key == FREEZE)
+		fractol->event.freeze = 1;
 }
 
 int				key_press(int key, t_fractol *fractol)
 {
-	increase_decrease_keys(key, fractol);
+	alteration_keys(key, fractol);
 	color_key(key, fractol);
 	fractol_key(key, fractol);
 	reset_key(key, fractol);

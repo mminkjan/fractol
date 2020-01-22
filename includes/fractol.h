@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 15:55:22 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/22 16:47:29 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@
 # define THREE 20
 
 # define ONE_START 0x0B171A
-# define ONE_MIDDLE 0xe6dada
-# define ONE_END 0xffffff
+# define ONE_MIDDLE 0xE6DADA
+# define ONE_END 0xFFFFFF
 
 # define TWO_START 0x000000
-# define TWO_MIDDLE 0xb21f1f
-# define TWO_END 0xfdbb2d
+# define TWO_MIDDLE 0xB21F1F
+# define TWO_END 0xFDBB2D
 
 # define THREE_START 0xFFF8DE
 # define THREE_MIDDLE 0xF7971E
@@ -42,7 +42,6 @@
 # define MOUSE_PRESS 1
 
 # define ESC 53
-# define HSV 261
 # define INCREASE_SATURATION 126
 # define DECREASE_SATURATION 125
 # define INCREASE_VALUE 123

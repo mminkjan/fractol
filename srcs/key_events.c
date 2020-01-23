@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/23 13:20:23 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/23 14:15:19 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void		fractol_key(int key, t_fractol *fractol)
 		ft_bzero(fractol->numbers, sizeof(fractol->numbers));
 		ft_bzero(fractol, sizeof(fractol));
 		free(fractol);
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 }
 

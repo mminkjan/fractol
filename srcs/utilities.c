@@ -6,13 +6,23 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 18:44:34 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/23 12:58:08 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void		check_input(t_fractol *fractol, char **argv)
+static t_numbers	*numbers_init(t_fractol *fractol)
+{
+	t_numbers *number;
+
+	number = (t_numbers*)ft_memalloc(sizeof(t_numbers));
+	if (number == NULL)
+		fractol_exit(MALLOC_ERR, fractol);
+	return (number);
+}
+
+void				check_input(t_fractol *fractol, char **argv)
 {
 	if (ft_strcmp("Julia", argv[1]) == 0)
 	{
@@ -41,17 +51,7 @@ void		check_input(t_fractol *fractol, char **argv)
 		fractol_exit(USAGE_ERR, fractol);
 }
 
-t_numbers	*numbers_init(t_fractol *fractol)
-{
-	t_numbers *number;
-
-	number = (t_numbers*)ft_memalloc(sizeof(t_numbers));
-	if (number == NULL)
-		fractol_exit(MALLOC_ERR, fractol);
-	return (number);
-}
-
-t_fractol	*fractol_init(void)
+t_fractol			*fractol_init(void)
 {
 	t_fractol *fractol;
 
@@ -63,7 +63,7 @@ t_fractol	*fractol_init(void)
 	return (fractol);
 }
 
-void		fractol_exit(char *str, t_fractol *fractol)
+void				fractol_exit(char *str, t_fractol *fractol)
 {
 	ft_putstr(str);
 	if (fractol != NULL && fractol->numbers != NULL)

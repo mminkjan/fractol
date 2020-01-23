@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 19:56:59 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/23 12:57:45 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ int				fractol_manager(t_fractol *fractol);
 void			check_input(t_fractol *fractol, char **argv);
 void			fractol_exit(char *str, t_fractol *fractol);
 t_fractol		*fractol_init(void);
-t_numbers		*numbers_init(t_fractol *fractol);
 
 int				get_color(t_fractol *fractol, int iteration);
 int				hsv_color(double iteration);

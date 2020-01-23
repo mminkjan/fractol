@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/23 18:42:13 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/23 19:47:33 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void		reset_key(int key, t_fractol *fractol)
 		if (fractol->type == 3)
 			fractol->two = -2;
 		fractol->max_iterations = 190;
-		fractol->event.zoom = 1.0;
+		fractol->event.zoom = 1.1;
 		fractol->event.color_set = 0;
 		fractol->event.color_grade = 0;
 		fractol->event.mouse_x = 0;

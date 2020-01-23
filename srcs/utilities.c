@@ -6,50 +6,11 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/23 18:00:16 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/23 20:08:52 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-
-static t_numbers	*numbers_init(t_fractol *fractol)
-{
-	t_numbers *number;
-
-	number = (t_numbers*)ft_memalloc(sizeof(t_numbers));
-	if (number == NULL)
-		fractol_exit(MALLOC_ERR, fractol);
-	return (number);
-}
-
-void				check_input(t_fractol *fractol, char **argv)
-{
-	if (ft_strcmp("Julia", argv[1]) == 0)
-	{
-		fractol->argv = ft_strdup("Julia");
-		fractol->numbers = numbers_init(fractol);
-		fractol->type = 1;
-		fractol->numbers->c_real = -0.7;
-		fractol->numbers->c_i = 0.27015;
-		fractol->two = 2;
-	}
-	else if (ft_strcmp("Mandelbrot", argv[1]) == 0)
-	{
-		fractol->argv = ft_strdup("Mandelbrot");
-		fractol->numbers = numbers_init(fractol);
-		fractol->type = 2;
-		fractol->two = 2;
-	}
-	else if (ft_strcmp("Mandelbar", argv[1]) == 0)
-	{
-		fractol->argv = ft_strdup("Mandelbar");
-		fractol->numbers = numbers_init(fractol);
-		fractol->type = 3;
-		fractol->two = -2;
-	}
-	else
-		fractol_exit(USAGE_ERR, fractol);
-}
 
 t_fractol			*fractol_init(void)
 {
@@ -81,6 +42,11 @@ void				fractol_exit(char *str, t_fractol *fractol)
 	}
 	if (fractol != NULL)
 	{
+		while (fractol->next != NULL)
+		{
+			ft_bzero(fractol, sizeof(t_fractol));
+			free(fractol);
+		}
 		ft_bzero(fractol, sizeof(t_fractol));
 		free(fractol);
 	}

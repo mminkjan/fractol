@@ -6,7 +6,7 @@
 #    By: jesmith <jesmith@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/08 11:03:39 by jesmith        #+#    #+#                 #
-#    Updated: 2020/01/22 15:59:08 by mminkjan      ########   odam.nl          #
+#    Updated: 2020/01/23 19:24:16 by jesmith       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS = ./srcs/
 
 SRCS_FILES = main utilities mlx_setup key_events draw_fractol \
 			get_color mouse_events user_interface fractol_writer \
-			hsv_color
+			hsv_color check_input
 
 CFILES = $(SRCS_FILES:%=$(SRCS)%.c)
 

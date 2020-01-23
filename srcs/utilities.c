@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/23 19:43:25 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/23 19:53:29 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ void				check_input(t_fractol *fractol, char **argv)
 		fractol->numbers = numbers_init(fractol);
 		fractol->type = 3;
 		fractol->two = -2;
+	}
+	else if (ft_strcmp("BurningShip", argv[1]) == 0)
+	{
+		fractol->argv = ft_strdup("BurningShip");
+		fractol->numbers = numbers_init(fractol);
+		fractol->type = 4;
+		fractol->two = 2;
 	}
 	else
 		fractol_exit(USAGE_ERR, fractol);

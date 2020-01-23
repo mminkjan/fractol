@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/23 18:21:14 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/23 18:56:07 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		put_pixel(t_fractol *fractol, int color, int x, int y)
 	}
 }
 
-static void		constant_calculation(t_fractol *fractol,
+static void		complex_calculation(t_fractol *fractol,
 					t_numbers *nb, int x, int y)
 {
 	t_events event;
@@ -60,7 +60,7 @@ static void		set_calculation(t_fractol *fractol,
 	int			iterations;
 	int			color;
 
-	constant_calculation(fractol, nb, x, y);
+	complex_calculation(fractol, nb, x, y);
 	iterations = 0;
 	while (nb->old_real * nb->old_real + \
 	nb->old_i * nb->old_i <= 4 && iterations < fractol->max_iterations)

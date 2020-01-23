@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/23 18:56:07 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/23 19:47:44 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void		set_calculation(t_fractol *fractol,
 	nb->old_i * nb->old_i <= 4 && iterations < fractol->max_iterations)
 	{
 		nb->new_real = nb->old_real * nb->old_real - \
-			nb->old_i * nb->new_i + nb->c_real;
+			nb->old_i * nb->old_i + nb->c_real;
 		nb->new_i = fractol->two * nb->old_real * nb->old_i + nb->c_i;
 		nb->old_real = nb->new_real;
 		nb->old_i = nb->new_i;

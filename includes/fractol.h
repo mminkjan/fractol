@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/24 14:50:19 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/24 15:15:57 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include "../includes/thread.h"
 # include <math.h>
 
-# define USAGE_ERR "usage: input valid fractol\nJulia\nMandelbrot\n\
-Mandelbar\nBurningShip\n"
+# define FRACTOLS "Julia\nMandelbrot\nMandelbar\nBurningShip\n"
+# define USAGE_ERR "usage: input valid fractol\n" FRACTOLS
 # define MALLOC_ERR "error: malloc\n"
 
 # define ONE 18
@@ -121,10 +121,12 @@ void			fractol_exit(char *str, t_fractol *fractol);
 t_fractol		*fractol_init(void);
 
 int				key_press(int key, t_fractol *fractol);
+void			fractol_key(int key, t_fractol *fractol);
 
 int				mouse_press(int key, int x, int y, t_fractol *fractol);
 int				mouse_release(int key, int x, int y, t_fractol *fracol);
 int				mouse_move(int x, int y, t_fractol *fractol);
 
 void			print_interface(t_fractol *fractol);
+
 #endif

@@ -6,7 +6,7 @@
 #    By: jesmith <jesmith@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/08 11:03:39 by jesmith        #+#    #+#                 #
-#    Updated: 2020/01/23 19:24:16 by jesmith       ########   odam.nl          #
+#    Updated: 2020/01/24 15:07:14 by mminkjan      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT = libft/
 
 SRCS = ./srcs/
 
-SRCS_FILES = main utilities mlx_setup key_events draw_fractol \
+SRCS_FILES = main utilities mlx_setup key_events key_events2 draw_fractol \
 			get_color mouse_events user_interface fractol_writer \
 			hsv_color check_input
 

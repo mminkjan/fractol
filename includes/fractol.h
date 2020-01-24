@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/24 15:49:08 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/24 15:49:13 by mminkjan      ########   odam.nl         */
+/*   Created: 2020/01/24 15:55:07 by mminkjan       #+#    #+#                */
+/*   Updated: 2020/01/24 15:57:32 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../libft/libft.h"
 # include "../minilibx_macos/mlx.h"
-# include "../includes/thread.h"
+# include "thread.h"
 # include <math.h>
 
 # define FRACTOLS "Julia\nMandelbrot\nMandelbar\nBurningShip\n"
@@ -128,5 +128,4 @@ int				mouse_release(int key, int x, int y, t_fractol *fracol);
 int				mouse_move(int x, int y, t_fractol *fractol);
 
 void			print_interface(t_fractol *fractol);
-
 #endif

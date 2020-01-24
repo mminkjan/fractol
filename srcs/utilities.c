@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/23 19:53:29 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/24 13:39:56 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,37 +22,38 @@ static t_numbers	*numbers_init(t_fractol *fractol)
 	return (number);
 }
 
+static void			set_julia(t_fractol *fractol, char *julia)
+{
+	fractol->argv = julia;
+	fractol->numbers = numbers_init(fractol);
+	fractol->type = 1;
+	fractol->numbers->c_real = -0.7;
+	fractol->numbers->c_i = 0.27015;
+}
+
 void				check_input(t_fractol *fractol, char **argv)
 {
+	fractol->two = 2;
 	if (ft_strcmp("Julia", argv[1]) == 0)
-	{
-		fractol->argv = ft_strdup("Julia");
-		fractol->numbers = numbers_init(fractol);
-		fractol->type = 1;
-		fractol->two = 2;
-		fractol->numbers->c_real = -0.7;
-		fractol->numbers->c_i = 0.27015;
-	}
+		set_julia(fractol, argv[1]);
 	else if (ft_strcmp("Mandelbrot", argv[1]) == 0)
 	{
-		fractol->argv = ft_strdup("Mandelbrot");
+		fractol->argv = "Mandelbrot";
 		fractol->numbers = numbers_init(fractol);
 		fractol->type = 2;
-		fractol->two = 2;
 	}
 	else if (ft_strcmp("Mandelbar", argv[1]) == 0)
 	{
-		fractol->argv = ft_strdup("Mandelbar");
+		fractol->argv = "Mandelbar";
 		fractol->numbers = numbers_init(fractol);
 		fractol->type = 3;
 		fractol->two = -2;
 	}
 	else if (ft_strcmp("BurningShip", argv[1]) == 0)
 	{
-		fractol->argv = ft_strdup("BurningShip");
+		fractol->argv = "BurningShip";
 		fractol->numbers = numbers_init(fractol);
 		fractol->type = 4;
-		fractol->two = 2;
 	}
 	else
 		fractol_exit(USAGE_ERR, fractol);

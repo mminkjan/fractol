@@ -6,73 +6,47 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/23 20:21:16 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/24 13:33:26 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static void		color_key(int key, t_fractol *fractol)
+static void		switch_fractol(int key, t_fractol *fractol)
 {
-	if (key == SPACE)
-	{
-		fractol->event.color_grade = 0;
-		if (fractol->event.color_set == -1)
-			fractol->event.color_set++;
-		else if (fractol->event.color_set == 0)
-			fractol->event.color_set++;
-		else if (fractol->event.color_set == 1)
-			fractol->event.color_set++;
-		else if (fractol->event.color_set == 2)
-		{
-			fractol->event.color_grade = 1;
-			fractol->event.color_set = -1;
-		}
-	}
-}
-
-static void		reset_key(int key, t_fractol *fractol)
-{
-	if (key == RESET)
-	{
-		if (fractol->type == 1)
-		{
-			fractol->numbers->c_real = -0.7;
-			fractol->numbers->c_i = 0.27015;
-			fractol->two = 2;
-		}
-		if (fractol->type == 2 || fractol->two == 4)
-			fractol->two = 2;
-		if (fractol->type == 3)
-			fractol->two = -2;
-		fractol->max_iterations = 150;
-		fractol->event.zoom = 1.1;
-		fractol->event.color_grade = 0;
-		fractol->event.color_set = 0;
-		fractol->event.mouse_x = 0;
-		fractol->event.mouse_y = 0;
-		fractol->event.mouse_press = 0;
-	}
-}
-
-static void		fractol_key(int key, t_fractol *fractol)
-{
+	fractol->two = 2;
 	if (key == ONE)
 	{
 		fractol->type = 1;
-		fractol->two = 2;
 		fractol->numbers->c_real = -0.7;
 		fractol->numbers->c_i = 0.27015;
+		fractol->argv = "Julia";
 	}
-	if (key == TWO)
+	if (key == TWO || key == FOUR)
 	{
 		fractol->type = 2;
-		fractol->two = 2;
+		fractol->argv = "Mandelbrot";
 	}
 	if (key == THREE)
 	{
 		fractol->type = 3;
 		fractol->two = -2;
+		fractol->argv = "Mandelbar";
+	}
+	if (key == FOUR)
+	{
+		fractol->type = 4;
+		fractol->argv = "BurningShip";
+	}
+}
+
+static void		fractol_key(int key, t_fractol *fractol)
+{
+	if (key == ONE || key == TWO || key == THREE || key == FOUR)
+	{
+		switch_fractol(key, fractol);
+		mlx_clear_window(fractol->mlx_ptr, fractol->window_ptr);
+		print_interface(fractol);
 	}
 	if (key == ESC)
 	{
@@ -109,8 +83,8 @@ static void		alteration_keys(int key, t_fractol *fractol)
 int				key_press(int key, t_fractol *fractol)
 {
 	alteration_keys(key, fractol);
-	color_key(key, fractol);
 	fractol_key(key, fractol);
+	color_key(key, fractol);
 	reset_key(key, fractol);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/23 12:57:45 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/24 13:22:06 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ int				get_color(t_fractol *fractol, int iteration);
 int				hsv_color(double iteration);
 
 int				key_press(int key, t_fractol *fractol);
+void			color_key(int key, t_fractol *fractol);
+void			reset_key(int key, t_fractol *fractol);
 
 int				mouse_press(int key, int x, int y, t_fractol *fractol);
 int				mouse_release(int key, int x, int y, t_fractol *fracol);

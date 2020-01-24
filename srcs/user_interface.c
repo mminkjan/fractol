@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 20:41:34 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/23 18:31:27 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/24 12:58:34 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,27 @@ static void		print_side_line(t_fractol *fractol)
 
 void			print_interface(t_fractol *fractol)
 {
-	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 30, 120, 0xafafaf,
+	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 30, 90, 0xafafaf,
 		"THE AMAZING AND WONDERFUL FRACT'OL\n");
-	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 50, 170, 0xafafaf,
+	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 140, 0xafafaf,
+		fractol->argv);
+	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 170, 0xafafaf,
 		"press and drag mouse to move\n");
-	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 50, 200, 0xafafaf,
+	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 200, 0xafafaf,
 		"zoom:                   scroll\n");
-	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 50, 230, 0xafafaf,
+	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 230, 0xafafaf,
 		"change iteration:       + & -\n");
-	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 50, 260, 0xafafaf,
+	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 260, 0xafafaf,
 		"move (arrow keys):      ^ & v\n");
-	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 50, 290, 0xafafaf,
+	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 290, 0xafafaf,
 		"change color:           spacebar\n");
-	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 50, 320, 0xafafaf,
-		"change fractol:         1, 2, & 3\n");
-	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 50, 350, 0xafafaf,
+	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 320, 0xafafaf,
+		"change fractol:         1, 2, 3 & 4\n");
+	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 350, 0xafafaf,
 		"un/freeze Julia:        alt\n");
-	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 50, 380, 0xafafaf,
+	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 380, 0xafafaf,
 		"reset:                  backspace\n");
-	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 50, 410, 0xafafaf,
+	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 410, 0xafafaf,
 		"quit:                   escape\n");
 	print_side_line(fractol);
 }

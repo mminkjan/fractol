@@ -6,12 +6,11 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/23 19:15:10 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/23 20:06:56 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/24 14:52:55 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-#include <stdio.h>
 
 static t_numbers	*numbers_init(t_fractol *fractol)
 {
@@ -23,52 +22,39 @@ static t_numbers	*numbers_init(t_fractol *fractol)
 	return (number);
 }
 
-static void			fractol_info(t_fractol *fractol, char *argv)
+void				set_julia(t_fractol *fractol, char *julia)
 {
+	fractol->argv = julia;
+	fractol->numbers = numbers_init(fractol);
+	fractol->type = 1;
+	fractol->numbers->c_real = -0.7;
+	fractol->numbers->c_i = 0.27015;
+}
+
+void				check_input(t_fractol *fractol, char *argv)
+{
+	fractol->two = 2;
 	if (ft_strcmp("Julia", argv) == 0)
-	{
-		fractol->argv = ft_strdup("Julia");
-		fractol->numbers = numbers_init(fractol);
-		fractol->type = 1;
-		fractol->numbers->c_real = -0.7;
-		fractol->numbers->c_i = 0.27015;
-		fractol->two = 2;
-	}
+		set_julia(fractol, argv);
 	else if (ft_strcmp("Mandelbrot", argv) == 0)
 	{
-		fractol->argv = ft_strdup("Mandelbrot");
+		fractol->argv = "Mandelbrot";
 		fractol->numbers = numbers_init(fractol);
 		fractol->type = 2;
-		fractol->two = 2;
 	}
 	else if (ft_strcmp("Mandelbar", argv) == 0)
 	{
-		fractol->argv = ft_strdup("Mandelbar");
+		fractol->argv = "Mandelbar";
 		fractol->numbers = numbers_init(fractol);
 		fractol->type = 3;
 		fractol->two = -2;
 	}
+	else if (ft_strcmp("BurningShip", argv) == 0)
+	{
+		fractol->argv = "BurningShip";
+		fractol->numbers = numbers_init(fractol);
+		fractol->type = 4;
+	}
 	else
 		fractol_exit(USAGE_ERR, fractol);
-}
-
-void				check_input(t_fractol *fractol, char **argv)
-{
-	size_t		index;
-	t_fractol	*head;
-
-	index = 1;
-	head = fractol;
-	while (argv[index])
-	{
-		if (index > 1)
-		{
-			fractol->next = fractol_init();
-			fractol = fractol->next;
-			fractol->next = NULL;
-		}
-		fractol_info(fractol, argv[index]);
-		index++;
-	}
-	fractol = head;
 }

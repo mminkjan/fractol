@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/23 19:47:33 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/24 14:48:41 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void		reset_key(int key, t_fractol *fractol)
 
 static void		fractol_key(int key, t_fractol *fractol)
 {
+	fractol->two = 2;
 	if (key == ONE)
 	{
 		fractol->type = 1;
@@ -63,15 +64,14 @@ static void		fractol_key(int key, t_fractol *fractol)
 		fractol->numbers->c_i = 0.27015;
 	}
 	if (key == TWO)
-	{
 		fractol->type = 2;
-		fractol->two = 2;
-	}
 	if (key == THREE)
 	{
 		fractol->type = 3;
 		fractol->two = -2;
 	}
+	if (key == FOUR)
+		fractol->type = 4;
 	if (key == ESC)
 	{
 		ft_bzero(fractol, sizeof(fractol));

@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/19 16:58:01 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 15:47:54 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/24 14:45:21 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void		complex_calculation(t_fractol *fractol,
 		nb->old_real = nb->new_real;
 		nb->old_i = nb->new_i;
 	}
-	else if (fractol->type == 2 || fractol->type == 3)
+	else if (fractol->type == 2 || fractol->type == 3 || fractol->type == 4)
 	{
 		nb->c_real = ((x - WIDTH / 2.0) * 4.0)  \
 			/ (WIDTH * event.zoom) + event.mouse_x;
@@ -52,6 +52,11 @@ static t_pixel	fractol_calculate(t_fractol *fractol, int x, int y)
 		nb->new_real = nb->old_real * nb->old_real - \
 			nb->old_i * nb->new_i + nb->c_real;
 		nb->new_i = fractol->two * nb->old_real * nb->old_i + nb->c_i;
+		if (fractol->type == 4)
+		{
+			nb->new_real = fabs(nb->new_real);
+			nb->new_i = fabs(nb->new_i);
+		}
 		nb->old_real = nb->new_real;
 		nb->old_i = nb->new_i;
 		iterations++;

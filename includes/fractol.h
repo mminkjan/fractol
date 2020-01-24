@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   fractol.h                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
+/*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/24 15:15:57 by mminkjan      ########   odam.nl         */
+/*   Created: 2020/01/24 15:49:08 by mminkjan       #+#    #+#                */
+/*   Updated: 2020/01/24 15:49:13 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

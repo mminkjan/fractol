@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/24 13:22:06 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/24 15:18:45 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "../minilibx_macos/mlx.h"
 # include <math.h>
 
-# define USAGE_ERR "usage: input valid fractol\nJulia\nMandelbrot\nMandelbar\n"
+# define FRACTOLS "Julia\nMandelbrot\nMandelbar\nBurningShip\n"
+# define USAGE_ERR "usage: input valid fractol\n" FRACTOLS
 # define MALLOC_ERR "error: malloc\n"
 
 # define ONE 18

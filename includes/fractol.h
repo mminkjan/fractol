@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/24 15:18:45 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/25 12:06:19 by JessicaSmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,15 +101,21 @@ typedef struct	s_fractol
 	char		*argv;
 	int			max_iterations;
 	int			type;
-	int			two;
+	double		c_real;
+	double		c_i;
 	t_color		color;
 	t_events	event;
-	t_numbers	*numbers;
 }				t_fractol;
 
 int				main(int argc, char **argv);
 void			mlx_setup(t_fractol *fractol);
 int				fractol_manager(t_fractol *fractol);
+
+void			burningship_fractol(t_fractol *fractol, int x, int y);
+void			julia_fractol(t_fractol *fractol, int x, int y);
+void		    mandelbrot_fractol(t_fractol *fractol, int x, int y);
+void		    mandelbar_fractol(t_fractol *fractol, int x, int y);
+
 
 void			check_input(t_fractol *fractol, char **argv);
 void			fractol_exit(char *str, t_fractol *fractol);

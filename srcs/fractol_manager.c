@@ -6,27 +6,27 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/25 12:02:36 by JessicaSmit   ########   odam.nl         */
+/*   Updated: 2020/01/26 15:32:13 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-// static void		put_pixel(t_fractol *fractol, int color, int x, int y)
-// {
-// 	size_t		index;
+void		put_pixel(t_fractol *fractol, int color, int x, int y)
+{
+	size_t		index;
 
-// 	if (x >= 0 && x < WIDTH && \
-// 			y >= 0 && y < HEIGHT)
-// 	{
-// 		index = (y * fractol->size_line) + (x * fractol->bits_ppixel / 8);
-// 		fractol->addr_str[index] = color;
-// 		index++;
-// 		fractol->addr_str[index] = color >> 8;
-// 		index++;
-// 		fractol->addr_str[index] = color >> 16;
-// 	}
-// }
+	if (x >= 0 && x < WIDTH && \
+			y >= 0 && y < HEIGHT)
+	{
+		index = (y * fractol->size_line) + (x * fractol->bits_ppixel / 8);
+		fractol->addr_str[index] = color;
+		index++;
+		fractol->addr_str[index] = color >> 8;
+		index++;
+		fractol->addr_str[index] = color >> 16;
+	}
+}
 
 // static void		complex_calculation(t_fractol *fractol,
 // 					t_numbers *nb, int x, int y)

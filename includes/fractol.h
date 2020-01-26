@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/25 12:06:19 by JessicaSmit   ########   odam.nl         */
+/*   Updated: 2020/01/26 15:32:04 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct	s_fractol
 int				main(int argc, char **argv);
 void			mlx_setup(t_fractol *fractol);
 int				fractol_manager(t_fractol *fractol);
+void			put_pixel(t_fractol *fractol, int color, int x, int y);
 
 void			burningship_fractol(t_fractol *fractol, int x, int y);
 void			julia_fractol(t_fractol *fractol, int x, int y);

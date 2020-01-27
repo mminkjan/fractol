@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/26 15:32:04 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/01/27 11:11:53 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,8 @@ void			put_pixel(t_fractol *fractol, int color, int x, int y);
 
 void			burningship_fractol(t_fractol *fractol, int x, int y);
 void			julia_fractol(t_fractol *fractol, int x, int y);
-void		    mandelbrot_fractol(t_fractol *fractol, int x, int y);
-void		    mandelbar_fractol(t_fractol *fractol, int x, int y);
-
+void			mandelbrot_fractol(t_fractol *fractol, int x, int y);
+void			mandelbar_fractol(t_fractol *fractol, int x, int y);
 
 void			check_input(t_fractol *fractol, char **argv);
 void			fractol_exit(char *str, t_fractol *fractol);

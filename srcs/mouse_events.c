@@ -6,11 +6,45 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 19:20:35 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/23 19:47:02 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/27 14:18:09 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+static void		mouse_move_julia(int y, t_fractol *fractol)
+{
+	if (y < HEIGHT / 2)
+	{
+		fractol->c_real += 0.01 / fractol->event.zoom;
+		fractol->c_i += 0.02 / fractol->event.zoom;
+		fractol_writer(fractol);
+	}
+	else if (y > HEIGHT / 2)
+	{
+		fractol->c_real -= 0.01 / fractol->event.zoom;
+		fractol->c_i -= 0.02 / fractol->event.zoom;
+		fractol_writer(fractol);
+	}
+}
+
+int				mouse_move(int x, int y, t_fractol *fractol)
+{
+	if (fractol->event.mouse_press == 1)
+	{
+		fractol->event.mouse_x += \
+			(fractol->event.hold_x - x) / (WIDTH * fractol->event.zoom) * 4;
+		fractol->event.mouse_y += \
+			(fractol->event.hold_y - y) / (HEIGHT * fractol->event.zoom) * 4;
+		fractol->event.hold_x = x;
+		fractol->event.hold_y = y;
+		fractol_writer(fractol);
+	}
+	if (fractol->event.mouse_press == 0 && \
+		fractol->type == 1 && fractol->event.freeze == 0)
+		mouse_move_julia(y, fractol);
+	return (0);
+}
 
 int				mouse_press(int key, int x, int y, t_fractol *fractol)
 {
@@ -30,40 +64,6 @@ int				mouse_press(int key, int x, int y, t_fractol *fractol)
 		fractol->event.hold_x = x;
 		fractol->event.hold_y = y;
 	}
-	return (0);
-}
-
-static void		mouse_move_julia(int y, t_fractol *fractol)
-{
-	if (y < HEIGHT / 2)
-	{
-		fractol->numbers->c_real += 0.01 / fractol->event.zoom;
-		fractol->numbers->c_i += 0.02 / fractol->event.zoom;
-		fractol_writer(fractol);
-	}
-	else if (y > HEIGHT / 2)
-	{
-		fractol->numbers->c_real -= 0.01 / fractol->event.zoom;
-		fractol->numbers->c_i -= 0.02 / fractol->event.zoom;
-		fractol_writer(fractol);
-	}
-}
-
-int				mouse_move(int x, int y, t_fractol *fractol)
-{
-	if (fractol->event.mouse_press == 1)
-	{
-		fractol->event.mouse_x += \
-			(fractol->event.hold_x - x) / (WIDTH * fractol->event.zoom);
-		fractol->event.mouse_y += \
-			(fractol->event.hold_y - y) / (HEIGHT * fractol->event.zoom);
-		fractol->event.hold_x = x;
-		fractol->event.hold_y = y;
-		fractol_writer(fractol);
-	}
-	if (fractol->event.mouse_press == 0 && \
-		fractol->type == 1 && fractol->event.freeze == 0)
-		mouse_move_julia(y, fractol);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 20:41:34 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/24 14:58:03 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/27 14:15:12 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			print_interface(t_fractol *fractol)
 	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 230, 0xafafaf,
 		"change iteration:       + & -\n");
 	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 260, 0xafafaf,
-		"move (arrow keys):      ^ & v\n");
+		"move (arrow keys):      ^ v < >\n");
 	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 290, 0xafafaf,
 		"change color:           spacebar\n");
 	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 320, 0xafafaf,

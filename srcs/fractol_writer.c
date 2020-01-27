@@ -6,62 +6,21 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/19 16:58:01 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/24 14:45:21 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/27 13:48:48 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static void		complex_calculation(t_fractol *fractol,
-					t_numbers *nb, int x, int y)
+static t_pixel	fractol_selector(t_fractol *fractol, int x, int y)
 {
-	t_events event;
-
-	event = fractol->event;
 	if (fractol->type == 1)
-	{
-		nb->new_real = ((x - WIDTH / 2.0) * 4.0) \
-			/ (WIDTH * event.zoom) + event.mouse_x;
-		nb->new_i = ((y - HEIGHT / 2.0) * 4.0) \
-			/ (WIDTH * event.zoom) + event.mouse_y;
-		nb->old_real = nb->new_real;
-		nb->old_i = nb->new_i;
-	}
-	else if (fractol->type == 2 || fractol->type == 3 || fractol->type == 4)
-	{
-		nb->c_real = ((x - WIDTH / 2.0) * 4.0)  \
-			/ (WIDTH * event.zoom) + event.mouse_x;
-		nb->c_i = ((y - HEIGHT / 2.0) * 4.0) \
-			/ (WIDTH * event.zoom) + event.mouse_y;
-		nb->old_real = 0;
-		nb->old_i = 0;
-	}
-}
-
-static t_pixel	fractol_calculate(t_fractol *fractol, int x, int y)
-{
-	t_numbers	*nb;
-	int			iterations;
-
-	nb = fractol->numbers;
-	complex_calculation(fractol, nb, x, y);
-	iterations = 0;
-	while (nb->old_real * nb->old_real + nb->old_i * nb->old_i < 4 \
-		&& iterations < fractol->max_iterations)
-	{
-		nb->new_real = nb->old_real * nb->old_real - \
-			nb->old_i * nb->new_i + nb->c_real;
-		nb->new_i = fractol->two * nb->old_real * nb->old_i + nb->c_i;
-		if (fractol->type == 4)
-		{
-			nb->new_real = fabs(nb->new_real);
-			nb->new_i = fabs(nb->new_i);
-		}
-		nb->old_real = nb->new_real;
-		nb->old_i = nb->new_i;
-		iterations++;
-	}
-	return ((t_pixel){{nb->old_real, nb->old_i}, iterations});
+		return (julia_fractol(fractol, x, y));
+	else if (fractol->type == 2)
+		return (mandelbrot_fractol(fractol, x, y));
+	else if (fractol->type == 3)
+		return (mandelbar_fractol(fractol, x, y));
+	return (burningship_fractol(fractol, x, y));
 }
 
 static void		*render_thread(void *t)
@@ -78,7 +37,7 @@ static void		*render_thread(void *t)
 		while (x < WIDTH)
 		{
 			*(thread->fractol->pixel + y * WIDTH + x) = \
-			fractol_calculate(thread->fractol, x, y);
+				fractol_selector(thread->fractol, x, y);
 			x++;
 		}
 		y++;

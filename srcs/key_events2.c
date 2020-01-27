@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/24 15:03:14 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/24 15:08:42 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/27 14:07:57 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,27 @@
 
 static void		switch_fractol(int key, t_fractol *fractol)
 {
-	fractol->two = 2;
 	if (key == ONE)
 	{
-		fractol->type = 1;
-		fractol->numbers->c_real = -0.7;
-		fractol->numbers->c_i = 0.27015;
+		fractol->c_real = -0.7;
+		fractol->c_i = 0.27015;
 		fractol->argv = "Julia";
+		fractol->type = 1;
 	}
-	if (key == TWO || key == FOUR)
+	if (key == TWO)
 	{
-		fractol->type = 2;
 		fractol->argv = "Mandelbrot";
+		fractol->type = 2;
 	}
 	if (key == THREE)
 	{
-		fractol->type = 3;
-		fractol->two = -2;
 		fractol->argv = "Mandelbar";
+		fractol->type = 3;
 	}
 	if (key == FOUR)
 	{
-		fractol->type = 4;
 		fractol->argv = "BurningShip";
+		fractol->type = 4;
 	}
 }
 
@@ -50,7 +48,6 @@ void			fractol_key(int key, t_fractol *fractol)
 	}
 	if (key == ESC)
 	{
-		ft_bzero(fractol->numbers, sizeof(fractol->numbers));
 		ft_bzero(fractol, sizeof(fractol));
 		free(fractol);
 		exit(EXIT_SUCCESS);

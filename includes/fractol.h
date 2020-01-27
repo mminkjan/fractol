@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/27 11:02:19 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/27 11:10:13 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/27 13:48:34 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@
 # define SPACE 49
 # define RESET 51
 
-# define WIDTH 1000
-# define HEIGHT 700
+# define WIDTH 600
+# define HEIGHT 600
 
 typedef struct	s_numbers
 {
@@ -70,15 +70,14 @@ typedef struct	s_numbers
 typedef struct	s_events
 {
 	double		zoom;
-	double		key;
 	int			freeze;
-	double		color_set;
+	int			color_set;
+	int			color_grade;
 	int			mouse_press;
 	double		mouse_x;
 	double		mouse_y;
 	double		hold_x;
 	double		hold_y;
-	int			color_grade;
 }				t_events;
 
 typedef struct	s_color
@@ -96,18 +95,16 @@ typedef struct	s_fractol
 	void		*mlx_ptr;
 	void		*window_ptr;
 	void		*image_ptr;
-	char		*title;
 	char		*addr_str;
 	int			bits_ppixel;
 	int			size_line;
 	char		*argv;
 	int			max_iterations;
 	int			type;
-	int			two;
-	t_fractol	*next;
+	double		c_real;
+	double		c_i;
 	t_color		color;
 	t_events	event;
-	t_numbers	*numbers;
 	t_pixel		*pixel;
 	t_render	render;
 }				t_fractol;
@@ -119,6 +116,11 @@ int				fractol_manager(t_fractol *fractol);
 void			check_input(t_fractol *fractol, char *argv);
 void			fractol_exit(char *str, t_fractol *fractol);
 t_fractol		*fractol_init(void);
+
+t_pixel			julia_fractol(t_fractol *fractol, int x, int y);
+t_pixel			mandelbrot_fractol(t_fractol *fractol, int x, int y);
+t_pixel			mandelbar_fractol(t_fractol *fractol, int x, int y);
+t_pixel			burningship_fractol(t_fractol *fractol, int x, int y);
 
 int				key_press(int key, t_fractol *fractol);
 void			fractol_key(int key, t_fractol *fractol);

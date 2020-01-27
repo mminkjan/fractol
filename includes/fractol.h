@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/27 11:02:19 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/27 13:48:34 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/27 19:48:49 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ t_pixel			burningship_fractol(t_fractol *fractol, int x, int y);
 
 int				key_press(int key, t_fractol *fractol);
 void			fractol_key(int key, t_fractol *fractol);
+void			reset_key(t_fractol *fractol);
 
 int				mouse_press(int key, int x, int y, t_fractol *fractol);
 int				mouse_release(int key, int x, int y, t_fractol *fracol);

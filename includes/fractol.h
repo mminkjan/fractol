@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/27 12:35:40 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/27 19:46:45 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int				hsv_color(double iteration);
 
 int				key_press(int key, t_fractol *fractol);
 void			color_key(int key, t_fractol *fractol);
-void			reset_key(int key, t_fractol *fractol);
+void			reset_key(t_fractol *fractol);
 
 int				mouse_press(int key, int x, int y, t_fractol *fractol);
 int				mouse_release(int key, int x, int y, t_fractol *fracol);

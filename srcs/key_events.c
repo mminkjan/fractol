@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/27 19:32:44 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/27 19:46:34 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void		switch_fractol(int key, t_fractol *fractol)
 		fractol->type = 4;
 		fractol->argv = "BurningShip";
 	}
+	reset_key(fractol);
 }
 
 static void		fractol_key(int key, t_fractol *fractol)
@@ -82,6 +83,7 @@ int				key_press(int key, t_fractol *fractol)
 	alteration_keys(key, fractol);
 	fractol_key(key, fractol);
 	color_key(key, fractol);
-	reset_key(key, fractol);
+	if (key == RESET)
+		reset_key(fractol);
 	return (0);
 }

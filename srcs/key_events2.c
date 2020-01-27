@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/24 13:20:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/27 14:10:11 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/27 19:46:38 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,19 @@ void		color_key(int key, t_fractol *fractol)
 	}
 }
 
-void		reset_key(int key, t_fractol *fractol)
+void		reset_key(t_fractol *fractol)
 {
-	if (key == RESET)
+	if (fractol->type == 1)
 	{
-		if (fractol->type == 1)
-		{
-			fractol->c_real = -0.7;
-			fractol->c_i = 0.27015;
-		}
-		fractol->max_iterations = 150;
-		fractol->event.zoom = 1.1;
-		fractol->event.color_grade = 0;
-		fractol->event.color_set = 0;
-		fractol->event.mouse_x = 0;
-		fractol->event.mouse_y = 0;
-		fractol->event.mouse_press = 0;
-		fractol->event.freeze = 0;
+		fractol->c_real = -0.7;
+		fractol->c_i = 0.27015;
 	}
+	fractol->max_iterations = 150;
+	fractol->event.zoom = 1.1;
+	fractol->event.color_grade = 0;
+	fractol->event.color_set = 0;
+	fractol->event.mouse_x = 0;
+	fractol->event.mouse_y = 0;
+	fractol->event.mouse_press = 0;
+	fractol->event.freeze = 0;
 }

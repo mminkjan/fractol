@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/24 13:20:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/24 13:43:31 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/25 12:11:12 by JessicaSmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,9 @@ void		reset_key(int key, t_fractol *fractol)
 	{
 		if (fractol->type == 1)
 		{
-			fractol->numbers->c_real = -0.7;
-			fractol->numbers->c_i = 0.27015;
-			fractol->two = 2;
+			fractol->c_real = -0.7;
+			fractol->c_i = 0.27015;
 		}
-		if (fractol->type == 2 || fractol->type == 4)
-			fractol->two = 2;
-		if (fractol->type == 3)
-			fractol->two = -2;
 		fractol->max_iterations = 150;
 		fractol->event.zoom = 1.1;
 		fractol->event.color_grade = 0;

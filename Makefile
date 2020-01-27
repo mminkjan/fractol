@@ -6,7 +6,7 @@
 #    By: jesmith <jesmith@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/08 11:03:39 by jesmith        #+#    #+#                 #
-#    Updated: 2020/01/24 13:29:10 by mminkjan      ########   odam.nl          #
+#    Updated: 2020/01/25 11:57:25 by JessicaSmit   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ LIBFT = libft/
 SRCS = ./srcs/
 
 SRCS_FILES = main utilities mlx_setup fractol_manager key_events \
-			key_events2 get_color mouse_events user_interface hsv_color
+			key_events2 get_color mouse_events user_interface hsv_color\
+			fractols/burningship fractols/julia fractols/mandelbar fractols/mandelbrot
 
 CFILES = $(SRCS_FILES:%=$(SRCS)%.c)
 

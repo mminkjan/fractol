@@ -6,13 +6,13 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 22:32:40 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/22 15:07:20 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/27 16:46:51 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static int	rgb(float r, float g, float b)
+static int	rgb(double r, double g, double b)
 {
 	r *= 255;
 	g *= 255;
@@ -20,13 +20,13 @@ static int	rgb(float r, float g, float b)
 	return ((int)r << 16 | (int)g << 8 | (int)b);
 }
 
-static int	hsv_to_rgb(float h, float s, float v)
+static int	hsv_to_rgb(double h, double s, double v)
 {
 	int			i;
-	float		f;
-	float		p;
-	float		q;
-	float		t;
+	double		f;
+	double		p;
+	double		q;
+	double		t;
 
 	if (s == 0)
 		return ((int)v | (int)v | (int)v);

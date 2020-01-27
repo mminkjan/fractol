@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/24 15:03:14 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/27 14:07:57 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/27 18:54:51 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static void		switch_fractol(int key, t_fractol *fractol)
 {
 	if (key == ONE)
 	{
-		fractol->c_real = -0.7;
-		fractol->c_i = 0.27015;
 		fractol->argv = "Julia";
 		fractol->type = 1;
+		fractol->c_real = -0.7;
+		fractol->c_i = 0.27015;
 	}
 	if (key == TWO)
 	{

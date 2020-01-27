@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 12:03:57 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 17:06:55 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/27 19:57:36 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static void		set_color_to_end(t_color *color, t_events *events)
 		color->start = ONE_MIDDLE;
 		color->end = ONE_END;
 	}
-	if (events->color_set == 1)
+	else if (events->color_set == 1)
 	{
 		color->start = TWO_MIDDLE;
 		color->end = TWO_END;
 	}
-	if (events->color_set == 2)
+	else if (events->color_set == 2)
 	{
 		color->start = THREE_MIDDLE;
 		color->end = THREE_END;
@@ -43,12 +43,12 @@ static void		set_color_to_mid(t_color *color, t_events *events)
 		color->start = ONE_START;
 		color->end = ONE_MIDDLE;
 	}
-	if (events->color_set == 1)
+	else if (events->color_set == 1)
 	{
 		color->start = TWO_START;
 		color->end = TWO_MIDDLE;
 	}
-	if (events->color_set == 2)
+	else if (events->color_set == 2)
 	{
 		color->start = THREE_START;
 		color->end = THREE_MIDDLE;

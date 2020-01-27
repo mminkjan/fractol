@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/24 13:20:39 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/27 12:16:21 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/27 14:10:11 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ void		reset_key(int key, t_fractol *fractol)
 		fractol->event.mouse_x = 0;
 		fractol->event.mouse_y = 0;
 		fractol->event.mouse_press = 0;
+		fractol->event.freeze = 0;
 	}
 }

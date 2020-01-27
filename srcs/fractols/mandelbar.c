@@ -6,7 +6,7 @@
 /*   By: JessicaSmith <JessicaSmith@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/25 11:32:36 by JessicaSmit    #+#    #+#                */
-/*   Updated: 2020/01/27 12:08:36 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/27 13:29:58 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void		complex_calculation(t_fractol *fractol, int x, int y,
 	event = fractol->event;
 	nb->c_real = \
 		((x - WIDTH / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_x;
-	nb->c_i = ((y - HEIGHT / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_y;
+	nb->c_i = \
+		((y - HEIGHT / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_y;
 	nb->old_real = 0;
 	nb->old_i = 0;
 }
@@ -38,11 +39,6 @@ void			mandelbar_fractol(t_fractol *fractol, int x, int y)
 		nb.new_real = nb.old_real * nb.old_real - \
 			nb.old_i * nb.old_i + nb.c_real;
 		nb.new_i = -2 * nb.old_real * nb.old_i + nb.c_i;
-		if (fractol->type == 4)
-		{
-			nb.new_real = fabs(nb.new_real);
-			nb.new_i = fabs(nb.new_i);
-		}
 		nb.old_real = nb.new_real;
 		nb.old_i = nb.new_i;
 		iterations++;

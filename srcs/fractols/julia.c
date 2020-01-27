@@ -6,7 +6,7 @@
 /*   By: JessicaSmith <JessicaSmith@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/25 11:32:40 by JessicaSmit    #+#    #+#                */
-/*   Updated: 2020/01/27 12:36:55 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/27 13:28:57 by mminkjan      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ void			julia_fractol(t_fractol *fractol, int x, int y)
 		nb.new_real = nb.old_real * nb.old_real - \
 			nb.old_i * nb.old_i + nb.c_real;
 		nb.new_i = 2 * nb.old_real * nb.old_i + nb.c_i;
-		if (fractol->type == 4)
-		{
-			nb.new_real = fabs(nb.new_real);
-			nb.new_i = fabs(nb.new_i);
-		}
 		nb.old_real = nb.new_real;
 		nb.old_i = nb.new_i;
 		iterations++;

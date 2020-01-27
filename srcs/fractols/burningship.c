@@ -6,7 +6,7 @@
 /*   By: JessicaSmith <JessicaSmith@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/25 11:32:45 by JessicaSmit    #+#    #+#                */
-/*   Updated: 2020/01/26 15:31:50 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/01/27 11:25:46 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static void		complex_calculation(t_fractol *fractol,
 	nb->c_i = ((y - HEIGHT / 2.0) * 4.0) / (WIDTH * event.zoom) + event.mouse_y;
 	nb->old_real = 0;
 	nb->old_i = 0;
-	fractol->c_real = nb->c_real;
-    fractol->c_i = nb->c_i;
 }
 
 void		    burningship_fractol(t_fractol *fractol, int x, int y)

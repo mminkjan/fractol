@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/27 12:37:25 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/27 19:55:50 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ static void		fractol_selector(t_fractol *fractol, int x, int y)
 {
 	if (fractol->type == 1)
 		julia_fractol(fractol, x, y);
-	if (fractol->type == 2)
+	else if (fractol->type == 2)
 		mandelbrot_fractol(fractol, x, y);
-	if (fractol->type == 3)
+	else if (fractol->type == 3)
 		mandelbar_fractol(fractol, x, y);
-	if (fractol->type == 4)
+	else if (fractol->type == 4)
 		burningship_fractol(fractol, x, y);
 }
 

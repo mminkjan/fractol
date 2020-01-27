@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 19:20:35 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/27 12:24:18 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/27 19:55:23 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int				mouse_press(int key, int x, int y, t_fractol *fractol)
 {
 	if (key == SCROLL_UP && fractol->event.zoom > 1.1)
 		fractol->event.zoom /= 1.1;
-	if (key == SCROLL_DOWN)
+	else if (key == SCROLL_DOWN)
 		fractol->event.zoom *= 1.1;
-	if (key == MOUSE_PRESS)
+	else if (key == MOUSE_PRESS)
 	{
 		fractol->event.mouse_press = 1;
 		fractol->event.hold_x = x;
@@ -38,7 +38,7 @@ int				mouse_move(int x, int y, t_fractol *fractol)
 		fractol->event.hold_x = x;
 		fractol->event.hold_y = y;
 	}
-	if (fractol->event.mouse_press == 0 && \
+	else if (fractol->event.mouse_press == 0 && \
 		fractol->type == 1 && fractol->event.freeze == 0)
 	{
 		if (y < HEIGHT / 2)

@@ -6,7 +6,7 @@
 #    By: jesmith <jesmith@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/08 11:03:39 by jesmith        #+#    #+#                 #
-#    Updated: 2020/01/25 11:57:25 by JessicaSmit   ########   odam.nl          #
+#    Updated: 2020/01/27 12:41:38 by jesmith       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fractol
 
 FLAGS = -Wall -Wextra -Werror -o
 
-DEBUGFLAGS = -g 
+DEBUGFLAGS = -g
 
 MLX = minilibx_macos/
 
@@ -25,17 +25,19 @@ LIBFT = libft/
 SRCS = ./srcs/
 
 SRCS_FILES = main utilities mlx_setup fractol_manager key_events \
-			key_events2 get_color mouse_events user_interface hsv_color\
-			fractols/burningship fractols/julia fractols/mandelbar fractols/mandelbrot
+			key_events2 get_color mouse_events user_interface hsv_color
 
-CFILES = $(SRCS_FILES:%=$(SRCS)%.c)
+FRACTOL = ./srcs/fractols/
+
+FRACTOL_FILES = burningship julia mandelbar mandelbrot
+
+CFILES = $(SRCS_FILES:%=$(SRCS)%.c) $(FRACTOL_FILES:%=$(FRACTOL)%.c)
 
 OFILES = $(CFILES:%.c=%.o)
 
 HEADERS = includes/fractol.h
 
 ADD_FILES = Makefile author
-
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/13 18:35:13 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/22 17:10:20 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/27 12:35:12 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ static int		rgb_color(t_fractol *fractol, int iterations)
 	color = fractol->color;
 	if (iterations < fractol->max_iterations / 4)
 	{
-		percentage = iterations / (float)(fractol->max_iterations / 4);
+		percentage = iterations / (double)(fractol->max_iterations / 4);
 		set_color_to_mid(&color, &fractol->event);
 	}
 	else
 	{
-		percentage = iterations / (float)fractol->max_iterations;
+		percentage = iterations / (double)fractol->max_iterations;
 		set_color_to_end(&color, &fractol->event);
 	}
 	red = get_bit_value(\

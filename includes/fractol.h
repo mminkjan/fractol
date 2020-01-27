@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/27 11:25:07 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/27 12:35:40 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,23 @@ typedef struct	s_numbers
 typedef struct	s_events
 {
 	double		zoom;
-	double		key;
 	int			freeze;
-	double		color_set;
+	int			color_set;
+	int			color_grade;
 	int			mouse_press;
 	double		mouse_x;
 	double		mouse_y;
 	double		hold_x;
 	double		hold_y;
-	int			color_grade;
 }				t_events;
 
 typedef struct	s_color
 {
 	int			start;
 	int			end;
-	float		hue;
-	float		saturation;
-	float		value;
+	double		hue;
+	double		saturation;
+	double		value;
 }				t_color;
 
 typedef struct	s_fractol
@@ -94,7 +93,6 @@ typedef struct	s_fractol
 	void		*mlx_ptr;
 	void		*window_ptr;
 	void		*image_ptr;
-	char		*title;
 	char		*addr_str;
 	int			bits_ppixel;
 	int			size_line;
@@ -110,7 +108,7 @@ typedef struct	s_fractol
 int				main(int argc, char **argv);
 void			mlx_setup(t_fractol *fractol);
 int				fractol_manager(t_fractol *fractol);
-void			put_pixel(t_fractol *fractol, int color, int x, int y);
+void			put_pixel(t_fractol *fractol, int x, int y, int color);
 
 void			burningship_fractol(t_fractol *fractol, int x, int y);
 void			julia_fractol(t_fractol *fractol, int x, int y);

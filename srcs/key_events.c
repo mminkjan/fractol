@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/27 18:56:13 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/27 19:29:37 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static void		fractol_key(int key, t_fractol *fractol)
 static void		alteration_keys(int key, t_fractol *fractol)
 {
 	if (key == INCREASE_ITERATIONS && fractol->max_iterations < 760)
-		fractol->max_iterations += 50;
-	if (key == DECREASE_ITERATIONS && fractol->max_iterations > 10)
-		fractol->max_iterations -= 50;
+		fractol->max_iterations += 20;
+	if (key == DECREASE_ITERATIONS && fractol->max_iterations > 20)
+		fractol->max_iterations -= 20;
 	if (key == ARROW_DOWN)
 		fractol->event.mouse_y -= 0.5 / fractol->event.zoom;
 	if (key == ARROW_UP)

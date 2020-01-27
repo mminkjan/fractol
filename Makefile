@@ -6,15 +6,13 @@
 #    By: jesmith <jesmith@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/08 11:03:39 by jesmith        #+#    #+#                 #
-#    Updated: 2020/01/27 12:41:38 by jesmith       ########   odam.nl          #
+#    Updated: 2020/01/27 14:21:31 by mminkjan      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
 FLAGS = -Wall -Wextra -Werror -o
-
-DEBUGFLAGS = -g
 
 MLX = minilibx_macos/
 

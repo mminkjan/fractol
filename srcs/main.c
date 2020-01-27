@@ -6,12 +6,11 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:09:45 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/24 14:35:02 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/01/27 19:20:50 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-#include <stdio.h>
 
 static int	hook_expose(t_fractol *fractol)
 {

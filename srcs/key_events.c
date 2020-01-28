@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/27 19:58:23 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/28 12:37:33 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,13 @@ void		reset_key(t_fractol *fractol)
 		fractol->c_real = -0.7;
 		fractol->c_i = 0.27015;
 	}
-	fractol->max_iterations = 190;
+	fractol->max_iterations = 150;
 	fractol->event.zoom = 1.1;
-	fractol->event.color_set = 0;
 	fractol->event.color_grade = 0;
+	fractol->event.color_set = 0;
 	fractol->event.mouse_x = 0;
 	fractol->event.mouse_y = 0;
+	fractol->event.mouse_press = 0;
 	fractol->event.freeze = 0;
 }
 

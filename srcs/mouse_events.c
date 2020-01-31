@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 19:20:35 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/31 22:17:37 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/01/31 22:22:34 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ int				mouse_release(int key, int x, int y, t_fractol *fractol)
 
 int				close_window(t_fractol *fractol)
 {
-	(void)fractol;
+	ft_bzero(fractol->pixel, sizeof(t_pixel));
+	free(fractol->pixel);
+	ft_bzero(fractol, sizeof(t_fractol));
+	free(fractol);
 	exit (0);
 }

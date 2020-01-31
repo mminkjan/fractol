@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/27 19:46:45 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/31 22:19:35 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void			reset_key(t_fractol *fractol);
 int				mouse_press(int key, int x, int y, t_fractol *fractol);
 int				mouse_release(int key, int x, int y, t_fractol *fracol);
 int				mouse_move(int x, int y, t_fractol *fractol);
+int				close_window(t_fractol *fractol);
 
 void			print_interface(t_fractol *fractol);
 #endif

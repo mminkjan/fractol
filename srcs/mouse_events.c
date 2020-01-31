@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 19:20:35 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/27 19:55:23 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/31 22:20:57 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,11 @@ int				mouse_release(int key, int x, int y, t_fractol *fractol)
 	if (key == MOUSE_PRESS)
 		fractol->event.mouse_press = 0;
 	return (0);
+}
+
+int				close_window(t_fractol *fractol)
+{
+	ft_bzero(fractol, sizeof(t_fractol));
+	free(fractol);
+	exit(0);
 }

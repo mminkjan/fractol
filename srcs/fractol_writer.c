@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/19 16:58:01 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/27 13:48:48 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/31 21:54:00 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ static void		fractol_thread(t_fractol *fractol)
 		render->args[thread_count].fractol = fractol;
 		pthread_create(&render->threads[thread_count], NULL, render_thread, \
 			&(render->args[thread_count]));
+		thread_count++;
+	}
+	thread_count = 0;
+	while (thread_count < THREADS)
+	{
 		pthread_join(render->threads[thread_count], NULL);
 		thread_count++;
 	}

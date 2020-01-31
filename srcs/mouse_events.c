@@ -6,11 +6,12 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 19:20:35 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/27 19:58:51 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/31 22:17:37 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+#include <unistd.h>
 
 static void		mouse_move_julia(int y, t_fractol *fractol)
 {
@@ -75,4 +76,10 @@ int				mouse_release(int key, int x, int y, t_fractol *fractol)
 		fractol->event.mouse_press = 0;
 	fractol_writer(fractol);
 	return (0);
+}
+
+int				close_window(t_fractol *fractol)
+{
+	(void)fractol;
+	exit (0);
 }

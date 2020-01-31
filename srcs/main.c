@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:09:45 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/27 19:20:50 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/31 22:17:31 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int			main(int argc, char **argv)
 	mlx_hook(fractol->window_ptr, 4, 0, mouse_press, fractol);
 	mlx_hook(fractol->window_ptr, 6, 0, mouse_move, fractol);
 	mlx_hook(fractol->window_ptr, 5, 0, mouse_release, fractol);
+	mlx_hook(fractol->window_ptr, 17, 0, close_window, fractol);
 	mlx_loop(fractol->mlx_ptr);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 20:41:34 by jesmith        #+#    #+#                */
-/*   Updated: 2020/02/01 14:26:30 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/02/01 16:20:37 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ void			print_interface(t_fractol *fractol)
 	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 320, 0xafafaf,
 		"change fractol:         1, 2, 3 & 4\n");
 	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 350, 0xafafaf,
-		"un/freeze Julia:        alt\n");
+		"alter shape of Julia:   move mouse\n");
 	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 380, 0xafafaf,
-		"reset:                  backspace\n");
+		"un/freeze Julia:        alt\n");
 	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 410, 0xafafaf,
+		"reset:                  backspace\n");
+	mlx_string_put(fractol->mlx_ptr, fractol->window_ptr, 40, 440, 0xafafaf,
 		"quit:                   escape\n");
 	print_side_line(fractol);
 }

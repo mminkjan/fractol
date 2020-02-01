@@ -6,12 +6,11 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 19:20:35 by jesmith        #+#    #+#                */
-/*   Updated: 2020/02/01 14:34:15 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/02/01 16:24:42 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-#include <unistd.h>
 
 static void		mouse_move_julia(int y, t_fractol *fractol)
 {

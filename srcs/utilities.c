@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/02/01 14:26:53 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/02/01 14:39:25 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_fractol	*fractol_init(void)
 	return (fractol);
 }
 
-void				fractol_exit(char *str, t_fractol *fractol)
+void		fractol_exit(char *str, t_fractol *fractol)
 {
 	ft_putstr(str);
 	if (fractol != NULL && fractol->pixel != NULL)

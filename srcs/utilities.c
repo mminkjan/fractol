@@ -6,41 +6,52 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/27 12:09:30 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/02/01 13:47:06 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void				check_input(t_fractol *fractol, char **argv)
+static int	bonus_fractols(t_fractol *fractol, char *argv)
 {
-	if (ft_strcmp("Julia", argv[1]) == 0)
+	if (ft_strcmp("Mandelbar", argv) == 0)
+	{
+		fractol->argv = "Mandelbar";
+		fractol->selector = &mandelbar_fractol;
+		fractol->type = 3;
+		return (0);
+	}
+	else if (ft_strcmp("BurningShip", argv) == 0)
+	{
+		fractol->argv = "BurningShip";
+		fractol->selector = &burningship_fractol;
+		fractol->type = 4;
+		return (0);
+	}
+	return (1);
+}
+
+void		check_input(t_fractol *fractol, char *argv)
+{
+	if (ft_strcmp("Julia", argv) == 0)
 	{
 		fractol->argv = "Julia";
 		fractol->type = 1;
+		fractol->selector = &julia_fractol;
 		fractol->c_real = -0.7;
 		fractol->c_i = 0.27015;
 	}
-	else if (ft_strcmp("Mandelbrot", argv[1]) == 0)
+	else if (ft_strcmp("Mandelbrot", argv) == 0)
 	{
 		fractol->argv = "Mandelbrot";
+		fractol->selector = &mandelbrot_fractol;
 		fractol->type = 2;
 	}
-	else if (ft_strcmp("Mandelbar", argv[1]) == 0)
-	{
-		fractol->argv = "Mandelbar";
-		fractol->type = 3;
-	}
-	else if (ft_strcmp("BurningShip", argv[1]) == 0)
-	{
-		fractol->argv = "BurningShip";
-		fractol->type = 4;
-	}
-	else
+	else if (bonus_fractols(fractol, argv) == 1)
 		fractol_exit(USAGE_ERR, fractol);
 }
 
-t_fractol			*fractol_init(void)
+t_fractol	*fractol_init(void)
 {
 	t_fractol *fractol;
 

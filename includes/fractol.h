@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/31 22:19:35 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/02/01 13:48:52 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <math.h>
 
 # define FRACTOLS "Julia\nMandelbrot\nMandelbar\nBurningShip\n"
-# define USAGE_ERR "usage: input valid fractol\n" FRACTOLS
+# define USAGE_ERR "usage error: input valid fractol\n" FRACTOLS
 # define MALLOC_ERR "error: malloc\n"
 
 # define ONE 18
@@ -56,6 +56,10 @@
 # define WIDTH 600
 # define HEIGHT 600
 
+typedef struct s_fractol	t_fractol;
+
+typedef void	(*t_f_ptr)(t_fractol *fractol, int x, int y);
+
 typedef struct	s_numbers
 {
 	double		c_real;
@@ -88,7 +92,7 @@ typedef struct	s_color
 	double		value;
 }				t_color;
 
-typedef struct	s_fractol
+struct			s_fractol
 {
 	void		*mlx_ptr;
 	void		*window_ptr;
@@ -99,11 +103,12 @@ typedef struct	s_fractol
 	char		*argv;
 	int			max_iterations;
 	int			type;
+	t_f_ptr		selector;
 	double		c_real;
 	double		c_i;
 	t_color		color;
 	t_events	event;
-}				t_fractol;
+};
 
 int				main(int argc, char **argv);
 void			mlx_setup(t_fractol *fractol);
@@ -115,7 +120,7 @@ void			julia_fractol(t_fractol *fractol, int x, int y);
 void			mandelbrot_fractol(t_fractol *fractol, int x, int y);
 void			mandelbar_fractol(t_fractol *fractol, int x, int y);
 
-void			check_input(t_fractol *fractol, char **argv);
+void			check_input(t_fractol *fractol, char *argv);
 void			fractol_exit(char *str, t_fractol *fractol);
 t_fractol		*fractol_init(void);
 

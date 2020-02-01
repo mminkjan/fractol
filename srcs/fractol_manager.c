@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 17:11:28 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/31 22:20:05 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/02/01 13:49:11 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,6 @@ void			put_pixel(t_fractol *fractol, int x, int y, int color)
 	}
 }
 
-static void		fractol_selector(t_fractol *fractol, int x, int y)
-{
-	if (fractol->type == 1)
-		julia_fractol(fractol, x, y);
-	else if (fractol->type == 2)
-		mandelbrot_fractol(fractol, x, y);
-	else if (fractol->type == 3)
-		mandelbar_fractol(fractol, x, y);
-	else if (fractol->type == 4)
-		burningship_fractol(fractol, x, y);
-}
-
 static void		draw_fractol(t_fractol *fractol)
 {
 	t_events	events;
@@ -53,7 +41,7 @@ static void		draw_fractol(t_fractol *fractol)
 		x = 0;
 		while (x < WIDTH)
 		{
-			fractol_selector(fractol, x, y);
+			fractol->selector(fractol, x, y);
 			x++;
 		}
 		y++;
@@ -61,13 +49,18 @@ static void		draw_fractol(t_fractol *fractol)
 	y = 0;
 }
 
-int				fractol_manager(t_fractol *fractol)
+static void		hook_events(t_fractol *fractol)
 {
 	mlx_key_hook(fractol->window_ptr, key_press, fractol);
 	mlx_hook(fractol->window_ptr, 4, 0, mouse_press, fractol);
 	mlx_hook(fractol->window_ptr, 6, 0, mouse_move, fractol);
 	mlx_hook(fractol->window_ptr, 5, 0, mouse_release, fractol);
 	mlx_hook(fractol->window_ptr, 17, 0, close_window, fractol);
+}
+
+int				fractol_manager(t_fractol *fractol)
+{
+	hook_events(fractol);
 	draw_fractol(fractol);
 	mlx_put_image_to_window(fractol->mlx_ptr, fractol->window_ptr,\
 		fractol->image_ptr, 400, 0);

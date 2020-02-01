@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/27 11:02:19 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/01/31 22:14:29 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/02/01 14:03:52 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@
 # define WIDTH 600
 # define HEIGHT 600
 
+typedef struct s_fractol	t_fractol;
+
+typedef t_pixel	(*t_f_ptr)(t_fractol *fractol, int x, int y);
+
 typedef struct	s_numbers
 {
 	double		c_real;
@@ -90,7 +94,7 @@ typedef struct	s_color
 	int			color_ppixel[HEIGHT * WIDTH];
 }				t_color;
 
-typedef struct	s_fractol
+struct			s_fractol
 {
 	void		*mlx_ptr;
 	void		*window_ptr;
@@ -101,13 +105,14 @@ typedef struct	s_fractol
 	char		*argv;
 	int			max_iterations;
 	int			type;
+	t_f_ptr		selector;
 	double		c_real;
 	double		c_i;
 	t_color		color;
 	t_events	event;
 	t_pixel		*pixel;
 	t_render	render;
-}				t_fractol;
+};
 
 int				main(int argc, char **argv);
 void			mlx_setup(t_fractol *fractol);

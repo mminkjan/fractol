@@ -6,22 +6,11 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/19 16:58:01 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/31 21:54:00 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/02/01 14:03:58 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-
-static t_pixel	fractol_selector(t_fractol *fractol, int x, int y)
-{
-	if (fractol->type == 1)
-		return (julia_fractol(fractol, x, y));
-	else if (fractol->type == 2)
-		return (mandelbrot_fractol(fractol, x, y));
-	else if (fractol->type == 3)
-		return (mandelbar_fractol(fractol, x, y));
-	return (burningship_fractol(fractol, x, y));
-}
 
 static void		*render_thread(void *t)
 {
@@ -37,7 +26,7 @@ static void		*render_thread(void *t)
 		while (x < WIDTH)
 		{
 			*(thread->fractol->pixel + y * WIDTH + x) = \
-				fractol_selector(thread->fractol, x, y);
+				thread->fractol->selector(thread->fractol, x, y);
 			x++;
 		}
 		y++;

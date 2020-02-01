@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 19:20:35 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/31 22:22:34 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/02/01 11:31:18 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,5 @@ int				close_window(t_fractol *fractol)
 	free(fractol->pixel);
 	ft_bzero(fractol, sizeof(t_fractol));
 	free(fractol);
-	exit (0);
+	exit(0);
 }

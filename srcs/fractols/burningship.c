@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   burningship.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
+/*   By: JessicaSmith <JessicaSmith@student.coda      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/27 12:54:13 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/27 13:48:51 by jesmith       ########   odam.nl         */
+/*   Created: 2020/01/25 11:32:45 by JessicaSmit    #+#    #+#                */
+/*   Updated: 2020/02/01 14:18:22 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

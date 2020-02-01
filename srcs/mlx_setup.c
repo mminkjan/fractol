@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:59:40 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/24 14:54:52 by mminkjan      ########   odam.nl         */
+/*   Updated: 2020/02/01 14:24:50 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	mlx_setup(t_fractol *fractol)
 	endian = 0;
 	fractol->mlx_ptr = mlx_init();
 	fractol->window_ptr = mlx_new_window(fractol->mlx_ptr, WIDTH + 400, HEIGHT,\
-					"THE AMAZING AND WONDERFUL FRACT'OL");
+		"THE AMAZING AND WONDERFUL FRACT'OL\n");
 	if (fractol->window_ptr == NULL)
 		fractol_exit(MALLOC_ERR, fractol);
 	fractol->image_ptr = mlx_new_image(fractol->mlx_ptr, WIDTH, HEIGHT);

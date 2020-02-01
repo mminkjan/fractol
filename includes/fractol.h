@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/27 11:02:19 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/02/01 14:03:52 by jesmith       ########   odam.nl         */
+/*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
+/*   Updated: 2020/02/01 14:34:02 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 # define FRACTOL_H
 
 # include "../libft/libft.h"
+# include "../includes/thread.h"
 # include "../minilibx_macos/mlx.h"
-# include "thread.h"
 # include <math.h>
 
 # define FRACTOLS "Julia\nMandelbrot\nMandelbar\nBurningShip\n"
-# define USAGE_ERR "usage: input valid fractol\n" FRACTOLS
+# define USAGE_ERR "usage error: input valid fractol\n" FRACTOLS
 # define MALLOC_ERR "error: malloc\n"
 
 # define ONE 18
@@ -33,7 +33,7 @@
 
 # define TWO_START 0x000000
 # define TWO_MIDDLE 0xB21F1F
-# define TWO_END 0xFDBB2D
+# define TWO_END 0xfdbb2d
 
 # define THREE_START 0xFFF8DE
 # define THREE_MIDDLE 0xF7971E

@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/02/01 14:34:02 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/02/01 15:11:16 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@
 # define SPACE 49
 # define RESET 51
 
-# define WIDTH 600
-# define HEIGHT 600
+# define WIDTH 1000
+# define HEIGHT 1000
 
 typedef struct s_fractol	t_fractol;
 
@@ -116,7 +116,6 @@ struct			s_fractol
 
 int				main(int argc, char **argv);
 void			mlx_setup(t_fractol *fractol);
-int				fractol_manager(t_fractol *fractol);
 
 void			check_input(t_fractol *fractol, char *argv);
 void			fractol_exit(char *str, t_fractol *fractol);

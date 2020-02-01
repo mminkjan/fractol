@@ -6,7 +6,7 @@
 #    By: jesmith <jesmith@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/08 11:03:39 by jesmith        #+#    #+#                 #
-#    Updated: 2020/01/27 14:21:31 by mminkjan      ########   odam.nl          #
+#    Updated: 2020/02/01 14:27:29 by jesmith       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,18 +22,19 @@ LIBFT = libft/
 
 SRCS = ./srcs/
 
-SRCS_FILES = main utilities mlx_setup fractol_manager key_events \
-			key_events2 get_color mouse_events user_interface hsv_color
+SRCS_FILES = main utilities mlx_setup key_events key_events2 draw_fractol \
+			get_color mouse_events user_interface fractol_writer \
+			hsv_color
 
 FRACTOL = ./srcs/fractols/
 
-FRACTOL_FILES = burningship julia mandelbar mandelbrot
+FRACTOL_FILES = julia burningship mandelbrot mandelbar
 
 CFILES = $(SRCS_FILES:%=$(SRCS)%.c) $(FRACTOL_FILES:%=$(FRACTOL)%.c)
 
 OFILES = $(CFILES:%.c=%.o)
 
-HEADERS = includes/fractol.h
+HEADERS = includes/fractol.h includes/thread.h
 
 ADD_FILES = Makefile author
 
@@ -68,5 +69,5 @@ add : fclean
 push :
 ifdef MSG
 	@git commit -m MSG
-	@git push github
+	@git push -u 
 endif

@@ -6,25 +6,27 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 19:20:35 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/31 22:20:57 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/02/01 14:34:15 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+#include <unistd.h>
 
-int				mouse_press(int key, int x, int y, t_fractol *fractol)
+static void		mouse_move_julia(int y, t_fractol *fractol)
 {
-	if (key == SCROLL_UP && fractol->event.zoom > 1.1)
-		fractol->event.zoom /= 1.1;
-	else if (key == SCROLL_DOWN)
-		fractol->event.zoom *= 1.1;
-	else if (key == MOUSE_PRESS)
+	if (y < HEIGHT / 2)
 	{
-		fractol->event.mouse_press = 1;
-		fractol->event.hold_x = x;
-		fractol->event.hold_y = y;
+		fractol->c_real += 0.01 / fractol->event.zoom;
+		fractol->c_i += 0.02 / fractol->event.zoom;
+		fractol_writer(fractol);
 	}
-	return (0);
+	else if (y > HEIGHT / 2)
+	{
+		fractol->c_real -= 0.01 / fractol->event.zoom;
+		fractol->c_i -= 0.02 / fractol->event.zoom;
+		fractol_writer(fractol);
+	}
 }
 
 int				mouse_move(int x, int y, t_fractol *fractol)
@@ -37,20 +39,31 @@ int				mouse_move(int x, int y, t_fractol *fractol)
 			(fractol->event.hold_y - y) / (HEIGHT * fractol->event.zoom) * 4;
 		fractol->event.hold_x = x;
 		fractol->event.hold_y = y;
+		fractol_writer(fractol);
 	}
 	else if (fractol->event.mouse_press == 0 && \
 		fractol->type == 1 && fractol->event.freeze == 0)
+		mouse_move_julia(y, fractol);
+	return (0);
+}
+
+int				mouse_press(int key, int x, int y, t_fractol *fractol)
+{
+	if (key == SCROLL_UP && fractol->event.zoom > 1.1)
 	{
-		if (y < HEIGHT / 2)
-		{
-			fractol->c_real += 0.01;
-			fractol->c_i += 0.02;
-		}
-		else if (y > HEIGHT / 2)
-		{
-			fractol->c_real -= 0.01;
-			fractol->c_i -= 0.02;
-		}
+		fractol->event.zoom /= 1.1;
+		fractol_writer(fractol);
+	}
+	else if (key == SCROLL_DOWN)
+	{
+		fractol->event.zoom *= 1.1;
+		fractol_writer(fractol);
+	}
+	else if (key == MOUSE_PRESS)
+	{
+		fractol->event.mouse_press = 1;
+		fractol->event.hold_x = x;
+		fractol->event.hold_y = y;
 	}
 	return (0);
 }
@@ -61,11 +74,14 @@ int				mouse_release(int key, int x, int y, t_fractol *fractol)
 	y = 0;
 	if (key == MOUSE_PRESS)
 		fractol->event.mouse_press = 0;
+	fractol_writer(fractol);
 	return (0);
 }
 
 int				close_window(t_fractol *fractol)
 {
+	ft_bzero(fractol->pixel, sizeof(t_pixel));
+	free(fractol->pixel);
 	ft_bzero(fractol, sizeof(t_fractol));
 	free(fractol);
 	exit(0);

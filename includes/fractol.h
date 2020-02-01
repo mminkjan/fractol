@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   fractol.h                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
+/*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/02/01 13:48:52 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/02/01 14:34:02 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FRACTOL_H
 
 # include "../libft/libft.h"
+# include "../includes/thread.h"
 # include "../minilibx_macos/mlx.h"
 # include <math.h>
 
@@ -47,8 +48,8 @@
 # define DECREASE_ITERATIONS 27
 # define ARROW_UP 126
 # define ARROW_DOWN 125
-# define ARROW_RIGHT 124
 # define ARROW_LEFT 123
+# define ARROW_RIGHT 124
 # define FREEZE 261
 # define SPACE 49
 # define RESET 51
@@ -58,7 +59,7 @@
 
 typedef struct s_fractol	t_fractol;
 
-typedef void	(*t_f_ptr)(t_fractol *fractol, int x, int y);
+typedef t_pixel	(*t_f_ptr)(t_fractol *fractol, int x, int y);
 
 typedef struct	s_numbers
 {
@@ -90,6 +91,7 @@ typedef struct	s_color
 	double		hue;
 	double		saturation;
 	double		value;
+	int			color_ppixel[HEIGHT * WIDTH];
 }				t_color;
 
 struct			s_fractol
@@ -108,27 +110,25 @@ struct			s_fractol
 	double		c_i;
 	t_color		color;
 	t_events	event;
+	t_pixel		*pixel;
+	t_render	render;
 };
 
 int				main(int argc, char **argv);
 void			mlx_setup(t_fractol *fractol);
 int				fractol_manager(t_fractol *fractol);
-void			put_pixel(t_fractol *fractol, int x, int y, int color);
-
-void			burningship_fractol(t_fractol *fractol, int x, int y);
-void			julia_fractol(t_fractol *fractol, int x, int y);
-void			mandelbrot_fractol(t_fractol *fractol, int x, int y);
-void			mandelbar_fractol(t_fractol *fractol, int x, int y);
 
 void			check_input(t_fractol *fractol, char *argv);
 void			fractol_exit(char *str, t_fractol *fractol);
 t_fractol		*fractol_init(void);
 
-int				get_color(t_fractol *fractol, int iteration);
-int				hsv_color(double iteration);
+t_pixel			julia_fractol(t_fractol *fractol, int x, int y);
+t_pixel			mandelbrot_fractol(t_fractol *fractol, int x, int y);
+t_pixel			mandelbar_fractol(t_fractol *fractol, int x, int y);
+t_pixel			burningship_fractol(t_fractol *fractol, int x, int y);
 
 int				key_press(int key, t_fractol *fractol);
-void			color_key(int key, t_fractol *fractol);
+void			fractol_key(int key, t_fractol *fractol);
 void			reset_key(t_fractol *fractol);
 
 int				mouse_press(int key, int x, int y, t_fractol *fractol);

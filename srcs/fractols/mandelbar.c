@@ -3,17 +3,17 @@
 /*                                                        ::::::::            */
 /*   mandelbar.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: JessicaSmith <JessicaSmith@student.coda      +#+                     */
+/*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/25 11:32:36 by JessicaSmit    #+#    #+#                */
-/*   Updated: 2020/02/01 13:10:22 by jesmith       ########   odam.nl         */
+/*   Created: 2020/01/27 12:53:47 by jesmith        #+#    #+#                */
+/*   Updated: 2020/02/01 14:19:07 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol.h"
 
-static void		complex_calculation(t_fractol *fractol, int x, int y,
-					t_numbers *nb)
+static void		complex_calculation(t_fractol *fractol,
+					t_numbers *nb, int x, int y)
 {
 	t_events event;
 
@@ -26,23 +26,22 @@ static void		complex_calculation(t_fractol *fractol, int x, int y,
 	nb->old_i = 0;
 }
 
-void			mandelbar_fractol(t_fractol *fractol, int x, int y)
+t_pixel			mandelbar_fractol(t_fractol *fractol, int x, int y)
 {
-	int			iterations;
 	t_numbers	nb;
+	int			iterations;
 
-	complex_calculation(fractol, x, y, &nb);
+	complex_calculation(fractol, &nb, x, y);
 	iterations = 0;
-	while (nb.old_real * nb.old_real + \
-	nb.old_i * nb.old_i <= 4 && iterations < fractol->max_iterations)
+	while (nb.old_real * nb.old_real + nb.old_i * nb.old_i < 4 \
+		&& iterations < fractol->max_iterations)
 	{
 		nb.new_real = nb.old_real * nb.old_real - \
-			nb.old_i * nb.old_i + nb.c_real;
+			nb.old_i * nb.new_i + nb.c_real;
 		nb.new_i = -2 * nb.old_real * nb.old_i + nb.c_i;
 		nb.old_real = nb.new_real;
 		nb.old_i = nb.new_i;
 		iterations++;
 	}
-	if (iterations != fractol->max_iterations)
-		put_pixel(fractol, x, y, get_color(fractol, iterations));
+	return ((t_pixel){{nb.old_real, nb.old_i}, iterations});
 }

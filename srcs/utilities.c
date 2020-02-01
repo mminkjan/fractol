@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/02/01 13:47:06 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/02/01 14:26:53 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void		check_input(t_fractol *fractol, char *argv)
 	if (ft_strcmp("Julia", argv) == 0)
 	{
 		fractol->argv = "Julia";
-		fractol->type = 1;
 		fractol->selector = &julia_fractol;
+		fractol->type = 1;
 		fractol->c_real = -0.7;
 		fractol->c_i = 0.27015;
 	}
@@ -58,14 +58,22 @@ t_fractol	*fractol_init(void)
 	fractol = (t_fractol*)ft_memalloc(sizeof(t_fractol));
 	if (fractol == NULL)
 		fractol_exit(MALLOC_ERR, fractol);
+	fractol->pixel = (t_pixel*)ft_memalloc(sizeof(t_pixel) * WIDTH * HEIGHT);
+	if (fractol->pixel == NULL)
+		fractol_exit(MALLOC_ERR, fractol);
 	fractol->event.zoom = 1.1;
-	fractol->max_iterations = 150;
+	fractol->max_iterations = 190;
 	return (fractol);
 }
 
 void				fractol_exit(char *str, t_fractol *fractol)
 {
 	ft_putstr(str);
+	if (fractol != NULL && fractol->pixel != NULL)
+	{
+		ft_bzero(fractol->pixel, sizeof(t_pixel));
+		free(fractol->pixel);
+	}
 	if (fractol != NULL)
 	{
 		ft_bzero(fractol, sizeof(t_fractol));

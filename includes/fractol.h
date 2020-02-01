@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/02/01 16:27:28 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/02/01 19:16:19 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@
 # define ESC 53
 # define INCREASE_ITERATIONS 24
 # define DECREASE_ITERATIONS 27
-# define ARROW_UP 126
-# define ARROW_DOWN 125
-# define ARROW_LEFT 123
-# define ARROW_RIGHT 124
+# define ARROW_UP 125
+# define ARROW_DOWN 126
+# define ARROW_LEFT 124
+# define ARROW_RIGHT 123
 # define FREEZE 261
 # define SPACE 49
 # define RESET 51

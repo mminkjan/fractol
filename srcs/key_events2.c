@@ -6,33 +6,16 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/24 15:03:14 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/02/01 14:23:57 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/02/02 09:13:13 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static void		switch_fractol_bonus(int key, t_fractol *fractol)
-{
-	if (key == THREE)
-	{
-		fractol->type = 3;
-		fractol->argv = "Mandelbar";
-		fractol->selector = &mandelbar_fractol;
-	}
-	else if (key == FOUR)
-	{
-		fractol->type = 4;
-		fractol->argv = "BurningShip";
-		fractol->selector = &burningship_fractol;
-	}
-}
-
 static void		switch_fractol(int key, t_fractol *fractol)
 {
 	if (key == ONE)
 	{
-		fractol->type = 1;
 		fractol->argv = "Julia";
 		fractol->selector = &julia_fractol;
 		fractol->c_real = -0.7;
@@ -40,12 +23,19 @@ static void		switch_fractol(int key, t_fractol *fractol)
 	}
 	else if (key == TWO)
 	{
-		fractol->type = 2;
 		fractol->argv = "Mandelbrot";
 		fractol->selector = &mandelbrot_fractol;
 	}
-	else
-		switch_fractol_bonus(key, fractol);
+	else if (key == THREE)
+	{
+		fractol->argv = "Mandelbar";
+		fractol->selector = &mandelbar_fractol;
+	}
+	else if (key == FOUR)
+	{
+		fractol->argv = "BurningShip";
+		fractol->selector = &burningship_fractol;
+	}
 	reset_key(fractol);
 }
 

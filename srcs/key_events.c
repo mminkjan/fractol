@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 15:22:02 by jesmith        #+#    #+#                */
-/*   Updated: 2020/02/01 14:32:15 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/02/02 09:15:09 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void		color_key(int key, t_fractol *fractol)
 
 void			reset_key(t_fractol *fractol)
 {
-	if (fractol->type == 1)
+	if (fractol->selector == &julia_fractol)
 	{
 		fractol->c_real = -0.7;
 		fractol->c_i = 0.27015;

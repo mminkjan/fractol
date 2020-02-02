@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/02/01 19:22:50 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/02/02 09:14:36 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ struct			s_fractol
 	int			size_line;
 	char		*argv;
 	int			max_iterations;
-	int			type;
 	t_f_ptr		selector;
 	double		c_real;
 	double		c_i;

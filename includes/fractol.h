@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/02/02 09:14:36 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/02/03 16:06:54 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@
 # define SPACE 49
 # define RESET 51
 
-# define WIDTH 900
-# define HEIGHT 900
+# define WIDTH 800
+# define HEIGHT 800
 
 typedef struct s_fractol	t_fractol;
 

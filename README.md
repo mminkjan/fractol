@@ -20,7 +20,7 @@ From terminal, the program can be install with git clone from the repository fol
 
 #### Example
 ```
-$ git clone git@github.com:jdsmith022/fractol.git [name-of-file]
+$ git clone git@github.com:jdsmith022/fractol.git [name-directory]
 ```
 
 ### Usage
@@ -55,11 +55,11 @@ $ make fclean
 Mandelbrot:
 ![Image of Mandelbrot](https://github.com/jdsmith022/fractol/blob/master/pictures/Mandelbrot.png)
 
-BurningShip:
-![Image description](https://github.com/jdsmith022/fractol/blob/master/pictures/BurningShip.png)
-
 Julia: 
 ![Image description](https://github.com/jdsmith022/fractol/blob/master/pictures/Julia.png)
+
+BurningShip:
+![Image description](https://github.com/jdsmith022/fractol/blob/master/pictures/BurningShip.png)
 
 Mandelbar: 
 ![Image description](https://github.com/jdsmith022/fractol/blob/master/pictures/Mandelbar.png)

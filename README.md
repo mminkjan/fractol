@@ -1,7 +1,7 @@
 # fract'ol
 ## Codam project fract'ol
 
-<center>![Demo of Mandelbrot](https://github.com/jdsmith022/fractol/blob/master/pictures/fractol.gif)</center>
+![Demo of Mandelbrot](https://github.com/jdsmith022/fractol/blob/master/pictures/fractol.gif)
 
 ### Description
 fract'ol is a program that displays four different fractal and allows the user to manipulate the fractal through a user interface. The fractals for this project are Mandelbrot, Julia, Burning Ship and Mandelbar.

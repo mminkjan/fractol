@@ -27,7 +27,7 @@ $ git clone git@github.com:jdsmith022/fractol.git [name-of-file]
 
 In terminal, go into the project directory. Run Make to compile. 
 ```
-$ Make
+$ make
 ```
 The executable name is fractol. Run program with:
 ```
@@ -43,12 +43,15 @@ If incorrect fractal is name, a usage error will but given.
 
 To delete all .o files from directory, run:
 ```
-$ Make clean
+$ make clean
 ```
 To delete executible from directory, run:
 ```
-$ Make fclean
+$ make fclean
 ```
+
+#### Fractals from project
+
 Mandelbrot:
 ![Image of Mandelbrot](https://github.com/jdsmith022/fractol/blob/master/pictures/Mandelbrot.png)
 

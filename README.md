@@ -1,4 +1,4 @@
--># fract'ol<-
+# ->fract'ol<-
 ## Codam project fract'ol
 
 ![Image description](https://github.com/jdsmith022/fractol/blob/master/pictures/Mandelbrot.png)

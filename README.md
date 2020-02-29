@@ -20,16 +20,16 @@ From terminal, the program can be install with git clone from the repository fol
 
 #### Example
 ```
-$ git clone git@github.com:jdsmith022/fractol.git [name-directory]
+$ git clone git@github.com:jdsmith022/fractol.git [directory-name]
 ```
 
 ### Usage
 
-In terminal, go into the project directory. Run Make to compile. 
+In terminal, go into the project directory. This program uses a makefile to compile. To compile, run: 
 ```
 $ make
 ```
-The executable name is fractol. Run program with:
+The executable name is fractol. To run, chose one of the four optional fractal as a parameter. Run program with:
 ```
 $ ./fractol [name-of-desire-fractol]
 ```
@@ -39,16 +39,18 @@ $ ./fractol [name-of-desire-fractol]
 $ ./fractol Julia
 ```
 
-If incorrect fractal is name, a usage error will but given.
+If incorrect fractal is name, a usage error will but given. The user interface provides information for the use and exit of the program. 
 
-To delete all .o files from directory, run:
+To delete all object files from directory, run:
 ```
 $ make clean
 ```
-To delete executible from directory, run:
+To delete executable from directory, run:
 ```
 $ make fclean
 ```
+
+
 
 #### Fractals from project
 

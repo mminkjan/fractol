@@ -1,4 +1,4 @@
-<h1><center>fract'ol</center></h1>
+<h1 text-align="center">fract'ol</h1>
 ## Codam project fract'ol
 
 ![Image of Mandelbrot](https://github.com/jdsmith022/fractol/blob/master/pictures/Mandelbrot.png)

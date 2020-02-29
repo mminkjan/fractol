@@ -1,5 +1,5 @@
 # fract'ol
-## Codam project fract'ol
+## Codam Coding College project fract'ol
 
 ![Demo of Mandelbrot](https://github.com/jdsmith022/fractol/blob/master/pictures/fractol.gif)
 

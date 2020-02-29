@@ -1,4 +1,7 @@
 # fract'ol
+
+![Image description](https://github.com/jdsmith022/fractol/blob/master/pictures/Mandelbrot.png)
+
 ## Codam project fract'ol
 
 ### Description
@@ -7,9 +10,6 @@ fract'ol is a program that displays four different fractal and allows the user t
 The purpose of this project was to gain a better understanding of miniLibX library, to discover and use the mathematical notion of complex numbers, and to take a peak at the concept of optimzation in computer graphics through multithreading.
 
 For full pdf of project requirements click [here](https://github.com/jdsmith022/fractol/blob/master/fract_ol.en.pdf).
-
-![Image description](https://github.com/jdsmith022/fractol/blob/master/pictures/Mandelbrot.png)
-
 
 ### Prerequisites
 XQuartz 
@@ -30,7 +30,7 @@ In terminal, go into the project directory. Run Make to compile.
 ```
 $ Make
 ```
-The executible name is fractol. Run program with:
+The executable name is fractol. Run program with:
 ```
 $ ./fractol [name-of-desire-fractol]
 ```

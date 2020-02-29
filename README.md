@@ -1,7 +1,7 @@
 # fractol
 Codam project fract'ol
 
-For full pdf of project requirements click [here](https://github.com/jdsmith022/fractol/blob/master/fract_ol.en.pdf)
+For full pdf of project requirements click [here].(https://github.com/jdsmith022/fractol/blob/master/fract_ol.en.pdf)
 
 Mandelbrot: 
 ![Image description](https://github.com/jdsmith022/fractol/blob/master/pictures/Mandelbrot.png)

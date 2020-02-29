@@ -6,12 +6,14 @@ fract'ol is a program that displays four different fractal and allows the user t
 
 The purpose of this project was to gain a better understanding of miniLibX library, to discover and use the mathematical notion of complex numbers, and to take a peak at the concept of optimzation in computer graphics through multithreading.
 
-For full pdf of project requirements click [here].(https://github.com/jdsmith022/fractol/blob/master/fract_ol.en.pdf)
+For full pdf of project requirements click [here](https://github.com/jdsmith022/fractol/blob/master/fract_ol.en.pdf).
+
+![Image description](https://github.com/jdsmith022/fractol/blob/master/pictures/Mandelbrot.png)
 
 
 ### Prerequisites
 XQuartz 
-To download, click [here].(https://www.xquartz.org/)
+To download, click [here](https://www.xquartz.org/).
 
 ### Installation
 
@@ -21,7 +23,6 @@ From terminal, the program can be install with git clone from the repository fol
 ```
 $ git clone git@github.com:jdsmith022/fractol.git [name-of-file]
 ```
-
 
 ### Usage
 
@@ -49,11 +50,6 @@ To delete executible from directory, run:
 ```
 $ Make fclean
 ```
-
-
-
-Mandelbrot: 
-![Image description](https://github.com/jdsmith022/fractol/blob/master/pictures/Mandelbrot.png)
 
 BurningShip:
 ![Image description](https://github.com/jdsmith022/fractol/blob/master/pictures/BurningShip.png)

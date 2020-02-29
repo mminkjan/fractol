@@ -4,7 +4,7 @@
 ![Demo of Mandelbrot](https://github.com/jdsmith022/fractol/blob/master/pictures/fractol.gif)
 
 ### Description
-fract'ol is a program that displays four different fractal and allows the user to manipulate the fractal through a user interface. The fractals for this project are Mandelbrot, Julia, Burning Ship and Mandelbar.
+fract'ol is a program written in C that displays a fractal of the users choice. The program allows the user to manipulate the displayed fractal and change between the four different fractals handled by the program as instructed by a user interface. The fractals available for this project are Mandelbrot, Julia, Burning Ship and Mandelbar.
 
 The purpose of this project was to gain a better understanding of miniLibX library, to discover and use the mathematical notion of complex numbers, and to take a peak at the concept of optimzation in computer graphics through multithreading.
 

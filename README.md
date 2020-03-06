@@ -13,7 +13,7 @@ For full pdf of project requirements click [here](https://github.com/jdsmith022/
 ### Prerequisites
 XQuartz 
 To download, click [here](https://www.xquartz.org/).
-This program complies with a Makefile. For Windows, user can download Cygwin [here](http://www.cygwin.com/) for functionality similar to Linus for Windows.
+This program was written on LinuxOS and complies with a Makefile.
 
 ### Installation
 

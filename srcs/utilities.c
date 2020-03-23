@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:20:30 by jesmith        #+#    #+#                */
-/*   Updated: 2020/02/02 09:14:48 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/03/23 21:14:03 by JessicaSmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,25 @@ t_fractol	*fractol_init(void)
 	return (fractol);
 }
 
+static void	mlx_free(t_fractol *fractol)
+{
+	if (fractol->mlx_ptr)
+	{
+		ft_bzero(fractol->mlx_ptr, sizeof(fractol->mlx_ptr));
+		free(fractol->mlx_ptr);
+	}
+	if (fractol->window_ptr)
+	{
+		ft_bzero(fractol->window_ptr, sizeof(fractol->window_ptr));
+		free(fractol->window_ptr);
+	}
+		if (fractol->image_ptr)
+	{
+		ft_bzero(fractol->image_ptr, sizeof(fractol->image_ptr));
+		free(fractol->image_ptr);
+	}
+}
+
 void		fractol_exit(char *str, t_fractol *fractol)
 {
 	ft_putstr(str);
@@ -65,6 +84,7 @@ void		fractol_exit(char *str, t_fractol *fractol)
 	}
 	if (fractol != NULL)
 	{
+		mlx_free(fractol);
 		ft_bzero(fractol, sizeof(t_fractol));
 		free(fractol);
 	}

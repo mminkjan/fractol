@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   key_events2.c                                      :+:    :+:            */
+/*   fractol_key_events.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/24 15:03:14 by mminkjan       #+#    #+#                */
-/*   Updated: 2020/02/02 09:13:13 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/03/23 21:35:10 by JessicaSmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ void			fractol_key(int key, t_fractol *fractol)
 		print_interface(fractol);
 	}
 	else if (key == ESC)
-	{
-		ft_bzero(fractol, sizeof(fractol));
-		free(fractol);
-		exit(EXIT_SUCCESS);
-	}
+		exit_success(fractol);
+
 }

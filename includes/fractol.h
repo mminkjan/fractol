@@ -6,7 +6,7 @@
 /*   By: mminkjan <mminkjan@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 11:14:59 by jesmith        #+#    #+#                */
-/*   Updated: 2020/02/03 16:06:54 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/03/23 21:36:23 by JessicaSmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,8 @@ int				main(int argc, char **argv);
 void			mlx_setup(t_fractol *fractol);
 
 void			check_input(t_fractol *fractol, char *argv);
-void			fractol_exit(char *str, t_fractol *fractol);
+void			exit_failure(char *str, t_fractol *fractol);
+void			exit_success(t_fractol *fractol);
 t_fractol		*fractol_init(void);
 
 t_pixel			julia_fractol(t_fractol *fractol, int x, int y);

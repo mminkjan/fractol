@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 16:09:45 by jesmith        #+#    #+#                */
-/*   Updated: 2020/02/11 10:09:56 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/03/23 21:35:05 by JessicaSmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			main(int argc, char **argv)
 	t_fractol *fractol;
 
 	if (argc != 2)
-		fractol_exit(USAGE_ERR, NULL);
+		exit_failure(USAGE_ERR, NULL);
 	fractol = fractol_init();
 	check_input(fractol, argv[1]);
 	mlx_setup(fractol);
